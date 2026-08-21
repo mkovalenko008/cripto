@@ -1,0 +1,92 @@
+// Порт bb_strategy.py + bb_backtest.py на Pine Script для теста в TradingView.
+// Логика идентична python-версии: вход по касанию полосы Боллинджера (после
+// фильтров ADX/RSI), цель = базовая линия (SMA) НА МОМЕНТ ВХОДА (фиксированная
+// цена, не бегущая линия), стоп = stopMult * ширина полосы на момент входа,
+// таймаут = maxHoldBars баров.
+//
+// Комиссия НЕ зашита в код — задаётся в Properties (вкладка справа от графика
+// после запуска стратегии) полем Commission. Для Bitget spot taker = 0.1% за
+// ОДИН ордер, то есть за круг (вход+выход) спишется 0.2% — именно так же
+// считает fee_pct_per_side=0.1 в bb_backtest.py.
+//
+// process_orders_on_close=true заставляет ордер исполняться на закрытии ТОЙ
+// ЖЕ свечи, на которой сработал сигнал — это точно повторяет модель
+// bb_backtest.py (там entry_price = closes[i], то есть сделка "входит" по
+// цене закрытия сигнального бара). Это слегка оптимистично для реальной
+// торговли (на живом рынке ты видишь закрытие бара уже постфактum) — если
+// хочешь более консервативный тест, выключи process_orders_on_close ниже,
+// тогда вход будет по открытию СЛЕДУЮЩЕГО бара.
+
+//@version=6
+strategy("BB Bounce + ADX/RSI (bb_strategy.py port)", overlay=true,
+     default_qty_type=strategy.percent_of_equity, default_qty_value=100,
+     commission_type=strategy.commission.percent, commission_value=0.1,
+     process_orders_on_close=true)
+
+// ---- параметры (совпадают с дефолтами bb_strategy.py / bb_backtest.py) ----
+bbLength      = input.int(20, "BB период")
+bbMult        = input.float(2.0, "BB множитель std", step=0.1)
+useAdxFilter  = input.bool(true, "Фильтр ADX (пропускать сильный тренд)")
+adxLength     = input.int(14, "ADX период")
+adxThreshold  = input.float(25.0, "ADX порог тренда")
+useRsiFilter  = input.bool(true, "Подтверждение RSI")
+rsiLength     = input.int(14, "RSI период")
+rsiOversold   = input.float(35.0, "RSI перепроданность (для LONG)")
+rsiOverbought = input.float(65.0, "RSI перекупленность (для SHORT)")
+stopMult      = input.float(1.0, "Стоп = X * ширина полосы на входе", step=0.1)
+maxHoldBars   = input.int(20, "Таймаут, баров")
+longOnly      = input.bool(true, "Только LONG (спот без плеча шорт невозможен)")
+
+// ---- индикаторы ----
+[basis, upper, lower] = ta.bb(close, bbLength, bbMult)
+[diplus, diminus, adx] = ta.dmi(adxLength, adxLength)
+rsiVal = ta.rsi(close, rsiLength)
+
+bandWidth = upper - lower
+pb = bandWidth != 0 ? (close - lower) / bandWidth : 0.5
+
+longTouch  = pb <= 0.0
+shortTouch = pb >= 1.0
+
+adxOk      = not useAdxFilter or adx < adxThreshold
+rsiOkLong  = not useRsiFilter or rsiVal <= rsiOversold
+rsiOkShort = not useRsiFilter or rsiVal >= rsiOverbought
+
+longSignal  = longTouch and adxOk and rsiOkLong
+shortSignal = shortTouch and adxOk and rsiOkShort and not longOnly
+
+// ---- управление позицией ----
+var float targetPrice = na
+var float stopPrice   = na
+var int   entryBar    = na
+
+if strategy.position_size == 0
+    if longSignal
+        targetPrice := basis
+        stopPrice   := close - stopMult * bandWidth
+        entryBar    := bar_index
+        strategy.entry("Long", strategy.long)
+    else if shortSignal
+        targetPrice := basis
+        stopPrice   := close + stopMult * bandWidth
+        entryBar    := bar_index
+        strategy.entry("Short", strategy.short)
+
+if strategy.position_size > 0
+    strategy.exit("XLong", from_entry="Long", limit=targetPrice, stop=stopPrice)
+    if bar_index - entryBar >= maxHoldBars
+        strategy.close("Long", comment="таймаут")
+
+if strategy.position_size < 0
+    strategy.exit("XShort", from_entry="Short", limit=targetPrice, stop=stopPrice)
+    if bar_index - entryBar >= maxHoldBars
+        strategy.close("Short", comment="таймаут")
+
+// ---- визуализация ----
+plot(basis, "Basis (SMA)", color=color.blue)
+plot(upper, "Upper", color=color.red)
+plot(lower, "Lower", color=color.green)
+plotshape(strategy.position_size > 0 and strategy.position_size[1] == 0,
+     "Вход LONG", style=shape.triangleup, location=location.belowbar, color=color.lime, size=size.small)
+plotshape(strategy.position_size < 0 and strategy.position_size[1] == 0,
+     "Вход SHORT", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small)
