@@ -1,0 +1,20 @@
+# секреты и окружение
+.env
+venv/
+__pycache__/
+*.pyc
+
+# состояние и логи РЕАЛЬНОГО бота (main.py) — не нужны в публичном репо
+state.json
+trades_log.jsonl
+bot.log
+
+# лог paper-трейдера — шумный, полезен только локально; в репо остаются
+# paper_state.json, paper_trades_log.jsonl и PAPER_STATUS.md
+paper_bot.log
+
+# ручной kill switch — не должен случайно закоммититься включённым
+STOP
+
+# скачанные исторические данные для бэктеста — тяжёлые, воспроизводимы через fetch_history.py
+data/

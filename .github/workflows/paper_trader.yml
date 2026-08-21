@@ -1,0 +1,41 @@
+name: Paper trading (bb_strategy, вымышленные деньги)
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-trader
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Одна проверка стратегии (без реальных ордеров)
+        run: python3 paper_trader.py --once
+
+      - name: Закоммитить обновлённое состояние
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add paper_state.json paper_trades_log.jsonl PAPER_STATUS.md
+          if git diff --cached --quiet; then
+            echo "Изменений нет, коммит не нужен"
+          else
+            git commit -m "paper-trader: обновление статуса $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git push
+          fi
