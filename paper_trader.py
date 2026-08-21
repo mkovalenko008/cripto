@@ -248,61 +248,77 @@ def process_tick(client: BitgetClient, st: PaperState, args) -> float | None:
         return None
 
     closed = candles[:-1]  # последняя свеча может быть ещё не закрыта
-    last_closed = closed[-1]
     last_price = candles[-1]["close"]
 
-    if st.last_processed_ts == last_closed["ts"]:
+    if not closed:
         return last_price
 
-    st.last_processed_ts = last_closed["ts"]
-    price = last_closed["close"]
-
-    if st.position is not None:
-        st.position["bars_held"] += 1
-        pos = st.position
-        hit_target = (price >= pos["target"]) if pos["side"] == "LONG" else (price <= pos["target"])
-        hit_stop = (price <= pos["stop"]) if pos["side"] == "LONG" else (price >= pos["stop"])
-
-        if hit_target:
-            close_position(st, price, last_closed["ts"], "цель", args.fee_pct_per_side)
-        elif hit_stop:
-            close_position(st, price, last_closed["ts"], "стоп", args.fee_pct_per_side)
-        elif pos["bars_held"] >= args.max_holding_bars:
-            close_position(st, price, last_closed["ts"], "таймаут", args.fee_pct_per_side)
-        else:
-            log.info("Позиция %s открыта: цена=%.4f, цель=%.4f, стоп=%.4f, бар %d/%d",
-                      pos["side"], price, pos["target"], pos["stop"],
-                      pos["bars_held"], args.max_holding_bars)
-
+    # Свечи короче интервала проверки (например 1min-бары при опросе раз в
+    # 5 минут) означают, что между двумя запусками может закрыться сразу
+    # несколько баров. Если смотреть только на самый свежий, можно
+    # пропустить момент касания цели/стопа на промежуточном баре — поэтому
+    # разбираем все новые закрытые свечи по порядку, а не только последнюю.
+    if st.last_processed_ts is None:
+        new_bars = [closed[-1]]
     else:
-        d = decide(closed, period=args.period, num_std=args.num_std,
-                   use_adx_filter=args.use_adx, adx_threshold=args.adx_threshold,
-                   use_rsi_confirmation=args.use_rsi,
-                   rsi_oversold=args.rsi_oversold, rsi_overbought=args.rsi_overbought)
+        new_bars = [c for c in closed if c["ts"] > st.last_processed_ts]
 
-        if not d.take_trade:
-            log.info("Сигнала нет: %s", d.reason)
-        elif d.side == Side.SHORT:
-            log.info("Сигнал SHORT пропущен — на споте без плеча шорт невозможен (%s)", d.reason)
-        else:
-            closes = [c["close"] for c in closed]
-            basis, upper, lower = bollinger_bands(closes, args.period, args.num_std)
-            band_width = upper - lower
-            target = basis
-            stop = price - args.stop_mult * band_width
+    if not new_bars:
+        return last_price
 
-            st.position = {
-                "side": "LONG",
-                "entry_price": price,
-                "entry_ts": last_closed["ts"],
-                "target": target,
-                "stop": stop,
-                "bars_held": 0,
-                "adx_at_entry": d.adx_value,
-                "rsi_at_entry": d.rsi_value,
-            }
-            log.info("[PAPER] ОТКРЫЛ LONG по %.4f, цель=%.4f, стоп=%.4f (%s)",
-                      price, target, stop, d.reason)
+    for bar in new_bars:
+        is_latest = bar["ts"] == closed[-1]["ts"]
+        st.last_processed_ts = bar["ts"]
+        price = bar["close"]
+
+        if st.position is not None:
+            st.position["bars_held"] += 1
+            pos = st.position
+            hit_target = (price >= pos["target"]) if pos["side"] == "LONG" else (price <= pos["target"])
+            hit_stop = (price <= pos["stop"]) if pos["side"] == "LONG" else (price >= pos["stop"])
+
+            if hit_target:
+                close_position(st, price, bar["ts"], "цель", args.fee_pct_per_side)
+            elif hit_stop:
+                close_position(st, price, bar["ts"], "стоп", args.fee_pct_per_side)
+            elif pos["bars_held"] >= args.max_holding_bars:
+                close_position(st, price, bar["ts"], "таймаут", args.fee_pct_per_side)
+            elif is_latest:
+                log.info("Позиция %s открыта: цена=%.4f, цель=%.4f, стоп=%.4f, бар %d/%d",
+                          pos["side"], price, pos["target"], pos["stop"],
+                          pos["bars_held"], args.max_holding_bars)
+
+        elif is_latest:
+            # Новую позицию открываем только по самому свежему бару — входить
+            # по устаревшему сигналу (цена уже ушла) смысла нет.
+            d = decide(closed, period=args.period, num_std=args.num_std,
+                       use_adx_filter=args.use_adx, adx_threshold=args.adx_threshold,
+                       use_rsi_confirmation=args.use_rsi,
+                       rsi_oversold=args.rsi_oversold, rsi_overbought=args.rsi_overbought)
+
+            if not d.take_trade:
+                log.info("Сигнала нет: %s", d.reason)
+            elif d.side == Side.SHORT:
+                log.info("Сигнал SHORT пропущен — на споте без плеча шорт невозможен (%s)", d.reason)
+            else:
+                closes = [c["close"] for c in closed]
+                basis, upper, lower = bollinger_bands(closes, args.period, args.num_std)
+                band_width = upper - lower
+                target = basis
+                stop = price - args.stop_mult * band_width
+
+                st.position = {
+                    "side": "LONG",
+                    "entry_price": price,
+                    "entry_ts": bar["ts"],
+                    "target": target,
+                    "stop": stop,
+                    "bars_held": 0,
+                    "adx_at_entry": d.adx_value,
+                    "rsi_at_entry": d.rsi_value,
+                }
+                log.info("[PAPER] ОТКРЫЛ LONG по %.4f, цель=%.4f, стоп=%.4f (%s)",
+                          price, target, stop, d.reason)
 
     return last_price
 

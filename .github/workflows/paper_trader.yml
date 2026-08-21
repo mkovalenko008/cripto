@@ -2,7 +2,7 @@ name: Paper trading (bb_strategy, вымышленные деньги)
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "*/5 * * * *"  # чаще GitHub Actions cron не запускает — это его жёсткий минимум
   workflow_dispatch: {}
 
 permissions:
@@ -26,7 +26,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Одна проверка стратегии (без реальных ордеров)
-        run: python3 paper_trader.py --once
+        run: python3 paper_trader.py --once --granularity 1min
 
       - name: Закоммитить обновлённое состояние
         run: |
