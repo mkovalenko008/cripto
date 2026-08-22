@@ -84,13 +84,24 @@ def main():
 
     out = template.replace("/*__DASHBOARD_DATA__*/", json.dumps(data, ensure_ascii=False))
 
+    # dashboard/index.html — источник для публикации через инструмент Artifact
+    # (плановая облачная задача раз в сутки).
     out_path = os.path.join(os.path.dirname(__file__), "index.html")
     with open(out_path, "w", encoding="utf-8") as f:
+        f.write(out)
+
+    # docs/index.html — источник для GitHub Pages, обновляется чаще (вместе
+    # с прогонами trend_paper_trader.yml, см. .github/workflows).
+    docs_dir = os.path.join(BASE_DIR, "docs")
+    os.makedirs(docs_dir, exist_ok=True)
+    docs_path = os.path.join(docs_dir, "index.html")
+    with open(docs_path, "w", encoding="utf-8") as f:
         f.write(out)
 
     trend_trades = sum(len(c["trades"]) for c in data["bots"]["trend"]["coins"].values())
     mr_trades = sum(len(c["trades"]) for c in data["bots"]["meanrev"]["coins"].values())
     print(f"Собрано: {out_path}")
+    print(f"Собрано: {docs_path}")
     print(f"Trend: {trend_trades} сделок всего")
     print(f"MeanRev: {mr_trades} сделок всего")
 
