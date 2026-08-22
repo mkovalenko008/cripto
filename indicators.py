@@ -79,6 +79,19 @@ def _wilder_smooth(values: list[float], period: int) -> list[float]:
     return smoothed
 
 
+def atr(highs: list[float], lows: list[float], closes: list[float],
+        period: int = 14) -> float | None:
+    """Average True Range по Уайлдеру. None, если данных меньше period+1."""
+    n = len(closes)
+    if n < period + 1:
+        return None
+    trs = [_true_range(highs[i], lows[i], closes[i - 1]) for i in range(1, n)]
+    smooth = _wilder_smooth(trs, period)
+    if not smooth:
+        return None
+    return smooth[-1] / period
+
+
 def adx(highs: list[float], lows: list[float], closes: list[float],
         period: int = 14) -> float | None:
     """
