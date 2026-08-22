@@ -1,0 +1,87 @@
+// Порт trend_strategy.py + trend_backtest.py для TradingView.
+//
+// В отличие от bb_strategy.pine (отскок ОТ полосы, ADX как повод пропустить
+// сделку) — здесь наоборот: вход ПО пробою полосы, ADX как ПОДТВЕРЖДЕНИЕ
+// тренда (высокий ADX обязателен для входа, а не отсечка). Выход — не
+// фиксированная цель, а трейлинг-стоп по ATR, который подтягивается за
+// ценой и никогда не двигается против прибыли — так тренд можно "прокатать"
+// значительно дальше комиссии, а не только до середины полосы.
+//
+// Дефолты (ADX>=30, ATRx3.0, num_std=2.5, 1H) — конфигурация, отобранная
+// честным train/test на 2 годах истории по 23 монетам: 63.6% монет дали
+// плюс на test-выборке, которую не видели при подборе. Полный отчёт —
+// trend_config_search_report.txt в репозитории. Это не гарантия
+// прибыльности вперёд, а лучшее, что честно нашлось на этих данных.
+//
+// Комиссия — в Properties (Commission), по умолчанию 0.1% (спот Bitget
+// taker, вход+выход = 0.2% за круг). process_orders_on_close=true —
+// исполнение на закрытии сигнального бара, как в python-бэктесте.
+
+//@version=6
+strategy("Trend Breakout + ADX + ATR-trail (trend_strategy.py port)", overlay=true,
+     default_qty_type=strategy.percent_of_equity, default_qty_value=100,
+     commission_type=strategy.commission.percent, commission_value=0.1,
+     process_orders_on_close=true)
+
+// ---- параметры (дефолты = лучшая по train/test конфигурация) ----
+bbLength     = input.int(20, "BB период")
+bbMult       = input.float(2.5, "BB множитель std", step=0.1)
+adxLength    = input.int(14, "ADX период")
+adxThreshold = input.float(30.0, "ADX порог (нужен тренд — чем выше, тем строже)")
+atrLength    = input.int(14, "ATR период")
+atrStopMult  = input.float(3.0, "Трейлинг-стоп = X * ATR", step=0.1)
+maxHoldBars  = input.int(100, "Таймаут, баров (страховка на случай бесконечного боковика)")
+longOnly     = input.bool(true, "Только LONG (спот без плеча шорт невозможен)")
+
+// ---- индикаторы ----
+[basis, upper, lower] = ta.bb(close, bbLength, bbMult)
+[diplus, diminus, adx] = ta.dmi(adxLength, adxLength)
+atrVal = ta.atr(atrLength)
+
+longSignal  = close > upper and adx >= adxThreshold
+shortSignal = close < lower and adx >= adxThreshold and not longOnly
+
+// ---- управление позицией: трейлинг-стоп по ATR ----
+var float stopDistance = na
+var float extreme      = na
+var float trailingStop = na
+var int   entryBar     = na
+
+if strategy.position_size == 0
+    if longSignal
+        stopDistance := atrStopMult * atrVal
+        extreme      := close
+        trailingStop := close - stopDistance
+        entryBar     := bar_index
+        strategy.entry("Long", strategy.long)
+    else if shortSignal
+        stopDistance := atrStopMult * atrVal
+        extreme      := close
+        trailingStop := close + stopDistance
+        entryBar     := bar_index
+        strategy.entry("Short", strategy.short)
+
+if strategy.position_size > 0
+    extreme := math.max(extreme, close)
+    trailingStop := extreme - stopDistance
+    strategy.exit("XLong", from_entry="Long", stop=trailingStop)
+    if bar_index - entryBar >= maxHoldBars
+        strategy.close("Long", comment="таймаут")
+
+if strategy.position_size < 0
+    extreme := math.min(extreme, close)
+    trailingStop := extreme + stopDistance
+    strategy.exit("XShort", from_entry="Short", stop=trailingStop)
+    if bar_index - entryBar >= maxHoldBars
+        strategy.close("Short", comment="таймаут")
+
+// ---- визуализация ----
+plot(basis, "Basis (SMA)", color=color.blue)
+plot(upper, "Upper", color=color.red)
+plot(lower, "Lower", color=color.green)
+plot(strategy.position_size != 0 ? trailingStop : na, "Трейлинг-стоп",
+     color=color.orange, style=plot.style_circles, linewidth=2)
+plotshape(strategy.position_size > 0 and strategy.position_size[1] == 0,
+     "Вход LONG", style=shape.triangleup, location=location.belowbar, color=color.lime, size=size.small)
+plotshape(strategy.position_size < 0 and strategy.position_size[1] == 0,
+     "Вход SHORT", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small)
