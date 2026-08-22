@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Крипто Полигон</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* --- validated reference palette (dataviz skill), light --- */
+    --page: #f9f9f7;
+    --surface: #fcfcfb;
+    --surface-2: #f0efeb;
+    --text: #0b0b0b;
+    --text-secondary: #52514e;
+    --text-muted: #898781;
+    --grid: #e1e0d9;
+    --border: rgba(11,11,11,0.10);
+
+    --accent-trend: #eb6834;
+    --accent-meanrev: #1baf7a;
+    --gain: #0ca30c;
+    --loss: #d03b3b;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --page: #0d0d0d;
+      --surface: #1a1a19;
+      --surface-2: #232320;
+      --text: #ffffff;
+      --text-secondary: #c3c2b7;
+      --text-muted: #898781;
+      --grid: #2c2c2a;
+      --border: rgba(255,255,255,0.10);
+
+      --accent-trend: #d95926;
+      --accent-meanrev: #199e70;
+      --gain: #0ca30c;
+      --loss: #d03b3b;
+    }
+  }
+  :root[data-theme="dark"] {
+    --page: #0d0d0d;
+    --surface: #1a1a19;
+    --surface-2: #232320;
+    --text: #ffffff;
+    --text-secondary: #c3c2b7;
+    --text-muted: #898781;
+    --grid: #2c2c2a;
+    --border: rgba(255,255,255,0.10);
+
+    --accent-trend: #d95926;
+    --accent-meanrev: #199e70;
+    --gain: #0ca30c;
+    --loss: #d03b3b;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--page);
+    color: var(--text);
+    font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    padding: 32px 20px 80px;
+  }
+  ::selection { background: var(--accent-trend); color: #fff; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; }
+
+  /* ---- header ---- */
+  .page-head {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    flex-wrap: wrap; gap: 16px;
+    margin-bottom: 28px; padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .page-head h1 {
+    font-family: "Sora", sans-serif; font-weight: 800;
+    font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.01em;
+    text-wrap: balance; margin: 0 0 6px;
+    background: linear-gradient(100deg, var(--accent-trend), var(--accent-meanrev));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .page-head p { margin: 0; color: var(--text-secondary); max-width: 60ch; }
+  .page-head__meta { text-align: right; font-family: "IBM Plex Mono", monospace; font-size: 12.5px; color: var(--text-muted); }
+  .page-head__meta strong { display: block; color: var(--text); font-size: 13px; margin-bottom: 2px; }
+
+  .disclaimer {
+    display: flex; gap: 10px; align-items: center;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px;
+    padding: 12px 16px; margin-bottom: 36px; font-size: 13.5px; color: var(--text-secondary);
+  }
+  .disclaimer b { color: var(--text); }
+
+  /* ---- bot section ---- */
+  .bot { margin-bottom: 56px; }
+  .bot__head { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 20px; }
+  .bot__title { font-family: "Sora", sans-serif; font-weight: 700; font-size: 22px; margin: 0 0 4px; display: flex; align-items: center; gap: 10px; }
+  .bot__dot { width: 12px; height: 12px; border-radius: 4px; background: var(--bot-accent); flex-shrink: 0; box-shadow: 0 0 0 4px color-mix(in srgb, var(--bot-accent) 18%, transparent); }
+  .bot__subtitle { margin: 0; color: var(--text-secondary); font-size: 13.5px; }
+  .bot__method { margin: 20px 0 0; font-size: 12.5px; color: var(--text-muted); max-width: 78ch; line-height: 1.6; }
+
+  .badge { font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: 0.02em; padding: 5px 10px; border-radius: 100px; white-space: nowrap; align-self: flex-start; }
+  .badge--validated { background: color-mix(in srgb, var(--gain) 16%, transparent); color: var(--gain); }
+  .badge--unvalidated { background: var(--surface-2); color: var(--text-muted); border: 1px solid var(--border); }
+
+  .bot__stats {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; margin-bottom: 20px;
+  }
+  .stat { background: var(--surface); padding: 16px 18px; display: flex; flex-direction: column; gap: 4px; position: relative; }
+  .stat::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: var(--bot-accent); opacity: 0.55; }
+  .stat__label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+  .stat__value { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 22px; }
+  .stat__value--gain { color: var(--gain); }
+  .stat__value--loss { color: var(--loss); }
+  .stat__unit { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+  .stat__sub { font-size: 11.5px; color: var(--text-muted); }
+
+  /* ---- date filter row ---- */
+  .filter-row { display: flex; gap: 6px; margin-bottom: 14px; }
+  .filter-btn {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-secondary);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 6px 12px; cursor: pointer;
+  }
+  .filter-btn:hover { border-color: var(--bot-accent); color: var(--text); }
+  .filter-btn.active { background: var(--bot-accent); border-color: var(--bot-accent); color: #fff; font-weight: 500; }
+
+  /* ---- chart ---- */
+  .chart-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px 10px; margin-bottom: 20px;
+  }
+  .chart-card__title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 8px; }
+  .chart-svg { width: 100%; height: 140px; display: block; overflow: visible; }
+  .chart-line { fill: none; stroke: var(--bot-accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+  .chart-area { fill: var(--bot-accent); opacity: 0.10; }
+  .chart-grid { stroke: var(--grid); stroke-width: 1; }
+  .chart-baseline { stroke: var(--text-muted); stroke-width: 1; stroke-dasharray: 2 3; }
+  .chart-dot { fill: var(--bot-accent); }
+  .chart-cross { stroke: var(--text-muted); stroke-width: 1; opacity: 0; pointer-events: none; }
+  .chart-empty { fill: var(--text-muted); font-family: "IBM Plex Mono", monospace; font-size: 12px; }
+  .chart-tooltip {
+    position: absolute; pointer-events: none; opacity: 0; transition: opacity .08s;
+    background: var(--text); color: var(--page); font-family: "IBM Plex Mono", monospace;
+    font-size: 11.5px; padding: 6px 9px; border-radius: 6px; white-space: nowrap; z-index: 5;
+    transform: translate(-50%, -130%);
+  }
+  .chart-wrap { position: relative; }
+
+  /* ---- coin grid ---- */
+  .coin-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 8px; }
+  .coin-card {
+    background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--text-muted);
+    border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 3px;
+    cursor: pointer; text-align: left; font: inherit; color: inherit;
+    transition: transform .08s, border-color .08s;
+  }
+  .coin-card:hover { transform: translateY(-1px); border-color: var(--bot-accent); }
+  .coin-card:focus-visible { outline: 2px solid var(--bot-accent); outline-offset: 2px; }
+  .coin-card--gain { border-left-color: var(--gain); }
+  .coin-card--loss { border-left-color: var(--loss); }
+  .coin-card--idle { opacity: 0.55; }
+  .coin-card__sym { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
+  .coin-card__pos { font-size: 9.5px; background: var(--bot-accent); color: #fff; padding: 1px 5px; border-radius: 4px; font-weight: 600; }
+  .coin-card__ret { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 16px; }
+  .coin-card__ret--gain { color: var(--gain); }
+  .coin-card__ret--loss { color: var(--loss); }
+  .coin-card__ret--idle { color: var(--text-muted); font-size: 12.5px; font-weight: 400; }
+  .coin-card__meta { font-size: 10.5px; color: var(--text-muted); }
+
+  /* ---- modal ---- */
+  .modal-backdrop {
+    position: fixed; inset: 0; background: rgba(0,0,0,0.55);
+    display: none; align-items: center; justify-content: center; padding: 24px; z-index: 20;
+  }
+  .modal-backdrop.open { display: flex; }
+  .modal {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+    max-width: 720px; width: 100%; max-height: 82vh; overflow: auto; padding: 22px 24px;
+  }
+  .modal__head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
+  .modal__title { font-family: "Sora", sans-serif; font-weight: 700; font-size: 19px; margin: 0; }
+  .modal__close { background: var(--surface-2); border: 1px solid var(--border); border-radius: 8px; width: 30px; height: 30px; cursor: pointer; color: var(--text); font-size: 16px; line-height: 1; }
+  .modal__sub { color: var(--text-muted); font-size: 12.5px; margin: 0 0 16px; }
+  .modal table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  .modal th { text-align: left; font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; padding: 6px 8px; border-bottom: 1px solid var(--border); }
+  .modal td { padding: 8px; border-bottom: 1px solid var(--grid); font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  .modal tr:last-child td { border-bottom: none; }
+  .modal .pnl-gain { color: var(--gain); }
+  .modal .pnl-loss { color: var(--loss); }
+  .modal__empty { color: var(--text-muted); font-size: 13px; padding: 24px 0; text-align: center; }
+  .side-pill { font-size: 10px; padding: 2px 6px; border-radius: 4px; background: var(--surface-2); }
+
+  footer {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
+    font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  @media (max-width: 640px) {
+    .bot__stats { grid-template-columns: repeat(2, 1fr); }
+    .page-head { flex-direction: column; align-items: flex-start; }
+    .page-head__meta { text-align: left; }
+    .modal { padding: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="page-head">
+    <div>
+      <h1>Крипто Полигон</h1>
+      <p>Живой paper-trading двух стратегий на реальных ценах Bitget — без единой реальной сделки.</p>
+    </div>
+    <div class="page-head__meta" id="generated-at"></div>
+  </div>
+
+  <div class="disclaimer">
+    <b>Это не реальная торговля.</b>&nbsp;Оба бота управляют вымышленным капиталом (10 USDT на бота) и физически не могут отправить ордер на биржу — код не импортирует функции размещения ордеров.
+  </div>
+
+  <div id="bots"></div>
+
+  <footer>
+    <span>Исходный код и полные бэктесты — репозиторий bitget_bot</span>
+    <span>Bitget Spot · публичные данные, без API-ключей</span>
+  </footer>
+</div>
+
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="modal" id="modal" role="dialog" aria-modal="true">
+    <div class="modal__head">
+      <div>
+        <h3 class="modal__title" id="modal-title"></h3>
+        <p class="modal__sub" id="modal-sub"></p>
+      </div>
+      <button class="modal__close" id="modal-close" aria-label="Закрыть">✕</button>
+    </div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const DATA = {"generated_at": "22.08.2026, 13:14 UTC", "bots": {"trend": {"label": "Трендовый бот", "subtitle": "Пробой полосы Боллинджера + ADX + трейлинг-стоп по ATR · 23 монеты · 1H", "accent": "trend", "validated": true, "method_note": "Конфигурация ADX≥30 / ATR×3.0 / std=2.5 отобрана честным train/test на 2 годах истории: 63.6% монет дали плюс на test-выборке, которую не видели при подборе параметров. Капитал разбит поровну между 23 монетами, каждая торгуется независимо.", "coins": {"ETHUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "SOLUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "HYPEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "BTCUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "XRPUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "DOGEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ZECUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "SUIUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "PEPEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ENAUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ONDOUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "TRUMPUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "LINKUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "BNBUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "UNIUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ADAUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "LTCUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "NEARUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "XLMUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "AAVEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "AVAXUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "TRXUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "BCHUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}}}, "meanrev": {"label": "Mean-reversion бот", "subtitle": "Отскок от полос Боллинджера + ADX + RSI · ETHUSDT · 1min", "accent": "meanrev", "validated": false, "method_note": "Первая протестированная стратегия сессии. На бэктесте устойчивого плюса после комиссии не нашлось ни на одном таймфрейме — бот оставлен работать для сравнения с трендовым, а не как рекомендация.", "coins": {"ETHUSDT": {"starting_capital": 10.0, "balance": 10.0, "position": null, "trades": []}}}}};
+
+document.getElementById('generated-at').innerHTML =
+  '<strong>Обновлено ' + DATA.generated_at + '</strong>раз в сутки';
+
+function fmtPct(v) { return (v > 0 ? '+' : '') + v.toFixed(2) + '%'; }
+function retClass(v) { return v > 0 ? 'gain' : (v < 0 ? 'loss' : 'idle'); }
+function parseTime(t) {
+  if (t == null) return null;
+  if (typeof t === 'number') return new Date(t);
+  return new Date(t);
+}
+function fmtDateTime(t) {
+  const d = parseTime(t);
+  if (!d || isNaN(d)) return '—';
+  return d.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+}
+function fmtDuration(barsHeld, entry, exit) {
+  if (barsHeld != null) return barsHeld + ' бар.';
+  const a = parseTime(entry), b = parseTime(exit);
+  if (!a || !b) return '—';
+  const h = Math.round((b - a) / 36e5);
+  return h + 'ч';
+}
+
+const RANGES = [
+  { key: '7d', label: '7Д', days: 7 },
+  { key: '30d', label: '30Д', days: 30 },
+  { key: '90d', label: '90Д', days: 90 },
+  { key: 'all', label: 'Всё', days: null },
+];
+
+function tradesInRange(trades, rangeKey) {
+  const r = RANGES.find(x => x.key === rangeKey);
+  if (!r || r.days == null) return trades;
+  const cutoff = Date.now() - r.days * 86400000;
+  return trades.filter(t => {
+    const et = parseTime(t.exit_time);
+    return et && et.getTime() >= cutoff;
+  });
+}
+
+function computeBotSnapshot(bot, rangeKey) {
+  const coins = {};
+  let totalStart = 0, totalNow = 0, totalTrades = 0, openPositions = 0;
+  for (const [sym, c] of Object.entries(bot.coins)) {
+    const trades = tradesInRange(c.trades, rangeKey);
+    let bal = c.starting_capital;
+    for (const t of trades) bal *= (1 + t.pnl_pct / 100);
+    coins[sym] = {
+      symbol: sym, starting_capital: c.starting_capital, balance: bal,
+      return_pct: (bal / c.starting_capital - 1) * 100,
+      trades, position: c.position,
+    };
+    totalStart += c.starting_capital;
+    totalNow += bal;
+    totalTrades += trades.length;
+    if (c.position) openPositions++;
+  }
+  return {
+    starting_capital: totalStart, balance: totalNow,
+    return_pct: totalStart ? (totalNow / totalStart - 1) * 100 : 0,
+    total_trades: totalTrades, open_positions: openPositions, coins,
+  };
+}
+
+function buildEquityCurve(bot, rangeKey) {
+  const balances = {};
+  for (const [sym, c] of Object.entries(bot.coins)) balances[sym] = c.starting_capital;
+  const events = [];
+  for (const [sym, c] of Object.entries(bot.coins)) {
+    for (const t of tradesInRange(c.trades, rangeKey)) {
+      events.push({ sym, time: t.exit_time, pnl_pct: t.pnl_pct });
+    }
+  }
+  events.sort((a, b) => parseTime(a.time) - parseTime(b.time));
+  const total = () => Object.values(balances).reduce((a, b) => a + b, 0);
+  const points = [{ t: null, v: total() }];
+  for (const e of events) {
+    balances[e.sym] *= (1 + e.pnl_pct / 100);
+    points.push({ t: e.time, v: total() });
+  }
+  return points;
+}
+
+function renderChart(svgEl, tooltipEl, points, startCapital) {
+  const W = 1000, H = 140, PAD = 8;
+  svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svgEl.innerHTML = '';
+
+  if (points.length < 2) {
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    t.setAttribute('x', 10); t.setAttribute('y', H / 2);
+    t.setAttribute('class', 'chart-empty');
+    t.textContent = 'Сделок пока не было — график появится после первой закрытой позиции.';
+    svgEl.appendChild(t);
+    return;
+  }
+
+  const values = points.map(p => p.v);
+  const min = Math.min(...values, startCapital), max = Math.max(...values, startCapital);
+  const span = (max - min) || 1;
+  const x = i => PAD + (i / (points.length - 1)) * (W - PAD * 2);
+  const y = v => H - PAD - ((v - min) / span) * (H - PAD * 2);
+
+  const baseline = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  baseline.setAttribute('x1', 0); baseline.setAttribute('x2', W);
+  baseline.setAttribute('y1', y(startCapital)); baseline.setAttribute('y2', y(startCapital));
+  baseline.setAttribute('class', 'chart-baseline');
+  svgEl.appendChild(baseline);
+
+  let d = '', area = '';
+  points.forEach((p, i) => {
+    const cmd = (i === 0 ? 'M' : 'L') + x(i).toFixed(2) + ' ' + y(p.v).toFixed(2) + ' ';
+    d += cmd;
+  });
+  area = d + `L ${x(points.length - 1).toFixed(2)} ${H - PAD} L ${x(0).toFixed(2)} ${H - PAD} Z`;
+
+  const areaPath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  areaPath.setAttribute('d', area); areaPath.setAttribute('class', 'chart-area');
+  svgEl.appendChild(areaPath);
+
+  const linePath = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  linePath.setAttribute('d', d); linePath.setAttribute('class', 'chart-line');
+  svgEl.appendChild(linePath);
+
+  const lastDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  lastDot.setAttribute('cx', x(points.length - 1)); lastDot.setAttribute('cy', y(points[points.length - 1].v));
+  lastDot.setAttribute('r', 4); lastDot.setAttribute('class', 'chart-dot');
+  svgEl.appendChild(lastDot);
+
+  const crossV = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  crossV.setAttribute('y1', 0); crossV.setAttribute('y2', H); crossV.setAttribute('class', 'chart-cross');
+  svgEl.appendChild(crossV);
+
+  const hitRect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+  hitRect.setAttribute('x', 0); hitRect.setAttribute('y', 0);
+  hitRect.setAttribute('width', W); hitRect.setAttribute('height', H);
+  hitRect.setAttribute('fill', 'transparent');
+  svgEl.appendChild(hitRect);
+
+  hitRect.addEventListener('mousemove', (ev) => {
+    const rect = svgEl.getBoundingClientRect();
+    const relX = (ev.clientX - rect.left) / rect.width * W;
+    let idx = Math.round((relX - PAD) / (W - PAD * 2) * (points.length - 1));
+    idx = Math.max(0, Math.min(points.length - 1, idx));
+    const p = points[idx];
+    crossV.setAttribute('x1', x(idx)); crossV.setAttribute('x2', x(idx));
+    crossV.style.opacity = 1;
+    const label = p.t ? fmtDateTime(p.t) : 'старт';
+    tooltipEl.innerHTML = label + '<br>' + p.v.toFixed(4) + ' USDT';
+    tooltipEl.style.opacity = 1;
+    tooltipEl.style.left = (ev.clientX - rect.left) + 'px';
+    tooltipEl.style.top = (ev.clientY - rect.top) + 'px';
+  });
+  hitRect.addEventListener('mouseleave', () => {
+    crossV.style.opacity = 0; tooltipEl.style.opacity = 0;
+  });
+}
+
+function openModal(symbol, coin) {
+  document.getElementById('modal-title').textContent = symbol.replace('USDT', '') + ' / USDT';
+  const ret = (coin.balance / coin.starting_capital - 1) * 100;
+  document.getElementById('modal-sub').textContent =
+    coin.trades.length + ' сделок · результат ' + fmtPct(ret) +
+    (coin.position ? ' · сейчас в позиции ' + coin.position.side : ' · сейчас без позиции');
+
+  const body = document.getElementById('modal-body');
+  if (!coin.trades.length) {
+    body.innerHTML = '<p class="modal__empty">По этой монете ещё не было закрытых сделок.</p>';
+  } else {
+    let rows = coin.trades.slice().reverse().map(t => {
+      const cls = t.pnl_pct > 0 ? 'pnl-gain' : (t.pnl_pct < 0 ? 'pnl-loss' : '');
+      return `<tr>
+        <td><span class="side-pill">${t.side}</span></td>
+        <td>${t.entry_price}</td>
+        <td>${t.exit_price}</td>
+        <td>${fmtDateTime(t.entry_time)}</td>
+        <td>${fmtDateTime(t.exit_time)}</td>
+        <td>${fmtDuration(t.bars_held, t.entry_time, t.exit_time)}</td>
+        <td class="${cls}">${fmtPct(t.pnl_pct)}</td>
+      </tr>`;
+    }).join('');
+    body.innerHTML = `<table>
+      <thead><tr>
+        <th>Сторона</th><th>Вход</th><th>Выход</th><th>Время входа</th><th>Время выхода</th><th>Длит.</th><th>PnL</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+  }
+  document.getElementById('modal-backdrop').classList.add('open');
+}
+document.getElementById('modal-close').addEventListener('click', closeModal);
+document.getElementById('modal-backdrop').addEventListener('click', (e) => { if (e.target.id === 'modal-backdrop') closeModal(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
+
+function renderBot(botKey, bot) {
+  const section = document.createElement('section');
+  section.className = 'bot';
+  section.style.setProperty('--bot-accent', `var(--accent-${bot.accent})`);
+
+  const badge = bot.validated
+    ? '<span class="badge badge--validated">валидировано на train/test</span>'
+    : '<span class="badge badge--unvalidated">без подтверждённого edge</span>';
+
+  section.innerHTML = `
+    <header class="bot__head">
+      <div>
+        <h2 class="bot__title"><span class="bot__dot"></span>${bot.label}</h2>
+        <p class="bot__subtitle">${bot.subtitle}</p>
+      </div>
+      ${badge}
+    </header>
+    <div class="filter-row" data-filter-row></div>
+    <div class="bot__stats" data-stats></div>
+    <div class="chart-card">
+      <p class="chart-card__title">Динамика портфеля</p>
+      <div class="chart-wrap">
+        <svg class="chart-svg" data-chart></svg>
+        <div class="chart-tooltip" data-tooltip></div>
+      </div>
+    </div>
+    <div class="coin-grid" data-coins></div>
+    <p class="bot__method">${bot.method_note}</p>
+  `;
+  document.getElementById('bots').appendChild(section);
+
+  const filterRow = section.querySelector('[data-filter-row]');
+  RANGES.forEach(r => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn' + (r.key === 'all' ? ' active' : '');
+    btn.textContent = r.label;
+    btn.dataset.range = r.key;
+    btn.addEventListener('click', () => {
+      filterRow.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderBotBody(botKey, bot, r.key);
+    });
+    filterRow.appendChild(btn);
+  });
+
+  renderBotBody(botKey, bot, 'all');
+
+  function renderBotBody(botKey, bot, rangeKey) {
+    const snap = computeBotSnapshot(bot, rangeKey);
+    const cls = retClass(snap.return_pct);
+
+    section.querySelector('[data-stats]').innerHTML = `
+      <div class="stat">
+        <span class="stat__label">Портфель</span>
+        <span class="stat__value">${snap.balance.toFixed(4)} <span class="stat__unit">USDT</span></span>
+        <span class="stat__sub">старт ${snap.starting_capital.toFixed(2)} USDT</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Результат</span>
+        <span class="stat__value stat__value--${cls}">${fmtPct(snap.return_pct)}</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Сделок</span>
+        <span class="stat__value">${snap.total_trades}</span>
+      </div>
+      <div class="stat">
+        <span class="stat__label">Открытых позиций</span>
+        <span class="stat__value">${snap.open_positions} <span class="stat__unit">/ ${Object.keys(snap.coins).length}</span></span>
+      </div>
+    `;
+
+    const points = buildEquityCurve(bot, rangeKey);
+    renderChart(section.querySelector('[data-chart]'), section.querySelector('[data-tooltip]'), points, snap.starting_capital);
+
+    const coinsSorted = Object.values(snap.coins).sort((a, b) => (b.trades.length > 0) - (a.trades.length > 0) || b.return_pct - a.return_pct);
+    const coinGrid = section.querySelector('[data-coins]');
+    coinGrid.innerHTML = '';
+    coinsSorted.forEach(c => {
+      const card = document.createElement('button');
+      const sym = c.symbol.replace('USDT', '');
+      if (c.trades.length === 0) {
+        card.className = 'coin-card coin-card--idle';
+        card.innerHTML = `<div class="coin-card__sym">${sym}</div><div class="coin-card__ret coin-card__ret--idle">нет сделок</div><div class="coin-card__meta">0 сделок</div>`;
+      } else {
+        const rc = retClass(c.return_pct);
+        card.className = 'coin-card coin-card--' + rc;
+        const posBadge = c.position ? `<span class="coin-card__pos">${c.position.side}</span>` : '';
+        card.innerHTML = `<div class="coin-card__sym">${sym}${posBadge}</div><div class="coin-card__ret coin-card__ret--${rc}">${fmtPct(c.return_pct)}</div><div class="coin-card__meta">${c.trades.length} сделок</div>`;
+      }
+      card.addEventListener('click', () => openModal(c.symbol, c));
+      coinGrid.appendChild(card);
+    });
+  }
+}
+
+renderBot('trend', DATA.bots.trend);
+renderBot('meanrev', DATA.bots.meanrev);
+</script>
+</body>
+</html>
