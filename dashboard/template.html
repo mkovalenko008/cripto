@@ -22,7 +22,7 @@
     --border: rgba(255,248,239,0.10);
 
     --accent-trend: #4d8ef7;
-    --accent-meanrev: #199e70;
+    --accent-meanrev: #8b6ff0;
     --accent-pop: #e0982c;
     --gain: #2fb82f;
     --loss: #e35648;
@@ -166,6 +166,8 @@
   .coin-card--active { border-left-color: var(--bot-accent); }
   .coin-card__sym { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
   .coin-card__pos { font-size: 9.5px; background: var(--bot-accent); color: #fff; padding: 2px 6px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .coin-card__pos--long { background: var(--gain); }
+  .coin-card__pos--short { background: var(--loss); }
   .coin-card__pos::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #fff; animation: pulse-pos 1.6s ease-out infinite; }
   @keyframes pulse-pos {
     0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
@@ -565,13 +567,15 @@ function renderBot(botKey, bot) {
         card.innerHTML = `<div class="coin-card__sym">${sym}</div><div class="coin-card__ret coin-card__ret--idle">нет сделок</div><div class="coin-card__meta">0 сделок</div>`;
       } else if (c.trades.length === 0 && c.position) {
         card.className = 'coin-card coin-card--active';
-        const posBadge = `<span class="coin-card__pos">${c.position.side}</span>`;
+        const posCls = c.position.side === 'LONG' ? 'coin-card__pos--long' : 'coin-card__pos--short';
+        const posBadge = `<span class="coin-card__pos ${posCls}">${c.position.side}</span>`;
         const heldNote = c.position.bars_held != null ? `${c.position.bars_held} бар. в позиции` : 'в позиции';
         card.innerHTML = `<div class="coin-card__sym">${sym}${posBadge}</div><div class="coin-card__ret coin-card__ret--active">вход ${c.position.entry_price}</div><div class="coin-card__meta">${heldNote}</div>`;
       } else {
         const rc = retClass(c.return_pct);
         card.className = 'coin-card coin-card--' + rc;
-        const posBadge = c.position ? `<span class="coin-card__pos">${c.position.side}</span>` : '';
+        const posCls = c.position && c.position.side === 'LONG' ? 'coin-card__pos--long' : 'coin-card__pos--short';
+        const posBadge = c.position ? `<span class="coin-card__pos ${posCls}">${c.position.side}</span>` : '';
         card.innerHTML = `<div class="coin-card__sym">${sym}${posBadge}</div><div class="coin-card__ret coin-card__ret--${rc}">${fmtPct(c.return_pct)}</div><div class="coin-card__meta">${c.trades.length} сделок</div>`;
       }
       card.addEventListener('click', () => openModal(c.symbol, c));
