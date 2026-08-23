@@ -266,7 +266,7 @@
 const DATA = /*__DASHBOARD_DATA__*/;
 
 document.getElementById('generated-at').innerHTML =
-  '<strong><span class="live-dot"></span>Обновлено ' + DATA.generated_at + '</strong>боты не спят';
+  '<strong><span class="live-dot"></span>Обновлено ' + fmtDateTime(DATA.generated_at) + '</strong>боты не спят';
 
 function fmtPct(v) { return (v > 0 ? '+' : '') + v.toFixed(2) + '%'; }
 function retClass(v) { return v > 0 ? 'gain' : (v < 0 ? 'loss' : 'idle'); }

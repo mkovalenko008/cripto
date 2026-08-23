@@ -49,7 +49,7 @@ def main():
     bb_state_raw = load_json("paper_state.json")
 
     data = {
-        "generated_at": datetime.now(timezone.utc).strftime("%d.%m.%Y, %H:%M UTC"),
+        "generated_at": datetime.now(timezone.utc).isoformat(),
         "bots": {
             "trend": {
                 "label": "Трендовый бот",
