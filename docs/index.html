@@ -202,12 +202,16 @@
   .modal .pnl-loss { color: var(--loss); }
   .modal__empty { color: var(--text-muted); font-size: 13px; padding: 24px 0; text-align: center; }
   .side-pill { font-size: 10px; padding: 2px 8px; border-radius: 100px; background: var(--surface-2); font-weight: 500; }
+  .side-pill--long { background: color-mix(in srgb, var(--gain) 22%, var(--surface-2)); color: color-mix(in srgb, var(--gain) 80%, white); }
+  .side-pill--short { background: color-mix(in srgb, var(--loss) 22%, var(--surface-2)); color: color-mix(in srgb, var(--loss) 80%, white); }
   .modal__position {
     display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
     background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px;
     padding: 12px 16px; margin-bottom: 16px;
     font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-secondary);
   }
+  .modal__position-time { font-size: 10px; color: var(--text-muted); }
+  .modal__position-sl { color: var(--loss); }
 
   footer {
     margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
@@ -234,7 +238,7 @@
   </div>
 
   <div class="disclaimer">
-    <b>Это не реальная торговля.</b>&nbsp;Оба бота управляют вымышленным капиталом (10 USDT на бота) и физически не могут отправить ордер на биржу — код не импортирует функции размещения ордеров.
+    <b>Это не реальная торговля.</b>&nbsp;Оба бота управляют вымышленным капиталом (трендовый — 300 USDT, не больше 5% на монету; mean-reversion — 10 USDT) и физически не могут отправить ордер на биржу — код не импортирует функции размещения ордеров.
   </div>
 
   <div id="bots"></div>
@@ -259,7 +263,7 @@
 </div>
 
 <script>
-const DATA = {"generated_at": "23.08.2026, 06:13 UTC", "bots": {"trend": {"label": "Трендовый бот", "subtitle": "Пробой полосы Боллинджера + ADX + трейлинг-стоп по ATR · 23 монеты · 1H", "accent": "trend", "validated": true, "method_note": "Конфигурация ADX≥30 / ATR×3.0 / std=2.5 отобрана честным train/test на 2 годах истории: 63.6% монет дали плюс на test-выборке, которую не видели при подборе параметров. Капитал разбит поровну между 23 монетами, каждая торгуется независимо.", "coins": {"ETHUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "SOLUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "HYPEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "BTCUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "XRPUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "DOGEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ZECUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "SUIUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "PEPEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ENAUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ONDOUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": {"side": "SHORT", "entry_price": 0.356, "entry_ts": 1787454000000, "extreme": 0.3519, "trailing_stop": 0.37789747334028323, "stop_distance": 0.02599747334028321, "bars_held": 2, "adx_at_entry": 38.07797791074067}, "trades": []}, "TRUMPUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "LINKUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "BNBUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "UNIUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "ADAUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "LTCUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "NEARUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "XLMUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "AAVEUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "AVAXUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": {"side": "SHORT", "entry_price": 7.335, "entry_ts": 1787457600000, "extreme": 7.311, "trailing_stop": 7.680642517163882, "stop_distance": 0.3696425171638826, "bars_held": 1, "adx_at_entry": 30.64554581741712}, "trades": []}, "TRXUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}, "BCHUSDT": {"starting_capital": 0.43478260869565216, "balance": 0.43478260869565216, "position": null, "trades": []}}}, "meanrev": {"label": "Mean-reversion бот", "subtitle": "Отскок от полос Боллинджера + ADX + RSI · ETHUSDT · 1min", "accent": "meanrev", "validated": false, "method_note": "Первая протестированная стратегия сессии. На бэктесте устойчивого плюса после комиссии не нашлось ни на одном таймфрейме — бот оставлен работать для сравнения с трендовым, а не как рекомендация.", "coins": {"ETHUSDT": {"starting_capital": 10.0, "balance": 10.0, "position": null, "trades": []}}}}};
+const DATA = {"generated_at": "23.08.2026, 06:24 UTC", "bots": {"trend": {"label": "Трендовый бот", "subtitle": "Пробой полосы Боллинджера + ADX + трейлинг-стоп по ATR · 23 монеты · 1H", "accent": "trend", "validated": true, "method_note": "Конфигурация ADX≥30 / ATR×3.0 / std=2.5 отобрана честным train/test на 2 годах истории: 63.6% монет дали плюс на test-выборке, которую не видели при подборе параметров. Депозит 300 USDT, не больше 5% на монету (сейчас — поровну между 23 монетами, каждая торгуется независимо).", "coins": {"ETHUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "SOLUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "HYPEUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "BTCUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "XRPUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "DOGEUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "ZECUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "SUIUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "PEPEUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "ENAUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "ONDOUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "TRUMPUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "LINKUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "BNBUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "UNIUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "ADAUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "LTCUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "NEARUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "XLMUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "AAVEUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "AVAXUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "TRXUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}, "BCHUSDT": {"starting_capital": 13.043478260869565, "balance": 13.043478260869565, "position": null, "trades": []}}}, "meanrev": {"label": "Mean-reversion бот", "subtitle": "Отскок от полос Боллинджера + ADX + RSI · ETHUSDT · 1min", "accent": "meanrev", "validated": false, "method_note": "Первая протестированная стратегия сессии. На бэктесте устойчивого плюса после комиссии не нашлось ни на одном таймфрейме — бот оставлен работать для сравнения с трендовым, а не как рекомендация.", "coins": {"ETHUSDT": {"starting_capital": 10.0, "balance": 10.0, "position": null, "trades": []}}}}};
 
 document.getElementById('generated-at').innerHTML =
   '<strong><span class="live-dot"></span>Обновлено ' + DATA.generated_at + '</strong>боты не спят';
@@ -435,11 +439,14 @@ function openModal(symbol, coin) {
   let posHtml = '';
   if (coin.position) {
     const p = coin.position;
+    const sideCls = p.side === 'LONG' ? 'side-pill--long' : 'side-pill--short';
+    const fixedSl = p.side === 'LONG' ? p.entry_price * 0.85 : p.entry_price * 1.15;
     posHtml = `<div class="modal__position">
-      <span class="side-pill">${p.side}</span>
+      <span class="side-pill ${sideCls}">${p.side}</span>
       <span>вход ${fmtPrice(p.entry_price)}</span>
-      <span>${fmtDateTime(p.entry_ts ?? p.entry_time)}</span>
-      <span>трейлинг-стоp ${fmtPrice(p.trailing_stop)}</span>
+      <span class="modal__position-time">${fmtDateTime(p.entry_ts ?? p.entry_time)}</span>
+      <span>трейлинг-стоп ${fmtPrice(p.trailing_stop)}</span>
+      <span class="modal__position-sl">стоп-лосс −15% ${fmtPrice(fixedSl)}</span>
       ${p.bars_held != null ? `<span>${p.bars_held} бар. в позиции</span>` : ''}
     </div>`;
   }
@@ -449,7 +456,7 @@ function openModal(symbol, coin) {
     let rows = coin.trades.slice().reverse().map(t => {
       const cls = t.pnl_pct > 0 ? 'pnl-gain' : (t.pnl_pct < 0 ? 'pnl-loss' : '');
       return `<tr>
-        <td><span class="side-pill">${t.side}</span></td>
+        <td><span class="side-pill ${t.side === 'LONG' ? 'side-pill--long' : 'side-pill--short'}">${t.side}</span></td>
         <td>${t.entry_price}</td>
         <td>${t.exit_price}</td>
         <td>${fmtDateTime(t.entry_time)}</td>

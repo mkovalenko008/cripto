@@ -5,8 +5,10 @@ ADX>=30, ATRx3.0, num_std=2.5, таймфрейм 1H — та самая, что
 2 годах истории. Полный отчёт: trend_config_search_report.txt.
 
 Торгует ОДНОВРЕМЕННО корзину из 23 монет, каждая — независимым виртуальным
-суб-балансом (капитал/23), теми же правилами входа/выхода без подгонки под
-конкретную монету — так же, как считался бэктест.
+суб-балансом, теми же правилами входа/выхода без подгонки под конкретную
+монету — так же, как считался бэктест. Депозит 300 USDT, на монету — не
+больше 5% депозита (сейчас это капитал/23, автоматически ниже лимита; см.
+load_state).
 
 Реальные ордера НИКОГДА не отправляются — скрипт не импортирует функции
 размещения ордеров. Ключи API не нужны (только публичные свечи).
@@ -79,14 +81,19 @@ class CoinState:
         return cls(**d)
 
 
+MAX_POSITION_PCT = 0.05  # не больше 5% депозита в одной монете
+
+
 def load_state(total_capital: float, reset: bool) -> dict:
-    per_coin = total_capital / len(SYMBOLS)
+    equal_split = total_capital / len(SYMBOLS)
+    max_per_coin = total_capital * MAX_POSITION_PCT
+    per_coin = min(equal_split, max_per_coin)
     if not reset and os.path.exists(STATE_FILE):
         with open(STATE_FILE) as f:
             raw = json.load(f)
         return {s: CoinState.from_dict(raw[s]) for s in SYMBOLS if s in raw}
-    log.info("Стартую с чистого листа: %.2f USDT на монету x %d монет = %.2f USDT всего",
-              per_coin, len(SYMBOLS), total_capital)
+    log.info("Стартую с чистого листа: %.2f USDT на монету (лимит 5%% = %.2f) x %d монет = %.2f USDT задействовано из %.2f USDT депозита",
+              per_coin, max_per_coin, len(SYMBOLS), per_coin * len(SYMBOLS), total_capital)
     return {s: CoinState.fresh(per_coin) for s in SYMBOLS}
 
 
@@ -291,7 +298,7 @@ def run_loop(args):
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--once", action="store_true")
-    p.add_argument("--capital", type=float, default=10.0)
+    p.add_argument("--capital", type=float, default=300.0)
     p.add_argument("--duration-hours", type=float, default=24.0)
     p.add_argument("--poll-seconds", type=int, default=300)
     p.add_argument("--reset", action="store_true")

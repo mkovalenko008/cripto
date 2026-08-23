@@ -202,12 +202,16 @@
   .modal .pnl-loss { color: var(--loss); }
   .modal__empty { color: var(--text-muted); font-size: 13px; padding: 24px 0; text-align: center; }
   .side-pill { font-size: 10px; padding: 2px 8px; border-radius: 100px; background: var(--surface-2); font-weight: 500; }
+  .side-pill--long { background: color-mix(in srgb, var(--gain) 22%, var(--surface-2)); color: color-mix(in srgb, var(--gain) 80%, white); }
+  .side-pill--short { background: color-mix(in srgb, var(--loss) 22%, var(--surface-2)); color: color-mix(in srgb, var(--loss) 80%, white); }
   .modal__position {
     display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
     background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px;
     padding: 12px 16px; margin-bottom: 16px;
     font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-secondary);
   }
+  .modal__position-time { font-size: 10px; color: var(--text-muted); }
+  .modal__position-sl { color: var(--loss); }
 
   footer {
     margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
@@ -234,7 +238,7 @@
   </div>
 
   <div class="disclaimer">
-    <b>Это не реальная торговля.</b>&nbsp;Оба бота управляют вымышленным капиталом (10 USDT на бота) и физически не могут отправить ордер на биржу — код не импортирует функции размещения ордеров.
+    <b>Это не реальная торговля.</b>&nbsp;Оба бота управляют вымышленным капиталом (трендовый — 300 USDT, не больше 5% на монету; mean-reversion — 10 USDT) и физически не могут отправить ордер на биржу — код не импортирует функции размещения ордеров.
   </div>
 
   <div id="bots"></div>
@@ -435,11 +439,14 @@ function openModal(symbol, coin) {
   let posHtml = '';
   if (coin.position) {
     const p = coin.position;
+    const sideCls = p.side === 'LONG' ? 'side-pill--long' : 'side-pill--short';
+    const fixedSl = p.side === 'LONG' ? p.entry_price * 0.85 : p.entry_price * 1.15;
     posHtml = `<div class="modal__position">
-      <span class="side-pill">${p.side}</span>
+      <span class="side-pill ${sideCls}">${p.side}</span>
       <span>вход ${fmtPrice(p.entry_price)}</span>
-      <span>${fmtDateTime(p.entry_ts ?? p.entry_time)}</span>
-      <span>трейлинг-стоp ${fmtPrice(p.trailing_stop)}</span>
+      <span class="modal__position-time">${fmtDateTime(p.entry_ts ?? p.entry_time)}</span>
+      <span>трейлинг-стоп ${fmtPrice(p.trailing_stop)}</span>
+      <span class="modal__position-sl">стоп-лосс −15% ${fmtPrice(fixedSl)}</span>
       ${p.bars_held != null ? `<span>${p.bars_held} бар. в позиции</span>` : ''}
     </div>`;
   }
@@ -449,7 +456,7 @@ function openModal(symbol, coin) {
     let rows = coin.trades.slice().reverse().map(t => {
       const cls = t.pnl_pct > 0 ? 'pnl-gain' : (t.pnl_pct < 0 ? 'pnl-loss' : '');
       return `<tr>
-        <td><span class="side-pill">${t.side}</span></td>
+        <td><span class="side-pill ${t.side === 'LONG' ? 'side-pill--long' : 'side-pill--short'}">${t.side}</span></td>
         <td>${t.entry_price}</td>
         <td>${t.exit_price}</td>
         <td>${fmtDateTime(t.entry_time)}</td>
