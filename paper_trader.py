@@ -10,11 +10,18 @@ Bitget, но с вымышленным балансом. Реальные орд
 расстоянии stop_mult*ширина_полосы, таймаут = max_holding_bars новых баров,
 комиссия fee_pct_per_side на вход и на выход.
 
-Условный депозит — 300 USDT, тот же, что у trend_paper_trader.py. Баланс
-счёта (balance_usdt) — это ВЕСЬ депозит; в каждую сделку заходим не больше
-чем на MAX_POSITION_PCT=5% от него (пересчитывается на каждом входе), а не
-всем балансом — иначе процентный результат сделки раздувался бы на весь
-депозит вместо реального размера позиции.
+Торгует ОДНОВРЕМЕННО корзину из 30 монет — топ-30 по капитализации среди
+листингов Coinbase (см. SYMBOLS), у каждой реально есть USDT-пара на Bitget
+Spot. Раньше бот торговал только ETHUSDT — расширено по прямой просьбе
+пользователя, стратегия не показала edge ни на одной монете даже в
+бэктесте на 23-монетной корзине, так что это не попытка найти прибыльную
+монету, а просто более честное сравнение с трендовым ботом (у которого тоже
+корзина, а не одна монета).
+
+Условный депозит — 300 USDT, тот же, что у trend_paper_trader.py, поровну
+между монетами (капитал/30), с явным лимитом 5% на монету — сейчас капитал/30
+уже меньше 5%, лимит ничего не режет, но зафиксирован на случай изменения
+списка монет (см. load_state).
 
 Спот не поддерживает шорт без плеча — сигналы SHORT пропускаются и
 логируются, реально исполняются только LONG.
@@ -52,6 +59,23 @@ STATUS_FILE = os.path.join(BASE_DIR, "PAPER_STATUS.md")
 LOG_FILE = os.path.join(BASE_DIR, "paper_bot.log")
 KILL_SWITCH_FILE = os.path.join(BASE_DIR, config.KILL_SWITCH_FILE)
 
+# Топ-30 по капитализации среди монет, реально листингованных на Coinbase
+# (проверено через публичный Coinbase Exchange API, без стейблкоинов и
+# "обёрнутых"/пегованных активов), пересечённое с наличием USDT-пары на
+# Bitget Spot (проверено вручную через get_candles на каждую монету,
+# 2026-08-23) — данные всё равно берутся с Bitget, Coinbase тут только
+# источник для отбора списка монет.
+SYMBOLS = [
+    "BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "SOLUSDT", "HYPEUSDT",
+    "DOGEUSDT", "ZECUSDT", "LINKUSDT", "ADAUSDT", "XLMUSDT", "BCHUSDT",
+    "LTCUSDT", "HBARUSDT", "SUIUSDT", "AVAXUSDT", "SHIBUSDT", "CROUSDT",
+    "UNIUSDT", "NEARUSDT", "TAOUSDT", "PUMPUSDT", "AAVEUSDT", "WLFIUSDT",
+    "ONDOUSDT", "ASTERUSDT", "PEPEUSDT", "MORPHOUSDT", "DOTUSDT", "SKYUSDT",
+]
+
+DEPOSIT = 300.0
+MAX_POSITION_PCT = 0.05  # не больше 5% депозита в одной монете
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -61,7 +85,7 @@ log = logging.getLogger("paper_trader")
 
 
 @dataclass
-class PaperState:
+class CoinState:
     balance_usdt: float
     starting_capital: float
     last_processed_ts: int | None = None
@@ -86,26 +110,23 @@ class PaperState:
         return cls(**d)
 
 
-DEPOSIT = 300.0  # весь виртуальный счёт — тот же условный депозит, что у trend_paper_trader.py
-MAX_POSITION_PCT = 0.05  # в одну сделку заходим не больше чем на 5% ТЕКУЩЕГО баланса
-                          # счёта (пересчитывается на каждом входе, не фиксированная сумма
-                          # раз и навсегда) — остальные ~95% просто ждут в резерве.
-
-
-def load_state(capital: float, reset: bool) -> PaperState:
+def load_state(total_capital: float, reset: bool) -> dict:
+    equal_split = total_capital / len(SYMBOLS)
+    max_per_coin = total_capital * MAX_POSITION_PCT
+    per_coin = min(equal_split, max_per_coin)
     if not reset and os.path.exists(STATE_FILE):
         with open(STATE_FILE) as f:
-            st = PaperState.from_dict(json.load(f))
-        log.info("Продолжаю с сохранённого состояния: баланс=%.4f USDT, сделок=%d",
-                  st.balance_usdt, len(st.trades))
-        return st
-    log.info("Стартую с чистого листа: виртуальный капитал=%.2f USDT", capital)
-    return PaperState.fresh(capital)
+            raw = json.load(f)
+        return {s: CoinState.from_dict(raw[s]) for s in SYMBOLS if s in raw}
+    log.info("Стартую с чистого листа: %.2f USDT на монету (лимит 5%% = %.2f) x %d монет = "
+              "%.2f USDT задействовано из %.2f USDT депозита",
+              per_coin, max_per_coin, len(SYMBOLS), per_coin * len(SYMBOLS), total_capital)
+    return {s: CoinState.fresh(per_coin) for s in SYMBOLS}
 
 
-def save_state(st: PaperState):
+def save_state(states: dict):
     with open(STATE_FILE, "w") as f:
-        json.dump(st.to_dict(), f, indent=2)
+        json.dump({s: st.to_dict() for s, st in states.items()}, f, indent=2)
 
 
 def append_trade_log(row: dict):
@@ -113,7 +134,7 @@ def append_trade_log(row: dict):
         f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-def close_position(st: PaperState, exit_price: float, exit_ts: int, reason: str,
+def close_position(symbol: str, st: CoinState, exit_price: float, exit_ts: int, reason: str,
                     fee_pct_per_side: float):
     pos = st.position
     if pos["side"] == "LONG":
@@ -122,16 +143,12 @@ def close_position(st: PaperState, exit_price: float, exit_ts: int, reason: str,
         pnl_pct = (pos["entry_price"] - exit_price) / pos["entry_price"] * 100
     pnl_pct -= 2 * fee_pct_per_side
 
-    # В сделке рискуем не всем балансом счёта, а только зафиксированной при
-    # входе долей (position_size, <=5% от баланса на момент входа) — иначе
-    # процентный результат сделки задевал бы весь депозит, а не реальный
-    # размер позиции.
-    position_size = pos["position_size"]
-    pnl_usdt = position_size * pnl_pct / 100
     balance_before = st.balance_usdt
-    st.balance_usdt = balance_before + pnl_usdt
+    st.balance_usdt = balance_before * (1 + pnl_pct / 100)
+    pnl_usdt = st.balance_usdt - balance_before
 
     row = {
+        "symbol": symbol,
         "side": pos["side"],
         "entry_price": pos["entry_price"],
         "exit_price": exit_price,
@@ -149,116 +166,22 @@ def close_position(st: PaperState, exit_price: float, exit_ts: int, reason: str,
         "paper": True,
     }
     append_trade_log(row)
-    log.info("[PAPER] ЗАКРЫЛ %s по %.4f (%s), PnL=%+.2f%% (%+.4f USDT), баланс=%.4f USDT",
-              pos["side"], exit_price, reason, pnl_pct, pnl_usdt, st.balance_usdt)
+    log.info("[%s] ЗАКРЫЛ %s по %.6f (%s), PnL=%+.2f%% (%+.4f USDT), баланс=%.4f USDT",
+              symbol, pos["side"], exit_price, reason, pnl_pct, pnl_usdt, st.balance_usdt)
     st.trades.append(row)
     st.position = None
 
 
-def compute_stats(st: PaperState) -> dict:
-    trades = st.trades
-    n = len(trades)
-    wins = sum(1 for t in trades if t["pnl_pct"] > 0)
-    win_rate = (wins / n * 100) if n else 0.0
-    total_return = (st.balance_usdt / st.starting_capital - 1) * 100
-
-    cum = 0.0
-    peak = 0.0
-    max_dd = 0.0
-    for t in trades:
-        cum += t["pnl_pct"]
-        peak = max(peak, cum)
-        max_dd = min(max_dd, cum - peak)
-
-    return {
-        "n": n, "win_rate": win_rate, "total_return": total_return, "max_dd": max_dd,
-    }
-
-
-def summarize(st: PaperState) -> str:
-    s = compute_stats(st)
-    lines = [
-        "\n" + "=" * 60,
-        "ИТОГ ПО ВИРТУАЛЬНОЙ ТОРГОВЛЕ",
-        "=" * 60,
-        f"Стартовый капитал: {st.starting_capital:.2f} USDT",
-        f"Текущий баланс:    {st.balance_usdt:.4f} USDT",
-        f"Результат:         {s['total_return']:+.2f}%",
-        f"Сделок закрыто:    {s['n']}",
-        f"Win rate:          {s['win_rate']:.1f}%",
-        f"Макс. просадка:    {s['max_dd']:.2f}%",
-    ]
-    if st.position:
-        lines.append(f"Есть открытая позиция: {st.position['side']} по {st.position['entry_price']:.4f} "
-                      f"(не включена в итог выше)")
-    return "\n".join(lines)
-
-
-def write_status_markdown(st: PaperState, args, last_price: float | None):
-    s = compute_stats(st)
-    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
-
-    pos_line = "нет открытой позиции"
-    if st.position:
-        pos = st.position
-        pos_line = (f"{pos['side']} по {pos['entry_price']:.4f}, "
-                     f"цель={pos['target']:.4f}, стоп={pos['stop']:.4f}, "
-                     f"держим {pos['bars_held']}/{args.max_holding_bars} баров")
-
-    recent = st.trades[-10:][::-1]
-    recent_lines = ["_сделок пока не было_"] if not recent else [
-        f"| {t['exit_time'][:16].replace('T',' ')} | {t['side']} | {t['entry_price']:.4f} | "
-        f"{t['exit_price']:.4f} | {t['pnl_pct']:+.2f}% | {t['exit_reason']} |"
-        for t in recent
-    ]
-    recent_table = "\n".join(recent_lines) if not st.trades else (
-        "| Закрыта (UTC) | Сторона | Вход | Выход | PnL% | Причина |\n"
-        "|---|---|---|---|---|---|\n" + "\n".join(recent_lines)
-    )
-
-    text = f"""# Paper-trading статус (bb_strategy, вымышленные деньги)
-
-**Это НЕ реальная торговля.** Ордера никогда не отправляются на биржу — это
-симуляция стратегии из `bb_strategy.py` на живых ценах ETHUSDT, чтобы
-посмотреть, как она вела бы себя, без риска для реальных денег.
-
-Последняя проверка: **{now}**
-Текущая цена ETHUSDT: **{last_price if last_price is not None else "н/д"}**
-
-## Баланс
-
-| Стартовый капитал | Текущий баланс | Результат | Сделок | Win rate | Макс. просадка |
-|---|---|---|---|---|---|
-| {st.starting_capital:.2f} USDT | {st.balance_usdt:.4f} USDT | {s['total_return']:+.2f}% | {s['n']} | {s['win_rate']:.1f}% | {s['max_dd']:.2f}% |
-
-## Позиция
-
-{pos_line}
-
-## Последние сделки
-
-{recent_table}
-
-## Конфигурация
-
-Таймфрейм={args.granularity}, num_std={args.num_std}, ADX-фильтр={args.use_adx}, RSI-подтверждение={args.use_rsi}, стоп={args.stop_mult}x ширины полосы, таймаут={args.max_holding_bars} баров, комиссия={args.fee_pct_per_side}%/сторону. Только LONG (спот без плеча шорт не поддерживает).
-
-Полный лог сделок — [paper_trades_log.jsonl](paper_trades_log.jsonl). Бэктест на истории, из которого взяты эти параметры — [backtest_report.txt](backtest_report.txt).
-"""
-    with open(STATUS_FILE, "w") as f:
-        f.write(text)
-
-
-def process_tick(client: BitgetClient, st: PaperState, args) -> float | None:
+def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState, args) -> float | None:
     """
-    Одна проверка: тянет свечи, если появилась новая закрытая свеча —
-    управляет позицией или ищет сигнал на вход. Возвращает последнюю цену
-    (для статуса), либо None при ошибке получения свечей.
+    Одна проверка по одной монете: тянет свечи, если появилась новая
+    закрытая свеча — управляет позицией или ищет сигнал на вход. Возвращает
+    последнюю цену (для статуса), либо None при ошибке получения свечей.
     """
     try:
-        candles = client.get_candles(granularity=args.granularity, limit=200)
+        candles = client.get_candles(symbol=symbol, granularity=args.granularity, limit=200)
     except Exception as e:
-        log.error("Ошибка при получении свечей: %s", e)
+        log.error("[%s] ошибка получения свечей: %s", symbol, e)
         return None
 
     if len(candles) < 2:
@@ -270,11 +193,10 @@ def process_tick(client: BitgetClient, st: PaperState, args) -> float | None:
     if not closed:
         return last_price
 
-    # Свечи короче интервала проверки (например 1min-бары при опросе раз в
-    # 5 минут) означают, что между двумя запусками может закрыться сразу
-    # несколько баров. Если смотреть только на самый свежий, можно
-    # пропустить момент касания цели/стопа на промежуточном баре — поэтому
-    # разбираем все новые закрытые свечи по порядку, а не только последнюю.
+    # Свечи короче интервала проверки означают, что между двумя запусками
+    # может закрыться сразу несколько баров — разбираем все новые закрытые
+    # свечи по порядку, а не только последнюю, чтобы не пропустить момент
+    # касания цели/стопа на промежуточном баре.
     if st.last_processed_ts is None:
         new_bars = [closed[-1]]
     else:
@@ -295,14 +217,14 @@ def process_tick(client: BitgetClient, st: PaperState, args) -> float | None:
             hit_stop = (price <= pos["stop"]) if pos["side"] == "LONG" else (price >= pos["stop"])
 
             if hit_target:
-                close_position(st, price, bar["ts"], "цель", args.fee_pct_per_side)
+                close_position(symbol, st, price, bar["ts"], "цель", args.fee_pct_per_side)
             elif hit_stop:
-                close_position(st, price, bar["ts"], "стоп", args.fee_pct_per_side)
+                close_position(symbol, st, price, bar["ts"], "стоп", args.fee_pct_per_side)
             elif pos["bars_held"] >= args.max_holding_bars:
-                close_position(st, price, bar["ts"], "таймаут", args.fee_pct_per_side)
+                close_position(symbol, st, price, bar["ts"], "таймаут", args.fee_pct_per_side)
             elif is_latest:
-                log.info("Позиция %s открыта: цена=%.4f, цель=%.4f, стоп=%.4f, бар %d/%d",
-                          pos["side"], price, pos["target"], pos["stop"],
+                log.info("[%s] позиция %s открыта: цена=%.6f, цель=%.6f, стоп=%.6f, бар %d/%d",
+                          symbol, pos["side"], price, pos["target"], pos["stop"],
                           pos["bars_held"], args.max_holding_bars)
 
         elif is_latest:
@@ -314,9 +236,10 @@ def process_tick(client: BitgetClient, st: PaperState, args) -> float | None:
                        rsi_oversold=args.rsi_oversold, rsi_overbought=args.rsi_overbought)
 
             if not d.take_trade:
-                log.info("Сигнала нет: %s", d.reason)
+                pass  # тихо — на 30 монетах логировать "сигнала нет" на каждой было бы шумом
             elif d.side == Side.SHORT:
-                log.info("Сигнал SHORT пропущен — на споте без плеча шорт невозможен (%s)", d.reason)
+                log.info("[%s] сигнал SHORT пропущен — на споте без плеча шорт невозможен (%s)",
+                          symbol, d.reason)
             else:
                 closes = [c["close"] for c in closed]
                 basis, upper, lower = bollinger_bands(closes, args.period, args.num_std)
@@ -324,7 +247,6 @@ def process_tick(client: BitgetClient, st: PaperState, args) -> float | None:
                 target = basis
                 stop = price - args.stop_mult * band_width
 
-                position_size = st.balance_usdt * MAX_POSITION_PCT
                 st.position = {
                     "side": "LONG",
                     "entry_price": price,
@@ -334,12 +256,58 @@ def process_tick(client: BitgetClient, st: PaperState, args) -> float | None:
                     "bars_held": 0,
                     "adx_at_entry": d.adx_value,
                     "rsi_at_entry": d.rsi_value,
-                    "position_size": position_size,
                 }
-                log.info("[PAPER] ОТКРЫЛ LONG по %.4f (в позиции %.2f USDT = %.0f%% депозита), цель=%.4f, стоп=%.4f (%s)",
-                          price, position_size, MAX_POSITION_PCT * 100, target, stop, d.reason)
+                log.info("[%s] ОТКРЫЛ LONG по %.6f, цель=%.6f, стоп=%.6f (%s)",
+                          symbol, price, target, stop, d.reason)
 
     return last_price
+
+
+def write_status(states: dict, args, last_prices: dict):
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
+    total_start = sum(st.starting_capital for st in states.values())
+    total_now = sum(st.balance_usdt for st in states.values())
+    total_trades = sum(len(st.trades) for st in states.values())
+    total_return = (total_now / total_start - 1) * 100 if total_start else 0.0
+
+    rows = []
+    for s, st in sorted(states.items(), key=lambda kv: kv[1].balance_usdt / kv[1].starting_capital, reverse=True):
+        ret = (st.balance_usdt / st.starting_capital - 1) * 100
+        pos = f"{st.position['side']} @ {st.position['entry_price']:.6f}" if st.position else "—"
+        rows.append(f"| {s} | {ret:+.2f}% | {len(st.trades)} | {pos} |")
+
+    text = f"""# Paper-trading статус (bb_strategy, вымышленные деньги)
+
+**Это НЕ реальная торговля.** Ордера никогда не отправляются на биржу — это
+симуляция стратегии из `bb_strategy.py` на живых ценах корзины из
+{len(states)} монет (топ по капитализации среди листингов Coinbase,
+пересечённое с наличием на Bitget Spot), чтобы посмотреть, как она вела бы
+себя, без риска для реальных денег. Стратегия не показала устойчивого edge
+после комиссии ни на одной монете при бэктесте — это сравнение с трендовым
+ботом, а не рекомендация.
+
+Последняя проверка: **{now}**
+
+## Портфель
+
+| Стартовый капитал | Текущий баланс | Результат | Сделок всего |
+|---|---|---|---|
+| {total_start:.2f} USDT | {total_now:.4f} USDT | {total_return:+.2f}% | {total_trades} |
+
+## По монетам
+
+| Монета | Результат | Сделок | Позиция |
+|---|---|---|---|
+{chr(10).join(rows)}
+
+## Конфигурация
+
+num_std={args.num_std}, ADX-фильтр={args.use_adx}, RSI-подтверждение={args.use_rsi}, стоп={args.stop_mult}x ширины полосы, таймаут={args.max_holding_bars} баров, комиссия={args.fee_pct_per_side}%/сторону. Только LONG (спот без плеча шорт не поддерживает).
+
+Полный лог сделок — [paper_trades_log.jsonl](paper_trades_log.jsonl).
+"""
+    with open(STATUS_FILE, "w") as f:
+        f.write(text)
 
 
 def kill_switch_active() -> bool:
@@ -347,9 +315,9 @@ def kill_switch_active() -> bool:
 
 
 def log_start(args):
-    log.info("Paper-trading: %s, num_std=%.1f, ADX-фильтр=%s, RSI-подтв=%s, "
+    log.info("Paper-trading: %s, %d монет, num_std=%.1f, ADX-фильтр=%s, RSI-подтв=%s, "
               "стоп=%.1fx ширины полосы, таймаут=%d баров, комиссия=%.2f%%/сторону",
-              args.granularity, args.num_std, args.use_adx, args.use_rsi,
+              args.granularity, len(SYMBOLS), args.num_std, args.use_adx, args.use_rsi,
               args.stop_mult, args.max_holding_bars, args.fee_pct_per_side)
     log.info("НАПОМИНАНИЕ: это симуляция на вымышленные деньги. Реальные ордера "
               "не отправляются ни при каких условиях.")
@@ -357,25 +325,31 @@ def log_start(args):
 
 def run_once(args):
     client = BitgetClient(api_key="", secret_key="", passphrase="")
-    st = load_state(args.capital, args.reset)
+    states = load_state(args.capital, args.reset)
     log_start(args)
 
     if kill_switch_active():
         log.warning("Kill switch активен (файл %s). Пропускаю проверку.", KILL_SWITCH_FILE)
-        write_status_markdown(st, args, last_price=None)
+        save_state(states)
+        write_status(states, args, {})
         return
 
-    last_price = process_tick(client, st, args)
-    save_state(st)
-    write_status_markdown(st, args, last_price)
-    log.info(summarize(st))
+    last_prices = {}
+    for symbol in SYMBOLS:
+        last_prices[symbol] = process_symbol_tick(client, symbol, states[symbol], args)
+
+    save_state(states)
+    write_status(states, args, last_prices)
+    total_start = sum(st.starting_capital for st in states.values())
+    total_now = sum(st.balance_usdt for st in states.values())
+    log.info("Портфель: %.4f -> %.4f USDT (%+.2f%%)", total_start, total_now,
+              (total_now / total_start - 1) * 100)
 
 
 def run_loop(args):
     client = BitgetClient(api_key="", secret_key="", passphrase="")
-    st = load_state(args.capital, args.reset)
-    start_time = time.time()
-    deadline = start_time + args.duration_hours * 3600
+    states = load_state(args.capital, args.reset)
+    deadline = time.time() + args.duration_hours * 3600
     last_heartbeat = 0.0
     log_start(args)
     log.info("Длительность цикла: %.1fч", args.duration_hours)
@@ -386,23 +360,26 @@ def run_loop(args):
                 log.warning("Kill switch активен (файл %s). Останавливаюсь.", KILL_SWITCH_FILE)
                 break
 
-            last_price = process_tick(client, st, args)
-            save_state(st)
-            if last_price is not None:
-                write_status_markdown(st, args, last_price)
-                now = time.time()
-                if now - last_heartbeat > 300:
-                    log.info("Текущая цена=%.4f, баланс=%.4f USDT%s", last_price, st.balance_usdt,
-                              f", позиция={st.position['side']}" if st.position else "")
-                    last_heartbeat = now
+            last_prices = {}
+            for symbol in SYMBOLS:
+                last_prices[symbol] = process_symbol_tick(client, symbol, states[symbol], args)
+            save_state(states)
+            write_status(states, args, last_prices)
+
+            now = time.time()
+            if now - last_heartbeat > 300:
+                total_start = sum(st.starting_capital for st in states.values())
+                total_now = sum(st.balance_usdt for st in states.values())
+                log.info("Портфель: %.4f -> %.4f USDT (%+.2f%%)", total_start, total_now,
+                          (total_now / total_start - 1) * 100)
+                last_heartbeat = now
 
             time.sleep(args.poll_seconds)
 
     except KeyboardInterrupt:
         log.info("Остановлено пользователем (Ctrl+C).")
 
-    save_state(st)
-    log.info(summarize(st))
+    save_state(states)
 
 
 def parse_args():
@@ -410,7 +387,7 @@ def parse_args():
     p.add_argument("--once", action="store_true",
                     help="Одна проверка и выход (режим для GitHub Actions / cron)")
     p.add_argument("--capital", type=float, default=DEPOSIT,
-                    help="Вымышленный стартовый депозит в USDT (в сделку заходит не больше 5% от него)")
+                    help="Вымышленный стартовый депозит в USDT (делится поровну между монетами, лимит 5% на монету)")
     p.add_argument("--duration-hours", type=float, default=24.0, help="Сколько часов крутить бота (без --once)")
     p.add_argument("--granularity", default=config.CANDLE_GRANULARITY, help="Таймфрейм свечей (15min, 1h, 4h, ...)")
     p.add_argument("--poll-seconds", type=int, default=30, help="Как часто опрашивать API (без --once)")

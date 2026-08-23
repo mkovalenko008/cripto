@@ -25,7 +25,7 @@ jobs:
       - name: Установить зависимости
         run: pip install -r requirements.txt
 
-      - name: Одна проверка стратегии (без реальных ордеров)
+      - name: Одна проверка стратегии по всей корзине (без реальных ордеров)
         run: python3 paper_trader.py --once --granularity 1min
 
       - name: Закоммитить обновлённое состояние
@@ -37,5 +37,6 @@ jobs:
             echo "Изменений нет, коммит не нужен"
           else
             git commit -m "paper-trader: обновление статуса $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --no-rebase --quiet
             git push
           fi
