@@ -446,6 +446,7 @@ function openModal(symbol, coin) {
     posHtml = `<div class="modal__position">
       <span class="side-pill ${sideCls}">${p.side}</span>
       <span>вход ${fmtPrice(p.entry_price)}</span>
+      <span>сумма ${coin.balance.toFixed(2)} USDT</span>
       <span class="modal__position-time">${fmtDateTime(p.entry_ts ?? p.entry_time)}</span>
       <span>трейлинг-стоп ${fmtPrice(p.trailing_stop)}</span>
       <span class="modal__position-sl">стоп-лосс −15% ${fmtPrice(fixedSl)}</span>
@@ -531,6 +532,9 @@ function renderBot(botKey, bot) {
   function renderBotBody(botKey, bot, rangeKey) {
     const snap = computeBotSnapshot(bot, rangeKey);
     const cls = retClass(snap.return_pct);
+    const inPositions = Object.values(snap.coins)
+      .filter(c => c.position)
+      .reduce((sum, c) => sum + c.balance, 0);
 
     section.querySelector('[data-stats]').innerHTML = `
       <div class="stat">
@@ -540,7 +544,8 @@ function renderBot(botKey, bot) {
       </div>
       <div class="stat">
         <span class="stat__label">Результат</span>
-        <span class="stat__value stat__value--${cls}">${fmtPct(snap.return_pct)}</span>
+        <span class="stat__value stat__value--${cls}">${(snap.balance - snap.starting_capital) > 0 ? '+' : ''}${(snap.balance - snap.starting_capital).toFixed(2)} <span class="stat__unit">USDT</span></span>
+        <span class="stat__sub">${fmtPct(snap.return_pct)}</span>
       </div>
       <div class="stat">
         <span class="stat__label">Сделок</span>
@@ -549,6 +554,7 @@ function renderBot(botKey, bot) {
       <div class="stat">
         <span class="stat__label">Открытых позиций</span>
         <span class="stat__value">${snap.open_positions} <span class="stat__unit">/ ${Object.keys(snap.coins).length}</span></span>
+        <span class="stat__sub">${snap.open_positions ? 'в сделках ' + inPositions.toFixed(2) + ' USDT' : 'в сделках 0 USDT'}</span>
       </div>
     `;
 
