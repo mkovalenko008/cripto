@@ -10,6 +10,11 @@ Bitget, но с вымышленным балансом. Реальные орд
 расстоянии stop_mult*ширина_полосы, таймаут = max_holding_bars новых баров,
 комиссия fee_pct_per_side на вход и на выход.
 
+Условный депозит — 300 USDT, тот же, что у trend_paper_trader.py, с тем же
+правилом "не больше 5% на монету". Тут монета одна (ETH), поэтому бот
+реально торгует не весь депозит, а только 5% от него = 15 USDT — остальное
+считается незадействованным резервом, а не "все деньги в одну сделку".
+
 Спот не поддерживает шорт без плеча — сигналы SHORT пропускаются и
 логируются, реально исполняются только LONG.
 
@@ -78,6 +83,12 @@ class PaperState:
     @classmethod
     def from_dict(cls, d: dict):
         return cls(**d)
+
+
+DEPOSIT = 300.0  # условный общий депозит — тот же, что у trend_paper_trader.py
+MAX_POSITION_PCT = 0.05  # не больше 5% депозита в одной монете; тут монета одна (ETH),
+                          # поэтому активный капитал бота = DEPOSIT * MAX_POSITION_PCT,
+                          # а не весь DEPOSIT — иначе это было бы 100%, а не 5%.
 
 
 def load_state(capital: float, reset: bool) -> PaperState:
@@ -390,7 +401,8 @@ def parse_args():
     p = argparse.ArgumentParser(description="Paper-trading bb_strategy на живых данных Bitget (без реальных денег)")
     p.add_argument("--once", action="store_true",
                     help="Одна проверка и выход (режим для GitHub Actions / cron)")
-    p.add_argument("--capital", type=float, default=10.0, help="Вымышленный стартовый капитал в USDT")
+    p.add_argument("--capital", type=float, default=DEPOSIT * MAX_POSITION_PCT,
+                    help="Вымышленный стартовый капитал в USDT (по умолчанию 5% от депозита 300)")
     p.add_argument("--duration-hours", type=float, default=24.0, help="Сколько часов крутить бота (без --once)")
     p.add_argument("--granularity", default=config.CANDLE_GRANULARITY, help="Таймфрейм свечей (15min, 1h, 4h, ...)")
     p.add_argument("--poll-seconds", type=int, default=30, help="Как часто опрашивать API (без --once)")
