@@ -163,12 +163,21 @@
   .coin-card--gain { border-left-color: var(--gain); }
   .coin-card--loss { border-left-color: var(--loss); }
   .coin-card--idle { opacity: 0.55; }
+  .coin-card--active { border-left-color: var(--bot-accent); }
   .coin-card__sym { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
-  .coin-card__pos { font-size: 9.5px; background: var(--bot-accent); color: #fff; padding: 2px 6px; border-radius: 100px; font-weight: 600; }
+  .coin-card__pos { font-size: 9.5px; background: var(--bot-accent); color: #fff; padding: 2px 6px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
+  .coin-card__pos::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: #fff; animation: pulse-pos 1.6s ease-out infinite; }
+  @keyframes pulse-pos {
+    0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.6); }
+    70%  { box-shadow: 0 0 0 5px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+  @media (prefers-reduced-motion: reduce) { .coin-card__pos::before { animation: none; } }
   .coin-card__ret { font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; font-weight: 600; font-size: 16px; }
   .coin-card__ret--gain { color: var(--gain); }
   .coin-card__ret--loss { color: var(--loss); }
   .coin-card__ret--idle { color: var(--text-muted); font-size: 12.5px; font-weight: 400; }
+  .coin-card__ret--active { color: var(--bot-accent); font-size: 13px; font-weight: 500; }
   .coin-card__meta { font-size: 10.5px; color: var(--text-muted); }
 
   /* ---- modal ---- */
@@ -193,6 +202,12 @@
   .modal .pnl-loss { color: var(--loss); }
   .modal__empty { color: var(--text-muted); font-size: 13px; padding: 24px 0; text-align: center; }
   .side-pill { font-size: 10px; padding: 2px 8px; border-radius: 100px; background: var(--surface-2); font-weight: 500; }
+  .modal__position {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px;
+    background: var(--surface-2); border: 1px solid var(--border); border-radius: 14px;
+    padding: 12px 16px; margin-bottom: 16px;
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-secondary);
+  }
 
   footer {
     margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border);
@@ -404,6 +419,11 @@ function renderChart(svgEl, tooltipEl, points, startCapital) {
   });
 }
 
+function fmtPrice(v) {
+  if (v == null || isNaN(v)) return '—';
+  return parseFloat(Number(v).toPrecision(6)).toString();
+}
+
 function openModal(symbol, coin) {
   document.getElementById('modal-title').textContent = symbol.replace('USDT', '') + ' / USDT';
   const ret = (coin.balance / coin.starting_capital - 1) * 100;
@@ -412,8 +432,19 @@ function openModal(symbol, coin) {
     (coin.position ? ' · сейчас в позиции ' + coin.position.side : ' · сейчас без позиции');
 
   const body = document.getElementById('modal-body');
+  let posHtml = '';
+  if (coin.position) {
+    const p = coin.position;
+    posHtml = `<div class="modal__position">
+      <span class="side-pill">${p.side}</span>
+      <span>вход ${fmtPrice(p.entry_price)}</span>
+      <span>${fmtDateTime(p.entry_ts ?? p.entry_time)}</span>
+      <span>трейлинг-стоp ${fmtPrice(p.trailing_stop)}</span>
+      ${p.bars_held != null ? `<span>${p.bars_held} бар. в позиции</span>` : ''}
+    </div>`;
+  }
   if (!coin.trades.length) {
-    body.innerHTML = '<p class="modal__empty">По этой монете ещё не было закрытых сделок.</p>';
+    body.innerHTML = posHtml + '<p class="modal__empty">По этой монете ещё не было закрытых сделок.</p>';
   } else {
     let rows = coin.trades.slice().reverse().map(t => {
       const cls = t.pnl_pct > 0 ? 'pnl-gain' : (t.pnl_pct < 0 ? 'pnl-loss' : '');
@@ -427,7 +458,7 @@ function openModal(symbol, coin) {
         <td class="${cls}">${fmtPct(t.pnl_pct)}</td>
       </tr>`;
     }).join('');
-    body.innerHTML = `<table>
+    body.innerHTML = posHtml + `<table>
       <thead><tr>
         <th>Сторона</th><th>Вход</th><th>Выход</th><th>Время входа</th><th>Время выхода</th><th>Длит.</th><th>PnL</th>
       </tr></thead>
@@ -515,15 +546,21 @@ function renderBot(botKey, bot) {
     const points = buildEquityCurve(bot, rangeKey);
     renderChart(section.querySelector('[data-chart]'), section.querySelector('[data-tooltip]'), points, snap.starting_capital);
 
-    const coinsSorted = Object.values(snap.coins).sort((a, b) => (b.trades.length > 0) - (a.trades.length > 0) || b.return_pct - a.return_pct);
+    const isNotable = c => c.trades.length > 0 || !!c.position;
+    const coinsSorted = Object.values(snap.coins).sort((a, b) => (isNotable(b) - isNotable(a)) || b.return_pct - a.return_pct);
     const coinGrid = section.querySelector('[data-coins]');
     coinGrid.innerHTML = '';
     coinsSorted.forEach(c => {
       const card = document.createElement('button');
       const sym = c.symbol.replace('USDT', '');
-      if (c.trades.length === 0) {
+      if (c.trades.length === 0 && !c.position) {
         card.className = 'coin-card coin-card--idle';
         card.innerHTML = `<div class="coin-card__sym">${sym}</div><div class="coin-card__ret coin-card__ret--idle">нет сделок</div><div class="coin-card__meta">0 сделок</div>`;
+      } else if (c.trades.length === 0 && c.position) {
+        card.className = 'coin-card coin-card--active';
+        const posBadge = `<span class="coin-card__pos">${c.position.side}</span>`;
+        const heldNote = c.position.bars_held != null ? `${c.position.bars_held} бар. в позиции` : 'в позиции';
+        card.innerHTML = `<div class="coin-card__sym">${sym}${posBadge}</div><div class="coin-card__ret coin-card__ret--active">вход ${c.position.entry_price}</div><div class="coin-card__meta">${heldNote}</div>`;
       } else {
         const rc = retClass(c.return_pct);
         card.className = 'coin-card coin-card--' + rc;
