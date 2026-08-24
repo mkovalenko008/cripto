@@ -134,7 +134,8 @@
     padding: 18px 20px 12px; margin-bottom: 20px;
   }
   .chart-card__title { font-size: 12px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin: 0 0 8px; }
-  .chart-svg { width: 100%; height: 140px; display: block; overflow: visible; }
+  .chart-svg { width: 100%; height: 164px; display: block; overflow: visible; }
+  .chart-axis-label { fill: var(--text-muted); font-family: "IBM Plex Mono", monospace; font-size: 10px; }
   .chart-line { fill: none; stroke: var(--bot-accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
   .chart-area { fill: var(--bot-accent); opacity: 0.10; }
   .chart-grid { stroke: var(--grid); stroke-width: 1; }
@@ -190,15 +191,16 @@
   .modal-backdrop.open { display: flex; }
   .modal {
     background: var(--surface); border: 1px solid var(--border); border-radius: 22px;
-    max-width: 720px; width: 100%; max-height: 82vh; overflow: auto; padding: 24px 26px;
+    max-width: 960px; width: 100%; max-height: 82vh; overflow: auto; padding: 24px 26px;
   }
   .modal__head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 6px; }
   .modal__title { font-weight: 600; font-size: 20px; margin: 0; }
   .modal__close { background: var(--surface-2); border: 1px solid var(--border); border-radius: 50%; width: 32px; height: 32px; cursor: pointer; color: var(--text); font-size: 16px; line-height: 1; }
   .modal__sub { color: var(--text-muted); font-size: 12.5px; margin: 0 0 16px; }
-  .modal table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  .modal th { text-align: left; font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; padding: 6px 8px; border-bottom: 1px solid var(--border); }
-  .modal td { padding: 8px; border-bottom: 1px solid var(--grid); font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; }
+  .modal__table-scroll { overflow-x: auto; }
+  .modal table { width: 100%; min-width: 640px; border-collapse: collapse; font-size: 12.5px; }
+  .modal th { text-align: left; font-weight: 500; color: var(--text-muted); text-transform: uppercase; font-size: 10px; letter-spacing: 0.04em; padding: 6px 10px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  .modal td { padding: 10px; border-bottom: 1px solid var(--grid); font-family: "IBM Plex Mono", monospace; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .modal tr:last-child td { border-bottom: none; }
   .modal .pnl-gain { color: var(--gain); }
   .modal .pnl-loss { color: var(--loss); }
@@ -282,6 +284,11 @@ function fmtDateTime(t) {
   if (!d || isNaN(d)) return '—';
   return d.toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
 }
+function fmtDateShort(t) {
+  const d = parseTime(t);
+  if (!d || isNaN(d)) return '—';
+  return d.toLocaleDateString('ru-RU', { day: '2-digit', month: '2-digit' });
+}
 function fmtDuration(barsHeld, entry, exit) {
   if (barsHeld != null) return barsHeld + ' бар.';
   const a = parseTime(entry), b = parseTime(exit);
@@ -351,8 +358,8 @@ function buildEquityCurve(bot, rangeKey) {
 }
 
 function renderChart(svgEl, tooltipEl, points, startCapital) {
-  const W = 1000, H = 140, PAD = 8;
-  svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  const W = 1000, H = 140, LABEL_H = 24, PAD = 8;
+  svgEl.setAttribute('viewBox', `0 0 ${W} ${H + LABEL_H}`);
   svgEl.innerHTML = '';
 
   if (points.length < 2) {
@@ -395,6 +402,23 @@ function renderChart(svgEl, tooltipEl, points, startCapital) {
   lastDot.setAttribute('cx', x(points.length - 1)); lastDot.setAttribute('cy', y(points[points.length - 1].v));
   lastDot.setAttribute('r', 4); lastDot.setAttribute('class', 'chart-dot');
   svgEl.appendChild(lastDot);
+
+  // Подписи дат по оси X — не на каждой точке (могут стоять кучно на
+  // близких сделках), а через шаг, плюс всегда первая и последняя.
+  const maxLabels = 6;
+  const step = Math.max(1, Math.ceil((points.length - 1) / (maxLabels - 1)));
+  const labelIdx = new Set();
+  for (let i = 0; i < points.length; i += step) labelIdx.add(i);
+  labelIdx.add(points.length - 1);
+  labelIdx.forEach(i => {
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', x(i));
+    label.setAttribute('y', H + 16);
+    label.setAttribute('class', 'chart-axis-label');
+    label.setAttribute('text-anchor', i === 0 ? 'start' : (i === points.length - 1 ? 'end' : 'middle'));
+    label.textContent = points[i].t ? fmtDateShort(points[i].t) : 'старт';
+    svgEl.appendChild(label);
+  });
 
   const crossV = document.createElementNS('http://www.w3.org/2000/svg', 'line');
   crossV.setAttribute('y1', 0); crossV.setAttribute('y2', H); crossV.setAttribute('class', 'chart-cross');
@@ -471,12 +495,12 @@ function openModal(symbol, coin) {
         <td class="${cls}">${pnlUsdtStr}<br>${fmtPct(t.pnl_pct)}</td>
       </tr>`;
     }).join('');
-    body.innerHTML = posHtml + `<table>
+    body.innerHTML = posHtml + `<div class="modal__table-scroll"><table>
       <thead><tr>
         <th>Сторона</th><th>Вход</th><th>Выход</th><th>Сумма</th><th>Время входа</th><th>Время выхода</th><th>Длит.</th><th>PnL</th>
       </tr></thead>
       <tbody>${rows}</tbody>
-    </table>`;
+    </table></div>`;
   }
   document.getElementById('modal-backdrop').classList.add('open');
 }
