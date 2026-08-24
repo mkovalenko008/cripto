@@ -458,19 +458,22 @@ function openModal(symbol, coin) {
   } else {
     let rows = coin.trades.slice().reverse().map(t => {
       const cls = t.pnl_pct > 0 ? 'pnl-gain' : (t.pnl_pct < 0 ? 'pnl-loss' : '');
+      const amountUsed = (t.balance_after != null && t.pnl_usdt != null) ? (t.balance_after - t.pnl_usdt) : null;
+      const pnlUsdtStr = t.pnl_usdt != null ? (t.pnl_usdt > 0 ? '+' : '') + t.pnl_usdt.toFixed(2) + ' USDT' : '—';
       return `<tr>
         <td><span class="side-pill ${t.side === 'LONG' ? 'side-pill--long' : 'side-pill--short'}">${t.side}</span></td>
         <td>${t.entry_price}</td>
         <td>${t.exit_price}</td>
+        <td>${amountUsed != null ? amountUsed.toFixed(2) + ' USDT' : '—'}</td>
         <td>${fmtDateTime(t.entry_time)}</td>
         <td>${fmtDateTime(t.exit_time)}</td>
         <td>${fmtDuration(t.bars_held, t.entry_time, t.exit_time)}</td>
-        <td class="${cls}">${fmtPct(t.pnl_pct)}</td>
+        <td class="${cls}">${pnlUsdtStr}<br>${fmtPct(t.pnl_pct)}</td>
       </tr>`;
     }).join('');
     body.innerHTML = posHtml + `<table>
       <thead><tr>
-        <th>Сторона</th><th>Вход</th><th>Выход</th><th>Время входа</th><th>Время выхода</th><th>Длит.</th><th>PnL</th>
+        <th>Сторона</th><th>Вход</th><th>Выход</th><th>Сумма</th><th>Время входа</th><th>Время выхода</th><th>Длит.</th><th>PnL</th>
       </tr></thead>
       <tbody>${rows}</tbody>
     </table>`;

@@ -37,6 +37,8 @@ def coin_payload(state: dict) -> dict:
                 "exit_time": t.get("exit_time") or t.get("exit_ts"),
                 "bars_held": t.get("bars_held"),
                 "pnl_pct": t["pnl_pct"],
+                "pnl_usdt": t.get("pnl_usdt"),
+                "balance_after": t.get("balance_after"),
                 "exit_reason": t.get("exit_reason", ""),
             }
             for t in state.get("trades", [])
