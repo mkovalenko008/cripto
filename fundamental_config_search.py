@@ -20,9 +20,16 @@ MIN_TRADES = 8  # у "терпеливой" стратегии сделок за
 TRAIN_FRAC = 0.7
 MIN_COVERAGE = 12
 
-FEAR_VARIANTS = [20, 25, 30]
-TOUCH_PCT_VARIANTS = [1.0, 2.0]
-REWARD_R_VARIANTS = [2.0, 3.0]
+# Раунд 2 — расширяем не столько пороги, сколько структуру: чувствительность
+# линий (pivot_lookback) и срок удержания, которые в раунде 1 были
+# зафиксированы произвольно. touch_pct=1.0% зафиксирован по чистому TRAIN-
+# наблюдению раунда 1 (1.0% стабильно обгонял 2.0% на каждом пороге страха) —
+# это не подглядывание в test, тот вывод был виден только по train-таблице.
+FEAR_VARIANTS = [15, 20, 25]
+PIVOT_LOOKBACK_VARIANTS = [3, 5, 8]
+MAX_HOLDING_VARIANTS = [75, 250]
+REWARD_R_VARIANTS = [2.5, 3.5]
+TOUCH_PCT = 1.0
 
 SYMBOLS = [
     "ETHUSDT", "SOLUSDT", "HYPEUSDT",
@@ -77,35 +84,36 @@ def main():
     candles_by_symbol = load_all_candles()
     print(f"Загружено монет: {len(candles_by_symbol)}\n", flush=True)
 
-    total = len(FEAR_VARIANTS) * len(TOUCH_PCT_VARIANTS) * len(REWARD_R_VARIANTS)
+    total = len(FEAR_VARIANTS) * len(PIVOT_LOOKBACK_VARIANTS) * len(MAX_HOLDING_VARIANTS) * len(REWARD_R_VARIANTS)
     t_start = time.time()
     grid_results = []
     done = 0
     for fear in FEAR_VARIANTS:
         greed = 100 - fear  # симметрично: страх<=20 <-> жадность>=80, и т.п.
-        for touch in TOUCH_PCT_VARIANTS:
-            for reward_r in REWARD_R_VARIANTS:
-                config = dict(pivot_lookback=5, swing_count=4, lookback_bars=200,
-                              fear_threshold=fear, greed_threshold=greed, touch_pct=touch,
-                              atr_period=14, atr_stop_buffer_mult=0.5, reward_r=reward_r,
-                              max_holding_bars=150, fee_pct_per_side=0.1, long_only=False)
-                res = evaluate_config(candles_by_symbol, fgi, "train", config)
-                grid_results.append((config, res))
-                done += 1
-                elapsed = time.time() - t_start
-                print(f"[{done}/{total}] страх<={fear} жадность>={greed} touch={touch}% R={reward_r} -> "
-                      f"широта={res['breadth_pct']:.0f}% медиана={res['median_return']:+.2f}% "
-                      f"(прошло {elapsed:.0f}с)", flush=True)
+        for pivot_lookback in PIVOT_LOOKBACK_VARIANTS:
+            for max_holding in MAX_HOLDING_VARIANTS:
+                for reward_r in REWARD_R_VARIANTS:
+                    config = dict(pivot_lookback=pivot_lookback, swing_count=4, lookback_bars=200,
+                                  fear_threshold=fear, greed_threshold=greed, touch_pct=TOUCH_PCT,
+                                  atr_period=14, atr_stop_buffer_mult=0.5, reward_r=reward_r,
+                                  max_holding_bars=max_holding, fee_pct_per_side=0.1, long_only=False)
+                    res = evaluate_config(candles_by_symbol, fgi, "train", config)
+                    grid_results.append((config, res))
+                    done += 1
+                    elapsed = time.time() - t_start
+                    print(f"[{done}/{total}] страх<={fear} pivot={pivot_lookback} hold<={max_holding} R={reward_r} -> "
+                          f"широта={res['breadth_pct']:.0f}% медиана={res['median_return']:+.2f}% "
+                          f"(прошло {elapsed:.0f}с)", flush=True)
 
     grid_results.sort(key=lambda cr: (cr[1]["breadth_pct"], cr[1]["median_return"]), reverse=True)
 
-    header = f"{'Страх':>6}{'Жадн':>6}{'Touch%':>8}{'R':>5}{'Монет':>7}{'ВПлюсе':>8}{'Широта%':>9}{'Медиана%':>10}{'Среднее%':>10}"
-    lines = ["=" * 95, "ПОИСК ПО TRAIN (фундаментал: страх/жадность + линии, сортировка по широте)", "=" * 95,
+    header = f"{'Страх':>6}{'Pivot':>6}{'Hold':>6}{'R':>5}{'Монет':>7}{'ВПлюсе':>8}{'Широта%':>9}{'Медиана%':>10}{'Среднее%':>10}"
+    lines = ["=" * 95, "ПОИСК ПО TRAIN, РАУНД 2 (фундаментал: страх/жадность + линии, сортировка по широте)", "=" * 95,
               header, "-" * len(header)]
     for config, res in grid_results:
         flag = "" if res["n_reliable"] >= MIN_COVERAGE else "  <- ПОКРЫТИЕ СЛИШКОМ МАЛО, НЕ УЧАСТВУЕТ В ВЫБОРЕ"
         lines.append(
-            f"{config['fear_threshold']:>6}{config['greed_threshold']:>6}{config['touch_pct']:>8.1f}"
+            f"{config['fear_threshold']:>6}{config['pivot_lookback']:>6}{config['max_holding_bars']:>6}"
             f"{config['reward_r']:>5.1f}{res['n_reliable']:>7}{res['n_positive']:>8}{res['breadth_pct']:>9.1f}"
             f"{res['median_return']:>10.2f}{res['avg_return']:>10.2f}{flag}"
         )
@@ -115,7 +123,7 @@ def main():
         lines.append(f"\nНи одна конфигурация не набрала надёжную выборку на >= {MIN_COVERAGE} монетах.")
         text = "\n".join(lines)
         print(text)
-        out_path = os.path.join(os.path.dirname(__file__), "fundamental_config_search_report.txt")
+        out_path = os.path.join(os.path.dirname(__file__), "fundamental_config_search_report_round2.txt")
         with open(out_path, "w") as f:
             f.write(text)
         return
@@ -124,7 +132,8 @@ def main():
                  f">= {MIN_COVERAGE} монет — выбор идёт только среди них)")
     lines.append("")
     lines.append(f"Лучшая по TRAIN (широта): страх<={best_config['fear_threshold']}, "
-                 f"жадность>={best_config['greed_threshold']}, touch={best_config['touch_pct']}%, "
+                 f"жадность>={best_config['greed_threshold']}, pivot_lookback={best_config['pivot_lookback']}, "
+                 f"hold<={best_config['max_holding_bars']}бар, touch={best_config['touch_pct']}%, "
                  f"R={best_config['reward_r']} — "
                  f"{best_train_res['n_positive']}/{best_train_res['n_reliable']} монет в плюсе "
                  f"({best_train_res['breadth_pct']:.1f}%), медиана {best_train_res['median_return']:+.2f}%")
@@ -146,7 +155,7 @@ def main():
 
     text = "\n".join(lines)
     print(text)
-    out_path = os.path.join(os.path.dirname(__file__), "fundamental_config_search_report.txt")
+    out_path = os.path.join(os.path.dirname(__file__), "fundamental_config_search_report_round2.txt")
     with open(out_path, "w") as f:
         f.write(text)
     print(f"\n\nОтчёт сохранён в {out_path}")
