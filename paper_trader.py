@@ -196,18 +196,22 @@ def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState, args) 
     # Свечи короче интервала проверки означают, что между двумя запусками
     # может закрыться сразу несколько баров — разбираем все новые закрытые
     # свечи по порядку, а не только последнюю, чтобы не пропустить момент
-    # касания цели/стопа на промежуточном баре.
+    # касания цели/стопа на промежуточном баре. new_bars хранит (индекс в
+    # closed, сама свеча), чтобы decide() ниже мог получить срез "закрытые
+    # бары по состоянию на этот конкретный момент", а не весь closed —
+    # иначе это был бы lookahead на бары, которые тогда ещё не наступили.
     if st.last_processed_ts is None:
-        new_bars = [closed[-1]]
+        new_bars = [(len(closed) - 1, closed[-1])]
     else:
-        new_bars = [c for c in closed if c["ts"] > st.last_processed_ts]
+        new_bars = [(i, c) for i, c in enumerate(closed) if c["ts"] > st.last_processed_ts]
 
     if not new_bars:
         return last_price
 
-    for bar in new_bars:
+    for idx, bar in new_bars:
         is_latest = bar["ts"] == closed[-1]["ts"]
         st.last_processed_ts = bar["ts"]
+        window = closed[:idx + 1]
         price = bar["close"]
 
         if st.position is not None:
@@ -227,10 +231,19 @@ def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState, args) 
                           symbol, pos["side"], price, pos["target"], pos["stop"],
                           pos["bars_held"], args.max_holding_bars)
 
-        elif is_latest:
-            # Новую позицию открываем только по самому свежему бару — входить
-            # по устаревшему сигналу (цена уже ушла) смысла нет.
-            d = decide(closed, period=args.period, num_std=args.num_std,
+        else:
+            # Раньше вход проверялся только на самом свежем баре ("входить по
+            # устаревшему сигналу смысла нет"). На практике это означало, что
+            # при разрыве между запусками GitHub Actions в несколько часов
+            # (задокументированное ограничение платформы, не баг этого репо)
+            # бот пропускал вообще все точки входа внутри разрыва, кроме
+            # самой последней, хотя выходы по позиции уже разбирались по
+            # каждому пропущенному бару. Проверено на живых данных: сигналы
+            # встречаются в единицы процентов баров — при разрывах в часы
+            # это и есть причина многодневного молчания бота, не отсутствие
+            # сигналов на рынке. decide() теперь получает `window` — свечи
+            # строго по состоянию на бар `idx`, без заглядывания вперёд.
+            d = decide(window, period=args.period, num_std=args.num_std,
                        use_adx_filter=args.use_adx, adx_threshold=args.adx_threshold,
                        use_rsi_confirmation=args.use_rsi,
                        rsi_oversold=args.rsi_oversold, rsi_overbought=args.rsi_overbought)
@@ -241,7 +254,7 @@ def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState, args) 
                 log.info("[%s] сигнал SHORT пропущен — на споте без плеча шорт невозможен (%s)",
                           symbol, d.reason)
             else:
-                closes = [c["close"] for c in closed]
+                closes = [c["close"] for c in window]
                 basis, upper, lower = bollinger_bands(closes, args.period, args.num_std)
                 band_width = upper - lower
                 target = basis
@@ -257,8 +270,9 @@ def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState, args) 
                     "adx_at_entry": d.adx_value,
                     "rsi_at_entry": d.rsi_value,
                 }
-                log.info("[%s] ОТКРЫЛ LONG по %.6f, цель=%.6f, стоп=%.6f (%s)",
-                          symbol, price, target, stop, d.reason)
+                log.info("[%s] ОТКРЫЛ LONG по %.6f, цель=%.6f, стоп=%.6f (%s, бар %s%s)",
+                          symbol, price, target, stop, d.reason, bar["ts"],
+                          "" if is_latest else ", бэктик пропущенного разрыва")
 
     return last_price
 
