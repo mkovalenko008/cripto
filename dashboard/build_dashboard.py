@@ -89,6 +89,7 @@ def main():
                 "label": "Трендовый бот",
                 "subtitle": "Пробой полосы Боллинджера + ADX + трейлинг-стоп по ATR · 23 монеты · 1H",
                 "accent": "trend",
+                "version": "v1",
                 "validated": True,
                 "method_note": (
                     "Конфигурация ADX≥30 / ATR×3.0 / std=2.5 отобрана честным train/test на 2 годах "
@@ -102,6 +103,7 @@ def main():
                 "label": "Mean-reversion бот",
                 "subtitle": f"Отскок от полос Боллинджера + ADX + RSI · {len(bb_state_raw)} монет · 1min",
                 "accent": "meanrev",
+                "version": "v1",
                 "validated": False,
                 "method_note": (
                     "Первая протестированная стратегия сессии. На бэктесте устойчивого плюса после "
@@ -120,9 +122,10 @@ def main():
     if trend_v2_state:
         data["bots"]["trendv2"] = {
             "label": "Трендовый бот v2.0",
-            "subtitle": (f"То же ядро входа + только LONG + защита прибыли · "
+            "subtitle": (f"То же ядро входа, только LONG + вход по пропущенным барам · "
                          f"{len(trend_v2_state)} монет · 1H"),
             "accent": "trendv2",
+            "version": "v2",
             "validated": True,
             "method_note": TREND_V2_NOTE,
             "coins": {sym: coin_payload(st) for sym, st in trend_v2_state.items()},
@@ -133,6 +136,7 @@ def main():
             "subtitle": (f"Тот же отскок от полос, но часовой таймфрейм · "
                          f"{len(bb_v2_state)} монет · 1H"),
             "accent": "meanrevv2",
+            "version": "v2",
             "validated": False,
             "method_note": MEANREV_V2_NOTE,
             "coins": {sym: coin_payload(st) for sym, st in bb_v2_state.items()},

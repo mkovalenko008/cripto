@@ -133,6 +133,26 @@
   .filter-btn:hover { border-color: var(--bot-accent); color: var(--text); transform: translateY(-1px); }
   .filter-btn.active { background: var(--bot-accent); border-color: var(--bot-accent); color: #fff; font-weight: 500; }
 
+  /* ---- переключатель версий ботов ---- */
+  .version-switch { display: flex; align-items: center; gap: 8px; margin: 0 0 20px; flex-wrap: wrap; }
+  .version-switch__label {
+    font-family: "IBM Plex Mono", monospace; font-size: 11px; letter-spacing: .08em;
+    text-transform: uppercase; color: var(--text-muted); margin-right: 4px;
+  }
+  .version-btn {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-secondary);
+    background: var(--surface); border: 1px solid var(--border); border-radius: 100px;
+    padding: 7px 16px; cursor: pointer; transition: transform .08s;
+  }
+  .version-btn:hover { border-color: var(--accent-trend); color: var(--text); transform: translateY(-1px); }
+  .version-btn.active { background: var(--accent-trend); border-color: var(--accent-trend); color: #fff; font-weight: 500; }
+
+  /* пустой бот — чтобы свежезапущенная версия не выглядела сломанной */
+  .bot-empty {
+    border: 1px dashed var(--border); border-radius: 12px; padding: 18px 20px;
+    color: var(--text-secondary); font-size: 13px; line-height: 1.55;
+  }
+
   /* ---- chart ---- */
   .chart-card {
     background: var(--surface); border: 1px solid var(--border); border-radius: 18px;
@@ -248,6 +268,13 @@
 
   <div class="disclaimer">
     <b>Это не реальная торговля.</b>&nbsp;Каждый бот считает от собственного условного депозита 300 USDT с лимитом 5% на монету и физически не может отправить ордер на биржу — код не импортирует функции размещения ордеров.
+  </div>
+
+  <div class="version-switch" id="version-switch">
+    <span class="version-switch__label">Версия ботов</span>
+    <button class="version-btn active" data-version="all">Обе</button>
+    <button class="version-btn" data-version="v1">v1</button>
+    <button class="version-btn" data-version="v2">v2</button>
   </div>
 
   <div id="bots"></div>
@@ -517,11 +544,39 @@ function closeModal() { document.getElementById('modal-backdrop').classList.remo
 function renderBot(botKey, bot) {
   const section = document.createElement('section');
   section.className = 'bot';
+  section.dataset.version = bot.version || 'v1';
   section.style.setProperty('--bot-accent', `var(--accent-${bot.accent})`);
 
   const badge = bot.validated
     ? '<span class="badge badge--validated">валидировано на train/test</span>'
     : '<span class="badge badge--unvalidated">без подтверждённого edge</span>';
+
+  // Свежезапущенная версия ещё не успела ничего наторговать. Без явной
+  // пометки пустая секция выглядит поломанной, хотя это просто раннее утро
+  // бота: сигналы на 1H появляются не каждый час.
+  const totalTrades = Object.values(bot.coins).reduce((n, c) => n + c.trades.length, 0);
+  const openNow = Object.values(bot.coins).filter(c => c.position).length;
+  if (totalTrades === 0 && openNow === 0) {
+    section.innerHTML = `
+      <header class="bot__head">
+        <div>
+          <h2 class="bot__title"><span class="bot__dot"></span>${bot.label}</h2>
+          <p class="bot__subtitle">${bot.subtitle}</p>
+        </div>
+        ${badge}
+      </header>
+      <div class="bot-empty">
+        <b>Сделок пока нет — бот только запущен.</b><br>
+        Он проверяет рынок каждый час и входит только когда условия стратегии совпадут,
+        так что первые сделки появляются не сразу. Депозит ${Object.values(bot.coins)
+          .reduce((s, c) => s + c.starting_capital, 0).toFixed(0)} USDT разложен по
+        ${Object.keys(bot.coins).length} монетам и ждёт сигнала.
+      </div>
+      <p class="bot__method">${bot.method_note}</p>
+    `;
+    document.getElementById('bots').appendChild(section);
+    return;
+  }
 
   section.innerHTML = `
     <header class="bot__head">
@@ -625,6 +680,29 @@ function renderBot(botKey, bot) {
 // Ботов рендерим по порядку из данных, а не списком захардкоженных имён —
 // иначе каждая новая версия бота требовала бы правки шаблона.
 Object.entries(DATA.bots).forEach(([key, bot]) => renderBot(key, bot));
+
+// Переключатель версий: четыре бота подряд — это очень длинная страница, и
+// v2 уезжает далеко вниз за две большие секции v1. Фильтр показывает только
+// нужную версию, чтобы их можно было сравнивать, а не искать прокруткой.
+(function initVersionSwitch() {
+  const row = document.getElementById('version-switch');
+  if (!row) return;
+  const versions = new Set(
+    [...document.querySelectorAll('#bots .bot')].map(s => s.dataset.version)
+  );
+  // Если версия всего одна, переключать нечего — прячем ряд целиком.
+  if (versions.size < 2) { row.style.display = 'none'; return; }
+
+  row.addEventListener('click', (e) => {
+    const btn = e.target.closest('.version-btn');
+    if (!btn) return;
+    const want = btn.dataset.version;
+    row.querySelectorAll('.version-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('#bots .bot').forEach(s => {
+      s.style.display = (want === 'all' || s.dataset.version === want) ? '' : 'none';
+    });
+  });
+})();
 </script>
 </body>
 </html>
