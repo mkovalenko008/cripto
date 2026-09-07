@@ -189,6 +189,12 @@
   .coin-card--gain { border-left-color: var(--gain); }
   .coin-card--loss { border-left-color: var(--loss); }
   .coin-card--idle { opacity: 0.55; }
+  .coin-toggle {
+    font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-secondary);
+    background: none; border: 1px dashed var(--border); border-radius: 100px;
+    padding: 7px 16px; margin-top: 10px; cursor: pointer;
+  }
+  .coin-toggle:hover { border-color: var(--bot-accent); color: var(--text); }
   .coin-card--active { border-left-color: var(--bot-accent); }
   .coin-card__sym { font-family: "IBM Plex Mono", monospace; font-size: 12px; color: var(--text-muted); display: flex; justify-content: space-between; align-items: center; }
   .coin-card__pos { font-size: 9.5px; background: var(--bot-accent); color: #fff; padding: 2px 6px; border-radius: 100px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
@@ -541,6 +547,8 @@ document.getElementById('modal-backdrop').addEventListener('click', (e) => { if 
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
 
+const COIN_PREVIEW = 10;   // сколько монет показываем до раскрытия
+
 function renderBot(botKey, bot) {
   const section = document.createElement('section');
   section.className = 'bot';
@@ -596,6 +604,8 @@ function renderBot(botKey, bot) {
       </div>
     </div>
     <div class="coin-grid" data-coins></div>
+    <div class="coin-grid" data-coins-rest hidden style="margin-top:10px"></div>
+    <button class="coin-toggle" data-coins-toggle hidden></button>
     <p class="bot__method">${bot.method_note}</p>
   `;
   document.getElementById('bots').appendChild(section);
@@ -648,11 +658,22 @@ function renderBot(botKey, bot) {
     const points = buildEquityCurve(bot, rangeKey);
     renderChart(section.querySelector('[data-chart]'), section.querySelector('[data-tooltip]'), points, snap.starting_capital);
 
-    const isNotable = c => c.trades.length > 0 || !!c.position;
-    const coinsSorted = Object.values(snap.coins).sort((a, b) => (isNotable(b) - isNotable(a)) || b.return_pct - a.return_pct);
+    // Важность, а не просто доходность: сверху то, где прямо сейчас открыта
+    // позиция, потом отторговавшие монеты по величине результата в ЛЮБУЮ
+    // сторону — крупный минус для оценки бота важен ровно так же, как плюс, а
+    // сортировка по return_pct по убыванию прятала бы худшие монеты в самый
+    // хвост, туда же, где лежит сотня простаивающих.
+    const coinsSorted = Object.values(snap.coins).sort((a, b) =>
+      (!!b.position - !!a.position)
+      || ((b.trades.length > 0) - (a.trades.length > 0))
+      || (Math.abs(b.return_pct) - Math.abs(a.return_pct))
+      || (b.trades.length - a.trades.length));
     const coinGrid = section.querySelector('[data-coins]');
+    const restGrid = section.querySelector('[data-coins-rest]');
+    const coinToggle = section.querySelector('[data-coins-toggle]');
     coinGrid.innerHTML = '';
-    coinsSorted.forEach(c => {
+    restGrid.innerHTML = '';
+    coinsSorted.forEach((c, idx) => {
       const card = document.createElement('button');
       const sym = c.symbol.replace('USDT', '');
       if (c.trades.length === 0 && !c.position) {
@@ -672,8 +693,25 @@ function renderBot(botKey, bot) {
         card.innerHTML = `<div class="coin-card__sym">${sym}${posBadge}</div><div class="coin-card__ret coin-card__ret--${rc}">${fmtPct(c.return_pct)}</div><div class="coin-card__meta">${c.trades.length} сделок</div>`;
       }
       card.addEventListener('click', () => openModal(c.symbol, c));
-      coinGrid.appendChild(card);
+      (idx < COIN_PREVIEW ? coinGrid : restGrid).appendChild(card);
     });
+
+    // В корзине сотня монет, и почти вся она — карточки «нет сделок».
+    // Разворачивать этот хвост имеет смысл редко, поэтому по умолчанию он
+    // свёрнут, а не занимает три экрана прокрутки над описанием стратегии.
+    const hidden = coinsSorted.length - COIN_PREVIEW;
+    coinToggle.hidden = hidden <= 0;
+    if (hidden > 0) {
+      const syncToggle = () => {
+        coinToggle.textContent = restGrid.hidden
+          ? `Показать остальные ${hidden} монет`
+          : 'Свернуть список монет';
+        coinToggle.setAttribute('aria-expanded', String(!restGrid.hidden));
+      };
+      restGrid.hidden = true;
+      syncToggle();
+      coinToggle.onclick = () => { restGrid.hidden = !restGrid.hidden; syncToggle(); };
+    }
   }
 }
 
