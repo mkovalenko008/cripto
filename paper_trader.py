@@ -53,10 +53,16 @@ from bb_strategy import decide, Side
 from indicators import bollinger_bands
 
 BASE_DIR = os.path.dirname(__file__)
-STATE_FILE = os.path.join(BASE_DIR, "paper_state.json")
-TRADES_LOG_FILE = os.path.join(BASE_DIR, "paper_trades_log.jsonl")
-STATUS_FILE = os.path.join(BASE_DIR, "PAPER_STATUS.md")
-LOG_FILE = os.path.join(BASE_DIR, "paper_bot.log")
+# BOT_VARIANT выбирает профиль. v1 — исходная версия (файлы и поведение те
+# же), v2 — версия с другим таймфреймом и параметрами выхода, живёт в
+# отдельных файлах и торгует параллельно для честного сравнения вперёд.
+VARIANT = os.getenv("BOT_VARIANT", "v1").lower()
+_SUF = "" if VARIANT == "v1" else f"_{VARIANT}"
+
+STATE_FILE = os.path.join(BASE_DIR, f"paper_state{_SUF}.json")
+TRADES_LOG_FILE = os.path.join(BASE_DIR, f"paper_trades_log{_SUF}.jsonl")
+STATUS_FILE = os.path.join(BASE_DIR, f"PAPER_STATUS{_SUF.upper()}.md")
+LOG_FILE = os.path.join(BASE_DIR, f"paper_bot{_SUF}.log")
 KILL_SWITCH_FILE = os.path.join(BASE_DIR, config.KILL_SWITCH_FILE)
 
 # Топ-30 по капитализации среди монет, реально листингованных на Coinbase

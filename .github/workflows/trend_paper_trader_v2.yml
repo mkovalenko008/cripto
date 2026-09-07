@@ -1,0 +1,53 @@
+name: Trend paper trading v2 (только LONG + защита прибыли, вымышленные деньги)
+
+# v2 крутится параллельно с v1 и в отдельных файлах состояния. Смысл именно
+# в одновременной работе: сравнение идёт вперёд, на одних и тех же рынках,
+# а не подгонкой параметров задним числом под уже случившиеся сделки.
+
+on:
+  schedule:
+    - cron: "5 * * * *"  # тот же 1H таймфрейм, что у v1, но со сдвигом на 5 минут,
+                          # чтобы два бота не дрались за push в один и тот же момент
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: trend-paper-trader-v2
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    env:
+      BOT_VARIANT: v2
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Одна проверка по всей корзине (без реальных ордеров)
+        run: python3 trend_paper_trader.py --once
+
+      - name: Собрать дашборд (dashboard/index.html + docs/index.html для GitHub Pages)
+        run: python3 dashboard/build_dashboard.py
+
+      - name: Закоммитить обновлённое состояние
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add trend_paper_state_v2.json trend_paper_trades_log_v2.jsonl TREND_PAPER_STATUS_V2.md \
+                  dashboard/index.html docs/index.html
+          if git diff --cached --quiet; then
+            echo "Изменений нет, коммит не нужен"
+          else
+            git commit -m "trend-paper-trader v2: обновление статуса и дашборда $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --no-rebase --quiet
+            git push
+          fi

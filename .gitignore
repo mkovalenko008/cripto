@@ -11,8 +11,9 @@ bot.log
 
 # лог paper-трейдеров — шумный, полезен только локально; в репо остаются
 # *_state.json, *_trades_log.jsonl и *_STATUS.md
-paper_bot.log
-trend_paper_bot.log
+# Шаблон со звёздочкой, чтобы покрывать и версии ботов (paper_bot_v2.log и т.п.)
+paper_bot*.log
+trend_paper_bot*.log
 
 # ручной kill switch — не должен случайно закоммититься включённым
 STOP

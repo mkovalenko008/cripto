@@ -32,10 +32,18 @@ from trend_strategy import decide, Side
 from indicators import bollinger_bands
 
 BASE_DIR = os.path.dirname(__file__)
-STATE_FILE = os.path.join(BASE_DIR, "trend_paper_state.json")
-TRADES_LOG_FILE = os.path.join(BASE_DIR, "trend_paper_trades_log.jsonl")
-STATUS_FILE = os.path.join(BASE_DIR, "TREND_PAPER_STATUS.md")
-LOG_FILE = os.path.join(BASE_DIR, "trend_paper_bot.log")
+
+# BOT_VARIANT выбирает профиль бота. v1 — исходная версия, поведение которой
+# не меняется (файлы и логика ровно те же, что были). v2 — версия с правками
+# по итогам разбора живых сделок, живёт в отдельных файлах и торгует
+# параллельно, чтобы сравнение шло вперёд, а не подгонкой задним числом.
+VARIANT = os.getenv("BOT_VARIANT", "v1").lower()
+_SUF = "" if VARIANT == "v1" else f"_{VARIANT}"
+
+STATE_FILE = os.path.join(BASE_DIR, f"trend_paper_state{_SUF}.json")
+TRADES_LOG_FILE = os.path.join(BASE_DIR, f"trend_paper_trades_log{_SUF}.jsonl")
+STATUS_FILE = os.path.join(BASE_DIR, f"TREND_PAPER_STATUS{_SUF.upper()}.md")
+LOG_FILE = os.path.join(BASE_DIR, f"trend_paper_bot{_SUF}.log")
 KILL_SWITCH_FILE = os.path.join(BASE_DIR, config.KILL_SWITCH_FILE)
 
 SYMBOLS = [
@@ -50,6 +58,35 @@ STOP_MULT = 3.0
 MAX_HOLDING_BARS = 100
 FEE_PCT_PER_SIDE = 0.1
 GRANULARITY = "1h"
+
+# --- профиль версии -------------------------------------------------------
+# v1: как было. Шорты берутся (хотя на споте они неисполнимы — это и есть
+#     одна из найденных проблем), защиты от отдачи прибыли нет, вход
+#     ищется только по самому свежему бару.
+# v2: только LONG (реальность спота — шорт без плеча неисполним) и проверка
+#     входа по всем пропущенным барам (иначе разрывы в расписании GitHub
+#     Actions съедают точки входа).
+#
+# Защиты прибыли (перевод в безубыток / поджатие трейлинга) здесь НЕТ, и это
+# результат проверки, а не недосмотр. По живым сделкам казалось, что проблема
+# в отдаче прибыли: 12 из 20 убыточных заходили в плюс больше 1%, одна была
+# +11% и закрылась в ноль. Прогон train/test на 2 годах по 23 монетам
+# (trend_config_search_v2.py) показал обратное:
+#   - перевод в безубыток при 1R/1.5R/2R дал ровно те же цифры, что и без него.
+#     Так и должно быть: при трейлинге ATR×3.0 прибыль в 1R = 3×ATR означает,
+#     что стоп уже подтянут ровно ко входу — двигать нечего;
+#   - поджатие трейлинга до ATR×1.5 ухудшило медиану с +15.62% до +1.69%:
+#     оно режет тех самых редких больших победителей, на которых у трендовой
+#     стратегии и держится весь результат.
+# Отдача прибыли обратно — это цена входа в трендследование, а не поломка.
+if VARIANT == "v2":
+    LONG_ONLY = True
+    BREAKEVEN_AT = TIGHTEN_AT = TIGHTEN_MULT = None
+    BACKFILL_ENTRIES = True
+else:
+    LONG_ONLY = False
+    BREAKEVEN_AT = TIGHTEN_AT = TIGHTEN_MULT = None
+    BACKFILL_ENTRIES = False
 
 logging.basicConfig(
     level=logging.INFO,
@@ -148,31 +185,51 @@ def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState) -> flo
         return last_price
 
     if st.last_processed_ts is None:
-        new_bars = [closed[-1]]
+        new_bars = [(len(closed) - 1, closed[-1])]
     else:
-        new_bars = [c for c in closed if c["ts"] > st.last_processed_ts]
+        new_bars = [(i, c) for i, c in enumerate(closed) if c["ts"] > st.last_processed_ts]
     if not new_bars:
         return last_price
 
-    for bar in new_bars:
+    for idx, bar in new_bars:
         is_latest = bar["ts"] == closed[-1]["ts"]
         st.last_processed_ts = bar["ts"]
         price = bar["close"]
+        window = closed[:idx + 1]
 
         if st.position is not None:
             st.position["bars_held"] += 1
             pos = st.position
+            # risk — начальное расстояние до стопа (1R). У позиций, открытых
+            # до появления v2, поля risk нет — берём stop_distance, который
+            # тогда ещё не поджимался и равен исходному.
+            risk = pos.get("risk") or pos["stop_distance"]
             hit_target_stop = False
+
             if pos["side"] == "LONG":
                 if price > pos["extreme"]:
                     pos["extreme"] = price
-                    pos["trailing_stop"] = pos["extreme"] - pos["stop_distance"]
+                profit_r = (pos["extreme"] - pos["entry_price"]) / risk if risk else 0.0
+                if TIGHTEN_AT is not None and profit_r >= TIGHTEN_AT:
+                    atr_at_entry = pos.get("atr_at_entry") or (risk / STOP_MULT)
+                    pos["stop_distance"] = TIGHTEN_MULT * atr_at_entry
+                candidate = pos["extreme"] - pos["stop_distance"]
+                if BREAKEVEN_AT is not None and profit_r >= BREAKEVEN_AT:
+                    candidate = max(candidate, pos["entry_price"] * (1 + 2 * FEE_PCT_PER_SIDE / 100))
+                pos["trailing_stop"] = max(pos["trailing_stop"], candidate)
                 if price <= pos["trailing_stop"]:
                     hit_target_stop = True
             else:
                 if price < pos["extreme"]:
                     pos["extreme"] = price
-                    pos["trailing_stop"] = pos["extreme"] + pos["stop_distance"]
+                profit_r = (pos["entry_price"] - pos["extreme"]) / risk if risk else 0.0
+                if TIGHTEN_AT is not None and profit_r >= TIGHTEN_AT:
+                    atr_at_entry = pos.get("atr_at_entry") or (risk / STOP_MULT)
+                    pos["stop_distance"] = TIGHTEN_MULT * atr_at_entry
+                candidate = pos["extreme"] + pos["stop_distance"]
+                if BREAKEVEN_AT is not None and profit_r >= BREAKEVEN_AT:
+                    candidate = min(candidate, pos["entry_price"] * (1 - 2 * FEE_PCT_PER_SIDE / 100))
+                pos["trailing_stop"] = min(pos["trailing_stop"], candidate)
                 if price >= pos["trailing_stop"]:
                     hit_target_stop = True
 
@@ -181,20 +238,28 @@ def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState) -> flo
             elif pos["bars_held"] >= MAX_HOLDING_BARS:
                 close_position(symbol, st, price, bar["ts"], "таймаут")
 
-        elif is_latest:
-            d = decide(closed, **STRAT)
-            if d.take_trade:
-                stop_distance = STOP_MULT * (d.atr_value or 0.0)
+        elif is_latest or BACKFILL_ENTRIES:
+            # v1 смотрит вход только по самому свежему бару; v2 разбирает и
+            # пропущенные — при разрывах в расписании GitHub Actions иначе
+            # теряются точки входа. decide() получает window (бары строго по
+            # состоянию на этот момент), чтобы не заглядывать вперёд.
+            d = decide(window, **STRAT)
+            if d.take_trade and not (LONG_ONLY and d.side == Side.SHORT):
+                atr_val = d.atr_value or 0.0
+                stop_distance = STOP_MULT * atr_val
                 if stop_distance > 0:
                     st.position = {
                         "side": d.side.value, "entry_price": price, "entry_ts": bar["ts"],
                         "extreme": price,
                         "trailing_stop": (price - stop_distance if d.side == Side.LONG
                                           else price + stop_distance),
-                        "stop_distance": stop_distance, "bars_held": 0,
+                        "stop_distance": stop_distance, "risk": stop_distance,
+                        "atr_at_entry": atr_val, "bars_held": 0,
                         "adx_at_entry": d.adx_value,
                     }
                     log.info("[%s] ОТКРЫЛ %s по %.6f (%s)", symbol, d.side.value, price, d.reason)
+            elif d.take_trade and LONG_ONLY and d.side == Side.SHORT:
+                log.info("[%s] сигнал SHORT пропущен — на споте без плеча шорт неисполним", symbol)
 
     return last_price
 

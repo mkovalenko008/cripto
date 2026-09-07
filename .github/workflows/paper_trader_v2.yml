@@ -1,0 +1,56 @@
+name: Paper trading v2 (mean-reversion на часе, вымышленные деньги)
+
+# v2 отличается от v1 таймфреймом и параметрами выхода. Это не косметика:
+# комиссия 0.2% за круг фиксированная, а типичное движение растёт с
+# таймфреймом — на минутках комиссия съедала 82% среднего движения, на часе
+# 16%. Параметры стопа и таймаута отобраны train/test-поиском
+# (bb_config_search_v2.py -> bb_config_search_v2_report.txt), а не подогнаны
+# под живые сделки v1.
+
+on:
+  schedule:
+    - cron: "10 * * * *"  # таймфрейм 1H — раз в час; сдвиг, чтобы не пересекаться
+                           # с пушами двух трендовых воркфлоу
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-trader-v2
+  cancel-in-progress: false
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    env:
+      BOT_VARIANT: v2
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install -r requirements.txt
+
+      - name: Одна проверка стратегии по всей корзине (без реальных ордеров)
+        run: python3 paper_trader.py --once --granularity 1h --stop-mult 1.5 --max-holding-bars 10
+
+      - name: Собрать дашборд (dashboard/index.html + docs/index.html для GitHub Pages)
+        run: python3 dashboard/build_dashboard.py
+
+      - name: Закоммитить обновлённое состояние
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add paper_state_v2.json paper_trades_log_v2.jsonl PAPER_STATUS_V2.md \
+                  dashboard/index.html docs/index.html
+          if git diff --cached --quiet; then
+            echo "Изменений нет, коммит не нужен"
+          else
+            git commit -m "paper-trader v2: обновление статуса и дашборда $(date -u +'%Y-%m-%d %H:%M UTC')"
+            git pull --no-rebase --quiet
+            git push
+          fi
