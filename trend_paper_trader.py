@@ -4,11 +4,18 @@ ADX>=30, ATRx3.0, num_std=2.5, таймфрейм 1H — та самая, что
 широты (14/22 монет в плюсе) на честном test после train/test-разбивки на
 2 годах истории. Полный отчёт: trend_config_search_report.txt.
 
-Торгует ОДНОВРЕМЕННО корзину из 23 монет, каждая — независимым виртуальным
-суб-балансом, теми же правилами входа/выхода без подгонки под конкретную
-монету — так же, как считался бэктест. Депозит 300 USDT, на монету — не
-больше 5% депозита (сейчас это капитал/23, автоматически ниже лимита; см.
-load_state).
+Торгует ОДНОВРЕМЕННО корзину из 100 монет (топ по капитализации среди
+листингов Coinbase с USDT-парой на Bitget, см. build_basket.py), каждая —
+независимым виртуальным суб-балансом, теми же правилами входа/выхода без
+подгонки под конкретную монету — так же, как считался бэктест.
+
+Депозит 1000 USDT, поровну между монетами (10 USDT на монету), лимит 5%
+депозита на монету зафиксирован на случай сокращения корзины. Важно: у уже
+работающих ботов доля на монету осталась прежней (300/23 = 13.04 USDT), и
+новые монеты завелись по этой же доле — иначе пришлось бы пересчитать
+starting_capital старых монет и исказить их накопленную доходность. Поэтому
+фактический депозит работающего бота больше 1000 USDT; точная цифра —
+в TREND_PAPER_STATUS.md и на дашборде, а не в этой константе.
 
 Реальные ордера НИКОГДА не отправляются — скрипт не импортирует функции
 размещения ордеров. Ключи API не нужны (только публичные свечи).
@@ -47,10 +54,23 @@ LOG_FILE = os.path.join(BASE_DIR, f"trend_paper_bot{_SUF}.log")
 KILL_SWITCH_FILE = os.path.join(BASE_DIR, config.KILL_SWITCH_FILE)
 
 SYMBOLS = [
-    "ETHUSDT", "SOLUSDT", "HYPEUSDT", "BTCUSDT", "XRPUSDT", "DOGEUSDT",
-    "ZECUSDT", "SUIUSDT", "PEPEUSDT", "ENAUSDT", "ONDOUSDT", "TRUMPUSDT",
-    "LINKUSDT", "BNBUSDT", "UNIUSDT", "ADAUSDT", "LTCUSDT", "NEARUSDT",
-    "XLMUSDT", "AAVEUSDT", "AVAXUSDT", "TRXUSDT", "BCHUSDT",
+    "BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "SOLUSDT", "ZECUSDT",
+    "HYPEUSDT", "DOGEUSDT", "LINKUSDT", "ADAUSDT", "XLMUSDT", "BCHUSDT",
+    "UNIUSDT", "LTCUSDT", "HBARUSDT", "AVAXUSDT", "SUIUSDT", "SHIBUSDT",
+    "NEARUSDT", "TAOUSDT", "ASTERUSDT", "AAVEUSDT", "PAXGUSDT", "ONDOUSDT",
+    "PUMPUSDT", "WLFIUSDT", "MORPHOUSDT", "ENAUSDT", "DOTUSDT", "ICPUSDT",
+    "WLDUSDT", "SKYUSDT", "PEPEUSDT", "ETCUSDT", "ARBUSDT", "POLUSDT",
+    "QNTUSDT", "ATOMUSDT", "ALGOUSDT", "RENDERUSDT", "CAKEUSDT", "FILUSDT",
+    "TRUMPUSDT", "VETUSDT", "CRVUSDT", "ETHFIUSDT", "INJUSDT", "PENGUUSDT",
+    "APTUSDT", "AEROUSDT", "STXUSDT", "VIRTUALUSDT", "PYTHUSDT", "ZROUSDT",
+    "TIAUSDT", "FETUSDT", "PENDLEUSDT", "LDOUSDT", "SEIUSDT", "RAYUSDT",
+    "MONUSDT", "KITEUSDT", "BONKUSDT", "XTZUSDT", "SYRUPUSDT", "ENSUSDT",
+    "OPUSDT", "XPLUSDT", "JTOUSDT", "GRASSUSDT", "STRKUSDT", "WIFUSDT",
+    "JASMYUSDT", "AIUSDT", "COMPUSDT", "GRTUSDT", "EDGEUSDT", "EIGENUSDT",
+    "2ZUSDT", "FARTCOINUSDT", "AXSUSDT", "CHZUSDT", "MANAUSDT", "SKRUSDT",
+    "APEUSDT", "EGLDUSDT", "KMNOUSDT", "ZAMAUSDT", "1INCHUSDT", "ZENUSDT",
+    "SNXUSDT", "AWEUSDT", "SANDUSDT", "IMXUSDT", "SUSDT", "METUSDT",
+    "ZKUSDT", "GLMUSDT", "BATUSDT", "MINAUSDT",
 ]
 
 STRAT = dict(period=20, num_std=2.5, adx_period=14, adx_threshold=30.0, atr_period=14)
@@ -128,7 +148,35 @@ def load_state(total_capital: float, reset: bool) -> dict:
     if not reset and os.path.exists(STATE_FILE):
         with open(STATE_FILE) as f:
             raw = json.load(f)
-        return {s: CoinState.from_dict(raw[s]) for s in SYMBOLS if s in raw}
+        states = {s: CoinState.from_dict(raw[s]) for s in SYMBOLS if s in raw}
+        # Монету могли убрать из целевой корзины (например, её делистили с
+        # Coinbase). Выбрасывать её вместе с историей нельзя: сделки уже
+        # случились и должны остаться в общем результате, а открытую позицию
+        # надо довести до выхода. Поэтому такие монеты остаются в работе.
+        retired = [s for s, c in raw.items()
+                   if s not in states and (c.get("trades") or c.get("position"))]
+        for s in retired:
+            states[s] = CoinState.from_dict(raw[s])
+        if retired:
+            log.info("Вне целевой корзины, но оставлены ради истории и закрытия позиций: %s",
+                      ", ".join(sorted(retired)))
+        # Монеты, добавленные в корзину уже после запуска бота, заводим здесь.
+        # Раньше их просто отбрасывало ("if s in raw"), и расширение SYMBOLS
+        # молча ничего не меняло. Сбрасывать ради этого всё состояние нельзя —
+        # это уничтожило бы историю сделок и открытые позиции работающих монет.
+        new_symbols = [s for s in SYMBOLS if s not in states]
+        if new_symbols:
+            # Новичкам выдаём столько же, сколько в среднем получили уже
+            # работающие монеты, чтобы вес всех монет в корзине остался равным.
+            base = (sum(st.starting_capital for st in states.values()) / len(states)
+                    if states else per_coin)
+            for s in new_symbols:
+                states[s] = CoinState.fresh(base)
+            log.info("Добавлено новых монет в корзину: %d по %.2f USDT (итого монет %d, "
+                      "суммарный депозит %.2f USDT). История прежних монет сохранена.",
+                      len(new_symbols), base, len(states),
+                      sum(st.starting_capital for st in states.values()))
+        return states
     log.info("Стартую с чистого листа: %.2f USDT на монету (лимит 5%% = %.2f) x %d монет = %.2f USDT задействовано из %.2f USDT депозита",
               per_coin, max_per_coin, len(SYMBOLS), per_coin * len(SYMBOLS), total_capital)
     return {s: CoinState.fresh(per_coin) for s in SYMBOLS}
@@ -318,7 +366,7 @@ def run_once(args):
         return
 
     last_prices = {}
-    for symbol in SYMBOLS:
+    for symbol in states:
         last_prices[symbol] = process_symbol_tick(client, symbol, states[symbol])
 
     save_state(states)
@@ -341,7 +389,7 @@ def run_loop(args):
                 log.warning("Kill switch активен. Останавливаюсь.")
                 break
             last_prices = {}
-            for symbol in SYMBOLS:
+            for symbol in states:
                 last_prices[symbol] = process_symbol_tick(client, symbol, states[symbol])
             save_state(states)
             write_status(states, last_prices)
@@ -363,7 +411,7 @@ def run_loop(args):
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--once", action="store_true")
-    p.add_argument("--capital", type=float, default=300.0)
+    p.add_argument("--capital", type=float, default=1000.0)
     p.add_argument("--duration-hours", type=float, default=24.0)
     p.add_argument("--poll-seconds", type=int, default=300)
     p.add_argument("--reset", action="store_true")

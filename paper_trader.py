@@ -10,18 +10,20 @@ Bitget, но с вымышленным балансом. Реальные орд
 расстоянии stop_mult*ширина_полосы, таймаут = max_holding_bars новых баров,
 комиссия fee_pct_per_side на вход и на выход.
 
-Торгует ОДНОВРЕМЕННО корзину из 30 монет — топ-30 по капитализации среди
-листингов Coinbase (см. SYMBOLS), у каждой реально есть USDT-пара на Bitget
-Spot. Раньше бот торговал только ETHUSDT — расширено по прямой просьбе
+Торгует ОДНОВРЕМЕННО корзину из 100 монет — топ по капитализации среди
+листингов Coinbase (см. SYMBOLS и build_basket.py), у каждой реально есть
+USDT-пара на Bitget Spot. Раньше бот торговал только ETHUSDT — расширено по прямой просьбе
 пользователя, стратегия не показала edge ни на одной монете даже в
 бэктесте на 23-монетной корзине, так что это не попытка найти прибыльную
 монету, а просто более честное сравнение с трендовым ботом (у которого тоже
 корзина, а не одна монета).
 
-Условный депозит — 300 USDT, тот же, что у trend_paper_trader.py, поровну
-между монетами (капитал/30), с явным лимитом 5% на монету — сейчас капитал/30
-уже меньше 5%, лимит ничего не режет, но зафиксирован на случай изменения
-списка монет (см. load_state).
+Условный депозит — 1000 USDT, тот же, что у trend_paper_trader.py, поровну
+между монетами (10 USDT на монету), с явным лимитом 5% на монету: он ничего не
+режет при корзине из 100 монет, но зафиксирован на случай её сокращения.
+У уже работающего бота доля на монету осталась прежней (10.00 USDT), новые
+монеты завелись по ней же, поэтому фактический депозит отличается от константы
+и виден в PAPER_STATUS.md, а не здесь (см. load_state).
 
 Спот не поддерживает шорт без плеча — сигналы SHORT пропускаются и
 логируются, реально исполняются только LONG.
@@ -65,21 +67,33 @@ STATUS_FILE = os.path.join(BASE_DIR, f"PAPER_STATUS{_SUF.upper()}.md")
 LOG_FILE = os.path.join(BASE_DIR, f"paper_bot{_SUF}.log")
 KILL_SWITCH_FILE = os.path.join(BASE_DIR, config.KILL_SWITCH_FILE)
 
-# Топ-30 по капитализации среди монет, реально листингованных на Coinbase
+# Топ-100 по капитализации среди монет, реально листингованных на Coinbase
 # (проверено через публичный Coinbase Exchange API, без стейблкоинов и
 # "обёрнутых"/пегованных активов), пересечённое с наличием USDT-пары на
 # Bitget Spot (проверено вручную через get_candles на каждую монету,
 # 2026-08-23) — данные всё равно берутся с Bitget, Coinbase тут только
 # источник для отбора списка монет.
 SYMBOLS = [
-    "BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "SOLUSDT", "HYPEUSDT",
-    "DOGEUSDT", "ZECUSDT", "LINKUSDT", "ADAUSDT", "XLMUSDT", "BCHUSDT",
-    "LTCUSDT", "HBARUSDT", "SUIUSDT", "AVAXUSDT", "SHIBUSDT", "CROUSDT",
-    "UNIUSDT", "NEARUSDT", "TAOUSDT", "PUMPUSDT", "AAVEUSDT", "WLFIUSDT",
-    "ONDOUSDT", "ASTERUSDT", "PEPEUSDT", "MORPHOUSDT", "DOTUSDT", "SKYUSDT",
+    "BTCUSDT", "ETHUSDT", "BNBUSDT", "XRPUSDT", "SOLUSDT", "ZECUSDT",
+    "HYPEUSDT", "DOGEUSDT", "LINKUSDT", "ADAUSDT", "XLMUSDT", "BCHUSDT",
+    "UNIUSDT", "LTCUSDT", "HBARUSDT", "AVAXUSDT", "SUIUSDT", "SHIBUSDT",
+    "NEARUSDT", "TAOUSDT", "ASTERUSDT", "AAVEUSDT", "PAXGUSDT", "ONDOUSDT",
+    "PUMPUSDT", "WLFIUSDT", "MORPHOUSDT", "ENAUSDT", "DOTUSDT", "ICPUSDT",
+    "WLDUSDT", "SKYUSDT", "PEPEUSDT", "ETCUSDT", "ARBUSDT", "POLUSDT",
+    "QNTUSDT", "ATOMUSDT", "ALGOUSDT", "RENDERUSDT", "CAKEUSDT", "FILUSDT",
+    "TRUMPUSDT", "VETUSDT", "CRVUSDT", "ETHFIUSDT", "INJUSDT", "PENGUUSDT",
+    "APTUSDT", "AEROUSDT", "STXUSDT", "VIRTUALUSDT", "PYTHUSDT", "ZROUSDT",
+    "TIAUSDT", "FETUSDT", "PENDLEUSDT", "LDOUSDT", "SEIUSDT", "RAYUSDT",
+    "MONUSDT", "KITEUSDT", "BONKUSDT", "XTZUSDT", "SYRUPUSDT", "ENSUSDT",
+    "OPUSDT", "XPLUSDT", "JTOUSDT", "GRASSUSDT", "STRKUSDT", "WIFUSDT",
+    "JASMYUSDT", "AIUSDT", "COMPUSDT", "GRTUSDT", "EDGEUSDT", "EIGENUSDT",
+    "2ZUSDT", "FARTCOINUSDT", "AXSUSDT", "CHZUSDT", "MANAUSDT", "SKRUSDT",
+    "APEUSDT", "EGLDUSDT", "KMNOUSDT", "ZAMAUSDT", "1INCHUSDT", "ZENUSDT",
+    "SNXUSDT", "AWEUSDT", "SANDUSDT", "IMXUSDT", "SUSDT", "METUSDT",
+    "ZKUSDT", "GLMUSDT", "BATUSDT", "MINAUSDT",
 ]
 
-DEPOSIT = 300.0
+DEPOSIT = 1000.0
 MAX_POSITION_PCT = 0.05  # не больше 5% депозита в одной монете
 
 logging.basicConfig(
@@ -123,7 +137,35 @@ def load_state(total_capital: float, reset: bool) -> dict:
     if not reset and os.path.exists(STATE_FILE):
         with open(STATE_FILE) as f:
             raw = json.load(f)
-        return {s: CoinState.from_dict(raw[s]) for s in SYMBOLS if s in raw}
+        states = {s: CoinState.from_dict(raw[s]) for s in SYMBOLS if s in raw}
+        # Монету могли убрать из целевой корзины (например, её делистили с
+        # Coinbase). Выбрасывать её вместе с историей нельзя: сделки уже
+        # случились и должны остаться в общем результате, а открытую позицию
+        # надо довести до выхода. Поэтому такие монеты остаются в работе.
+        retired = [s for s, c in raw.items()
+                   if s not in states and (c.get("trades") or c.get("position"))]
+        for s in retired:
+            states[s] = CoinState.from_dict(raw[s])
+        if retired:
+            log.info("Вне целевой корзины, но оставлены ради истории и закрытия позиций: %s",
+                      ", ".join(sorted(retired)))
+        # Монеты, добавленные в корзину уже после запуска бота, заводим здесь.
+        # Раньше их просто отбрасывало ("if s in raw"), и расширение SYMBOLS
+        # молча ничего не меняло. Сбрасывать ради этого всё состояние нельзя —
+        # это уничтожило бы историю сделок работающих монет.
+        new_symbols = [s for s in SYMBOLS if s not in states]
+        if new_symbols:
+            # Новичкам выдаём столько же, сколько в среднем получили уже
+            # работающие монеты, чтобы вес всех монет в корзине остался равным.
+            base = (sum(st.starting_capital for st in states.values()) / len(states)
+                    if states else per_coin)
+            for s in new_symbols:
+                states[s] = CoinState.fresh(base)
+            log.info("Добавлено новых монет в корзину: %d по %.2f USDT (итого монет %d, "
+                      "суммарный депозит %.2f USDT). История прежних монет сохранена.",
+                      len(new_symbols), base, len(states),
+                      sum(st.starting_capital for st in states.values()))
+        return states
     log.info("Стартую с чистого листа: %.2f USDT на монету (лимит 5%% = %.2f) x %d монет = "
               "%.2f USDT задействовано из %.2f USDT депозита",
               per_coin, max_per_coin, len(SYMBOLS), per_coin * len(SYMBOLS), total_capital)
@@ -255,7 +297,7 @@ def process_symbol_tick(client: BitgetClient, symbol: str, st: CoinState, args) 
                        rsi_oversold=args.rsi_oversold, rsi_overbought=args.rsi_overbought)
 
             if not d.take_trade:
-                pass  # тихо — на 30 монетах логировать "сигнала нет" на каждой было бы шумом
+                pass  # тихо — на 100 монетах логировать "сигнала нет" на каждой было бы шумом
             elif d.side == Side.SHORT:
                 log.info("[%s] сигнал SHORT пропущен — на споте без плеча шорт невозможен (%s)",
                           symbol, d.reason)
@@ -334,10 +376,10 @@ def kill_switch_active() -> bool:
     return os.path.exists(KILL_SWITCH_FILE)
 
 
-def log_start(args):
+def log_start(args, n_coins):
     log.info("Paper-trading: %s, %d монет, num_std=%.1f, ADX-фильтр=%s, RSI-подтв=%s, "
               "стоп=%.1fx ширины полосы, таймаут=%d баров, комиссия=%.2f%%/сторону",
-              args.granularity, len(SYMBOLS), args.num_std, args.use_adx, args.use_rsi,
+              args.granularity, n_coins, args.num_std, args.use_adx, args.use_rsi,
               args.stop_mult, args.max_holding_bars, args.fee_pct_per_side)
     log.info("НАПОМИНАНИЕ: это симуляция на вымышленные деньги. Реальные ордера "
               "не отправляются ни при каких условиях.")
@@ -346,7 +388,7 @@ def log_start(args):
 def run_once(args):
     client = BitgetClient(api_key="", secret_key="", passphrase="")
     states = load_state(args.capital, args.reset)
-    log_start(args)
+    log_start(args, len(states))
 
     if kill_switch_active():
         log.warning("Kill switch активен (файл %s). Пропускаю проверку.", KILL_SWITCH_FILE)
@@ -355,7 +397,7 @@ def run_once(args):
         return
 
     last_prices = {}
-    for symbol in SYMBOLS:
+    for symbol in states:
         last_prices[symbol] = process_symbol_tick(client, symbol, states[symbol], args)
 
     save_state(states)
@@ -371,7 +413,7 @@ def run_loop(args):
     states = load_state(args.capital, args.reset)
     deadline = time.time() + args.duration_hours * 3600
     last_heartbeat = 0.0
-    log_start(args)
+    log_start(args, len(states))
     log.info("Длительность цикла: %.1fч", args.duration_hours)
 
     try:
@@ -381,7 +423,7 @@ def run_loop(args):
                 break
 
             last_prices = {}
-            for symbol in SYMBOLS:
+            for symbol in states:
                 last_prices[symbol] = process_symbol_tick(client, symbol, states[symbol], args)
             save_state(states)
             write_status(states, args, last_prices)
