@@ -5,13 +5,13 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 100 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-09-07 12:14:26 UTC**
+Последняя проверка: **2026-09-07 17:43:57 UTC**
 
 ## Портфель
 
 | Стартовый капитал | Текущий | Результат |
 |---|---|---|
-| 1304.35 USDT | 1304.3478 USDT | +0.00% |
+| 1304.35 USDT | 1303.5160 USDT | -0.06% |
 
 ## По монетам
 
@@ -30,27 +30,25 @@
 | XLMUSDT | +0.00% | 0 | — |
 | BCHUSDT | +0.00% | 0 | — |
 | UNIUSDT | +0.00% | 0 | — |
-| LTCUSDT | +0.00% | 0 | — |
+| HBARUSDT | +0.00% | 0 | — |
 | AVAXUSDT | +0.00% | 0 | — |
 | SUIUSDT | +0.00% | 0 | — |
-| NEARUSDT | +0.00% | 0 | — |
-| AAVEUSDT | +0.00% | 0 | — |
-| ONDOUSDT | +0.00% | 0 | — |
-| ENAUSDT | +0.00% | 0 | — |
-| PEPEUSDT | +0.00% | 0 | — |
-| TRUMPUSDT | +0.00% | 0 | — |
-| HBARUSDT | +0.00% | 0 | — |
 | SHIBUSDT | +0.00% | 0 | — |
+| NEARUSDT | +0.00% | 0 | — |
 | TAOUSDT | +0.00% | 0 | — |
 | ASTERUSDT | +0.00% | 0 | — |
+| AAVEUSDT | +0.00% | 0 | — |
 | PAXGUSDT | +0.00% | 0 | — |
+| ONDOUSDT | +0.00% | 0 | — |
 | PUMPUSDT | +0.00% | 0 | — |
 | WLFIUSDT | +0.00% | 0 | — |
 | MORPHOUSDT | +0.00% | 0 | — |
-| DOTUSDT | +0.00% | 0 | — |
+| ENAUSDT | +0.00% | 0 | — |
+| DOTUSDT | +0.00% | 0 | LONG @ 1.0210 |
 | ICPUSDT | +0.00% | 0 | — |
 | WLDUSDT | +0.00% | 0 | — |
 | SKYUSDT | +0.00% | 0 | — |
+| PEPEUSDT | +0.00% | 0 | — |
 | ETCUSDT | +0.00% | 0 | — |
 | ARBUSDT | +0.00% | 0 | — |
 | POLUSDT | +0.00% | 0 | — |
@@ -59,7 +57,8 @@
 | ALGOUSDT | +0.00% | 0 | — |
 | RENDERUSDT | +0.00% | 0 | — |
 | CAKEUSDT | +0.00% | 0 | — |
-| FILUSDT | +0.00% | 0 | — |
+| FILUSDT | +0.00% | 0 | LONG @ 0.8607 |
+| TRUMPUSDT | +0.00% | 0 | — |
 | VETUSDT | +0.00% | 0 | — |
 | CRVUSDT | +0.00% | 0 | — |
 | ETHFIUSDT | +0.00% | 0 | — |
@@ -117,5 +116,6 @@
 | GLMUSDT | +0.00% | 0 | — |
 | BATUSDT | +0.00% | 0 | — |
 | MINAUSDT | +0.00% | 0 | — |
+| LTCUSDT | -6.38% | 1 | — |
 
 Лог сделок — [trend_paper_trades_log.jsonl](trend_paper_trades_log.jsonl).
