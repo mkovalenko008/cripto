@@ -9,13 +9,17 @@ ADX>=30, ATRx3.0, num_std=2.5, таймфрейм 1H — та самая, что
 независимым виртуальным суб-балансом, теми же правилами входа/выхода без
 подгонки под конкретную монету — так же, как считался бэктест.
 
-Депозит 1000 USDT, поровну между монетами (10 USDT на монету), лимит 5%
-депозита на монету зафиксирован на случай сокращения корзины. Важно: у уже
-работающих ботов доля на монету осталась прежней (300/23 = 13.04 USDT), и
-новые монеты завелись по этой же доле — иначе пришлось бы пересчитать
-starting_capital старых монет и исказить их накопленную доходность. Поэтому
-фактический депозит работающего бота больше 1000 USDT; точная цифра —
-в TREND_PAPER_STATUS.md и на дашборде, а не в этой константе.
+Депозит 300 USDT, поровну между монетами (3 USDT на монету при 100 монетах),
+лимит 5% депозита на монету зафиксирован на случай сокращения корзины.
+Депозит — постоянная сумма: при изменении числа монет старые пропорционально
+ужимаются или расширяются в load_state, чтобы сумма всегда оставалась 300
+USDT, а не росла вместе с корзиной. Это не искажает доходность — balance
+каждой монеты это starting_capital, умноженный на цепочку (1+pnl_pct/100) по
+её сделкам (см. close_position), а pnl_pct от размера капитала не зависит,
+так что масштабирование не меняет ни один % результата, только единицы
+измерения. (Раньше это было не так: расширение корзины с 23 до 100 монет
+случайно раздуло депозит до $1317 — новые монеты заводились по доле старых,
+и сумма росла вместе с числом монет. Исправлено.)
 
 Реальные ордера НИКОГДА не отправляются — скрипт не импортирует функции
 размещения ордеров. Ключи API не нужны (только публичные свечи).
@@ -164,18 +168,48 @@ def load_state(total_capital: float, reset: bool) -> dict:
         # Раньше их просто отбрасывало ("if s in raw"), и расширение SYMBOLS
         # молча ничего не меняло. Сбрасывать ради этого всё состояние нельзя —
         # это уничтожило бы историю сделок и открытые позиции работающих монет.
+        #
+        # Долю новичка считаем от total_capital, а не от текущей доли старых
+        # монет: это тот самый источник бага, который раньше раздул депозит
+        # с $300 до $1317 при расширении корзины с 23 до 100 монет — каждый
+        # новичок получал долю СТАРЫХ монет, и суммарный депозит рос вместе
+        # с числом монет вместо того, чтобы делиться на всех. Теперь при
+        # появлении новых монет старые ПРОПОРЦИОНАЛЬНО ужимаются, чтобы общая
+        # сумма осталась total_capital. Это не искажает их доходность:
+        # starting_capital, balance_usdt и pnl_usdt/balance_after в истории
+        # сделок домножаются на один и тот же коэффициент k, а balance — это
+        # starting_capital * произведение (1+pnl_pct/100) по сделкам (см.
+        # close_position), pnl_pct от размера капитала не зависит — %
+        # доходности и ранжирование монет между собой не меняются, меняются
+        # только единицы измерения.
         new_symbols = [s for s in SYMBOLS if s not in states]
         if new_symbols:
-            # Новичкам выдаём столько же, сколько в среднем получили уже
-            # работающие монеты, чтобы вес всех монет в корзине остался равным.
-            base = (sum(st.starting_capital for st in states.values()) / len(states)
-                    if states else per_coin)
+            # Только АКТИВНЫЕ (в SYMBOLS) монеты делят total_capital между
+            # собой — выбывшие (retired, добавленные строкой выше) в этот
+            # делёж не входят, у них своя, отдельная, не подлежащая ужатию
+            # сумма (только чтобы закрыть историю/позицию).
+            active_states = {s: st for s, st in states.items() if s in SYMBOLS}
+            active_now = len(active_states) + len(new_symbols)
+            new_per_coin = total_capital / active_now
+            current_total = sum(st.starting_capital for st in active_states.values())
+            k = new_per_coin * len(active_states) / current_total if current_total else 1.0
+            for st in active_states.values():
+                st.starting_capital *= k
+                st.balance_usdt *= k
+                for t in st.trades:
+                    if "pnl_usdt" in t:
+                        t["pnl_usdt"] *= k
+                    if "balance_after" in t:
+                        t["balance_after"] *= k
             for s in new_symbols:
-                states[s] = CoinState.fresh(base)
-            log.info("Добавлено новых монет в корзину: %d по %.2f USDT (итого монет %d, "
-                      "суммарный депозит %.2f USDT). История прежних монет сохранена.",
-                      len(new_symbols), base, len(states),
-                      sum(st.starting_capital for st in states.values()))
+                states[s] = CoinState.fresh(new_per_coin)
+            log.info("Добавлено новых монет в корзину: %d по %.2f USDT (активных монет %d, "
+                      "их суммарный депозит %.2f из %.2f USDT — старые пропорционально "
+                      "ужаты, чтобы депозит остался постоянным, а не рос). История прежних "
+                      "монет сохранена, доходность не искажена.",
+                      len(new_symbols), new_per_coin, len(active_states) + len(new_symbols),
+                      sum(st.starting_capital for st in active_states.values()) + new_per_coin * len(new_symbols),
+                      total_capital)
         return states
     log.info("Стартую с чистого листа: %.2f USDT на монету (лимит 5%% = %.2f) x %d монет = %.2f USDT задействовано из %.2f USDT депозита",
               per_coin, max_per_coin, len(SYMBOLS), per_coin * len(SYMBOLS), total_capital)
@@ -411,7 +445,7 @@ def run_loop(args):
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--once", action="store_true")
-    p.add_argument("--capital", type=float, default=1000.0)
+    p.add_argument("--capital", type=float, default=300.0)
     p.add_argument("--duration-hours", type=float, default=24.0)
     p.add_argument("--poll-seconds", type=int, default=300)
     p.add_argument("--reset", action="store_true")
