@@ -28,19 +28,51 @@ jobs:
       - name: Одна проверка по всей корзине (без реальных ордеров)
         run: python3 trend_paper_trader.py --once
 
-      - name: Собрать дашборд (dashboard/index.html + docs/index.html для GitHub Pages)
-        run: python3 dashboard/build_dashboard.py
-
-      - name: Закоммитить обновлённое состояние
+      - name: Закоммитить состояние и обновить дашборд
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add trend_paper_state.json trend_paper_trades_log.jsonl TREND_PAPER_STATUS.md \
-                  dashboard/index.html docs/index.html
+
+          git add trend_paper_state.json trend_paper_trades_log.jsonl TREND_PAPER_STATUS.md
           if git diff --cached --quiet; then
-            echo "Изменений нет, коммит не нужен"
+            echo "Изменений в состоянии нет"
           else
-            git commit -m "trend-paper-trader: обновление статуса и дашборда $(date -u +'%Y-%m-%d %H:%M UTC')"
-            git pull --no-rebase --quiet
-            git push
+            git commit -m "trend-paper-trader: обновление статуса $(date -u +'%Y-%m-%d %H:%M UTC')"
           fi
+
+          # Дашборд собирают три воркфлоу (этот, trend v2, meanrev v2) в одни
+          # и те же файлы (dashboard/index.html, docs/index.html). Раньше он
+          # собирался ДО pull и коммитился вместе со своим состоянием — git
+          # pull --no-rebase почти гарантированно ловил конфликт на этом
+          # полностью перегенерированном файле (сравнивать там нечего, текст
+          # просто разный) — это и было причиной, по которой meanrev v2 15+
+          # часов проваливал каждый коммит и молча не продвигался. Теперь
+          # дашборд собирается заново ПОСЛЕ pull, из уже самого свежего
+          # состояния — сливать нечего.
+          for attempt in 1 2 3 4 5; do
+            git pull --no-rebase --quiet
+
+            python3 dashboard/build_dashboard.py
+            git add dashboard/index.html docs/index.html
+            if git diff --cached --quiet; then
+              dash_committed=0
+            else
+              git commit -m "dashboard: обновление $(date -u +'%Y-%m-%d %H:%M UTC')"
+              dash_committed=1
+            fi
+
+            if git push; then
+              echo "Запушено с попытки $attempt"
+              exit 0
+            fi
+
+            echo "Попытка $attempt: push отклонён (гонка с другим ботом), откатываю и пробую снова"
+            if [ "$dash_committed" = "1" ]; then
+              git reset --mixed HEAD~1
+              git checkout -- dashboard/index.html docs/index.html
+            fi
+            sleep $((RANDOM % 8 + 3))
+          done
+
+          echo "Не удалось запушить после нескольких попыток" >&2
+          exit 1
