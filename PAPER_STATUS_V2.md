@@ -8,7 +8,7 @@
 после комиссии ни на одной монете при бэктесте — это сравнение с трендовым
 ботом, а не рекомендация.
 
-Последняя проверка: **2026-09-09 11:18:11 UTC**
+Последняя проверка: **2026-09-09 16:35:56 UTC**
 
 ## Портфель
 
@@ -27,10 +27,10 @@
 | SKYUSDT | +2.77% | 1 | — |
 | ENAUSDT | +2.54% | 1 | — |
 | 2ZUSDT | +2.11% | 1 | — |
-| UNIUSDT | +1.44% | 1 | — |
+| UNIUSDT | +1.44% | 1 | LONG @ 6.532000 |
 | MORPHOUSDT | +1.35% | 1 | — |
 | XRPUSDT | +1.26% | 1 | — |
-| BNBUSDT | +0.90% | 1 | — |
+| BNBUSDT | +0.90% | 1 | LONG @ 739.200000 |
 | AAVEUSDT | +0.73% | 1 | — |
 | PAXGUSDT | +0.70% | 1 | — |
 | BTCUSDT | +0.57% | 1 | — |
@@ -44,7 +44,7 @@
 | DOGEUSDT | +0.00% | 0 | — |
 | LINKUSDT | +0.00% | 0 | LONG @ 12.245000 |
 | ADAUSDT | +0.00% | 0 | — |
-| XLMUSDT | +0.00% | 0 | — |
+| XLMUSDT | +0.00% | 0 | LONG @ 0.184200 |
 | BCHUSDT | +0.00% | 0 | — |
 | LTCUSDT | +0.00% | 0 | — |
 | HBARUSDT | +0.00% | 0 | — |
@@ -62,7 +62,7 @@
 | WLDUSDT | +0.00% | 0 | — |
 | PEPEUSDT | +0.00% | 0 | — |
 | ETCUSDT | +0.00% | 0 | — |
-| ARBUSDT | +0.00% | 0 | — |
+| ARBUSDT | +0.00% | 0 | LONG @ 0.153700 |
 | POLUSDT | +0.00% | 0 | — |
 | QNTUSDT | +0.00% | 0 | — |
 | ATOMUSDT | +0.00% | 0 | — |
@@ -77,12 +77,12 @@
 | INJUSDT | +0.00% | 0 | — |
 | PENGUUSDT | +0.00% | 0 | — |
 | APTUSDT | +0.00% | 0 | — |
-| AEROUSDT | +0.00% | 0 | — |
+| AEROUSDT | +0.00% | 0 | LONG @ 0.576800 |
 | STXUSDT | +0.00% | 0 | — |
 | VIRTUALUSDT | +0.00% | 0 | — |
 | PYTHUSDT | +0.00% | 0 | — |
 | ZROUSDT | +0.00% | 0 | — |
-| TIAUSDT | +0.00% | 0 | — |
+| TIAUSDT | +0.00% | 0 | LONG @ 0.397500 |
 | FETUSDT | +0.00% | 0 | — |
 | PENDLEUSDT | +0.00% | 0 | — |
 | SEIUSDT | +0.00% | 0 | — |
@@ -97,10 +97,10 @@
 | STRKUSDT | +0.00% | 0 | — |
 | WIFUSDT | +0.00% | 0 | — |
 | COMPUSDT | +0.00% | 0 | — |
-| GRTUSDT | +0.00% | 0 | — |
+| GRTUSDT | +0.00% | 0 | LONG @ 0.018780 |
 | EDGEUSDT | +0.00% | 0 | — |
 | EIGENUSDT | +0.00% | 0 | — |
-| FARTCOINUSDT | +0.00% | 0 | — |
+| FARTCOINUSDT | +0.00% | 0 | LONG @ 0.157700 |
 | AXSUSDT | +0.00% | 0 | — |
 | CHZUSDT | +0.00% | 0 | — |
 | MANAUSDT | +0.00% | 0 | — |
@@ -111,13 +111,13 @@
 | ZAMAUSDT | +0.00% | 0 | — |
 | ZENUSDT | +0.00% | 0 | — |
 | SNXUSDT | +0.00% | 0 | — |
-| SANDUSDT | +0.00% | 0 | — |
+| SANDUSDT | +0.00% | 0 | LONG @ 0.039190 |
 | IMXUSDT | +0.00% | 0 | — |
 | ZKUSDT | +0.00% | 0 | — |
-| GLMUSDT | +0.00% | 0 | — |
+| GLMUSDT | +0.00% | 0 | LONG @ 0.107500 |
 | BATUSDT | +0.00% | 0 | — |
 | MINAUSDT | +0.00% | 0 | — |
-| JASMYUSDT | -0.13% | 1 | — |
+| JASMYUSDT | -0.13% | 1 | LONG @ 0.004088 |
 | AIUSDT | -0.26% | 1 | — |
 | LDOUSDT | -0.81% | 1 | — |
 
