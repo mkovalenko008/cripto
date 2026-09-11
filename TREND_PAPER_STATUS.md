@@ -5,13 +5,13 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-09-11 12:35:43 UTC**
+Последняя проверка: **2026-09-11 16:53:59 UTC**
 
 ## Портфель
 
 | Стартовый капитал | Текущий | Результат |
 |---|---|---|
-| 300.00 USDT | 298.1948 USDT | -0.60% |
+| 300.00 USDT | 297.3819 USDT | -0.87% |
 
 ## По монетам
 
@@ -19,16 +19,15 @@
 |---|---|---|---|
 | ZECUSDT | +11.65% | 2 | — |
 | LINKUSDT | +5.41% | 1 | — |
+| BONKUSDT | +1.85% | 1 | — |
 | BTCUSDT | +0.28% | 2 | — |
 | BNBUSDT | +0.00% | 0 | — |
 | SOLUSDT | +0.00% | 0 | — |
 | HYPEUSDT | +0.00% | 0 | — |
 | XLMUSDT | +0.00% | 0 | — |
 | LTCUSDT | +0.00% | 0 | — |
-| HBARUSDT | +0.00% | 0 | SHORT @ 0.0770 |
 | SHIBUSDT | +0.00% | 0 | — |
 | TAOUSDT | +0.00% | 0 | — |
-| ASTERUSDT | +0.00% | 0 | SHORT @ 0.6854 |
 | PAXGUSDT | +0.00% | 0 | — |
 | PUMPUSDT | +0.00% | 0 | — |
 | WLFIUSDT | +0.00% | 0 | — |
@@ -39,19 +38,16 @@
 | SKYUSDT | +0.00% | 0 | — |
 | PEPEUSDT | +0.00% | 0 | — |
 | ETCUSDT | +0.00% | 0 | — |
-| ARBUSDT | +0.00% | 0 | SHORT @ 0.1429 |
 | POLUSDT | +0.00% | 0 | — |
 | QNTUSDT | +0.00% | 0 | — |
 | ATOMUSDT | +0.00% | 0 | — |
 | ALGOUSDT | +0.00% | 0 | — |
-| RENDERUSDT | +0.00% | 0 | SHORT @ 1.3700 |
 | CAKEUSDT | +0.00% | 0 | — |
 | FILUSDT | +0.00% | 0 | — |
 | VETUSDT | +0.00% | 0 | — |
 | CRVUSDT | +0.00% | 0 | — |
 | ETHFIUSDT | +0.00% | 0 | — |
 | INJUSDT | +0.00% | 0 | — |
-| PENGUUSDT | +0.00% | 0 | SHORT @ 0.0077 |
 | APTUSDT | +0.00% | 0 | — |
 | AEROUSDT | +0.00% | 0 | — |
 | STXUSDT | +0.00% | 0 | — |
@@ -66,7 +62,6 @@
 | RAYUSDT | +0.00% | 0 | — |
 | MONUSDT | +0.00% | 0 | — |
 | KITEUSDT | +0.00% | 0 | SHORT @ 0.1079 |
-| BONKUSDT | +0.00% | 0 | SHORT @ 0.0000 |
 | XTZUSDT | +0.00% | 0 | — |
 | SYRUPUSDT | +0.00% | 0 | — |
 | ENSUSDT | +0.00% | 0 | — |
@@ -76,7 +71,6 @@
 | GRASSUSDT | +0.00% | 0 | — |
 | STRKUSDT | +0.00% | 0 | — |
 | WIFUSDT | +0.00% | 0 | — |
-| JASMYUSDT | +0.00% | 0 | SHORT @ 0.0041 |
 | AIUSDT | +0.00% | 0 | — |
 | COMPUSDT | +0.00% | 0 | — |
 | GRTUSDT | +0.00% | 0 | — |
@@ -91,7 +85,6 @@
 | APEUSDT | +0.00% | 0 | — |
 | EGLDUSDT | +0.00% | 0 | — |
 | ZAMAUSDT | +0.00% | 0 | — |
-| 1INCHUSDT | +0.00% | 0 | SHORT @ 0.0905 |
 | ZENUSDT | +0.00% | 0 | — |
 | SNXUSDT | +0.00% | 0 | — |
 | AWEUSDT | +0.00% | 0 | — |
@@ -101,18 +94,25 @@
 | METUSDT | +0.00% | 0 | LONG @ 0.2764 |
 | ZKUSDT | +0.00% | 0 | — |
 | GLMUSDT | +0.00% | 0 | — |
-| BATUSDT | +0.00% | 0 | — |
+| BATUSDT | +0.00% | 0 | LONG @ 0.0731 |
 | MINAUSDT | +0.00% | 0 | — |
+| HBARUSDT | -0.10% | 1 | — |
+| PENGUUSDT | -0.60% | 1 | — |
 | TRXUSDT | -0.85% | 2 | — |
 | XRPUSDT | -1.23% | 1 | — |
-| BCHUSDT | -1.47% | 1 | SHORT @ 227.8000 |
-| SUIUSDT | -1.48% | 1 | SHORT @ 0.7189 |
+| JASMYUSDT | -1.63% | 1 | — |
+| 1INCHUSDT | -1.72% | 1 | — |
 | UNIUSDT | -2.19% | 2 | — |
 | AAVEUSDT | -3.27% | 1 | — |
 | DOGEUSDT | -3.94% | 1 | — |
+| ASTERUSDT | -4.26% | 1 | — |
 | KMNOUSDT | -4.38% | 1 | — |
+| BCHUSDT | -5.39% | 2 | — |
 | NEARUSDT | -5.58% | 2 | — |
+| RENDERUSDT | -5.97% | 1 | — |
+| ARBUSDT | -6.22% | 1 | — |
 | ETHUSDT | -6.69% | 3 | — |
+| SUIUSDT | -7.20% | 2 | — |
 | DOTUSDT | -7.56% | 1 | — |
 | ADAUSDT | -7.96% | 2 | — |
 | TRUMPUSDT | -8.91% | 1 | — |
