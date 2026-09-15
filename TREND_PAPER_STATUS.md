@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-09-15 19:58:45 UTC**
+Последняя проверка: **2026-09-15 22:48:24 UTC**
 
 ## Портфель
 
@@ -31,7 +31,7 @@
 | HYPEUSDT | +0.00% | 0 | — |
 | XLMUSDT | +0.00% | 0 | — |
 | LTCUSDT | +0.00% | 0 | — |
-| SHIBUSDT | +0.00% | 0 | — |
+| SHIBUSDT | +0.00% | 0 | SHORT @ 0.0000 |
 | TAOUSDT | +0.00% | 0 | — |
 | PAXGUSDT | +0.00% | 0 | — |
 | PUMPUSDT | +0.00% | 0 | — |
@@ -39,7 +39,7 @@
 | MORPHOUSDT | +0.00% | 0 | — |
 | ENAUSDT | +0.00% | 0 | — |
 | ICPUSDT | +0.00% | 0 | — |
-| WLDUSDT | +0.00% | 0 | — |
+| WLDUSDT | +0.00% | 0 | SHORT @ 0.3604 |
 | SKYUSDT | +0.00% | 0 | — |
 | PEPEUSDT | +0.00% | 0 | — |
 | ETCUSDT | +0.00% | 0 | — |
@@ -55,17 +55,17 @@
 | APTUSDT | +0.00% | 0 | SHORT @ 0.5580 |
 | AEROUSDT | +0.00% | 0 | — |
 | STXUSDT | +0.00% | 0 | — |
-| VIRTUALUSDT | +0.00% | 0 | — |
+| VIRTUALUSDT | +0.00% | 0 | SHORT @ 0.5836 |
 | PYTHUSDT | +0.00% | 0 | — |
 | ZROUSDT | +0.00% | 0 | — |
 | TIAUSDT | +0.00% | 0 | — |
 | FETUSDT | +0.00% | 0 | — |
-| LDOUSDT | +0.00% | 0 | — |
+| LDOUSDT | +0.00% | 0 | SHORT @ 0.3338 |
 | SEIUSDT | +0.00% | 0 | — |
 | RAYUSDT | +0.00% | 0 | — |
 | MONUSDT | +0.00% | 0 | — |
 | SYRUPUSDT | +0.00% | 0 | — |
-| ENSUSDT | +0.00% | 0 | — |
+| ENSUSDT | +0.00% | 0 | SHORT @ 5.2910 |
 | OPUSDT | +0.00% | 0 | — |
 | XPLUSDT | +0.00% | 0 | — |
 | GRASSUSDT | +0.00% | 0 | — |
@@ -88,7 +88,7 @@
 | AWEUSDT | +0.00% | 0 | — |
 | SANDUSDT | +0.00% | 0 | SHORT @ 0.0335 |
 | IMXUSDT | +0.00% | 0 | — |
-| SUSDT | +0.00% | 0 | — |
+| SUSDT | +0.00% | 0 | SHORT @ 0.0254 |
 | ZKUSDT | +0.00% | 0 | — |
 | MINAUSDT | +0.00% | 0 | — |
 | HBARUSDT | -0.10% | 1 | — |
@@ -105,16 +105,16 @@
 | JTOUSDT | -4.18% | 1 | — |
 | ASTERUSDT | -4.26% | 1 | — |
 | KMNOUSDT | -4.38% | 1 | — |
-| EIGENUSDT | -5.22% | 1 | — |
+| EIGENUSDT | -5.22% | 1 | SHORT @ 0.1910 |
 | BCHUSDT | -5.39% | 2 | — |
 | NEARUSDT | -5.58% | 2 | — |
 | RENDERUSDT | -5.97% | 1 | SHORT @ 1.3230 |
 | ARBUSDT | -6.22% | 1 | — |
 | ETHUSDT | -6.69% | 3 | — |
-| SUIUSDT | -7.20% | 2 | — |
+| SUIUSDT | -7.20% | 2 | SHORT @ 0.6783 |
 | DOTUSDT | -7.56% | 1 | — |
-| ADAUSDT | -7.96% | 2 | — |
-| TRUMPUSDT | -8.91% | 1 | — |
+| ADAUSDT | -7.96% | 2 | SHORT @ 0.1943 |
+| TRUMPUSDT | -8.91% | 1 | SHORT @ 1.8590 |
 | AVAXUSDT | -10.71% | 4 | — |
 | METUSDT | -10.95% | 1 | — |
 | ONDOUSDT | -11.06% | 3 | — |
