@@ -8,13 +8,13 @@
 после комиссии ни на одной монете при бэктесте — это сравнение с трендовым
 ботом, а не рекомендация.
 
-Последняя проверка: **2026-09-16 12:01:13 UTC**
+Последняя проверка: **2026-09-16 16:27:49 UTC**
 
 ## Портфель
 
 | Стартовый капитал | Текущий баланс | Результат | Сделок всего |
 |---|---|---|---|
-| 300.00 USDT | 257.8109 USDT | -14.06% | 7506 |
+| 300.00 USDT | 257.6991 USDT | -14.10% | 7668 |
 
 ## По монетам
 
@@ -22,104 +22,104 @@
 |---|---|---|---|
 | EGLDUSDT | -1.58% | 17 | — |
 | CROUSDT | -1.61% | 2 | — |
-| AXSUSDT | -2.70% | 31 | — |
-| KMNOUSDT | -3.17% | 27 | — |
-| AWEUSDT | -3.26% | 27 | — |
-| JASMYUSDT | -4.39% | 42 | — |
+| AXSUSDT | -2.35% | 32 | — |
+| KMNOUSDT | -3.17% | 28 | — |
+| AWEUSDT | -3.33% | 29 | — |
+| JASMYUSDT | -4.45% | 44 | — |
 | SNXUSDT | -4.65% | 24 | — |
-| GLMUSDT | -4.83% | 43 | — |
+| GLMUSDT | -4.76% | 44 | — |
 | GRTUSDT | -4.90% | 8 | — |
+| BATUSDT | -5.09% | 54 | — |
 | IMXUSDT | -5.31% | 28 | — |
-| LDOUSDT | -5.36% | 52 | — |
-| BATUSDT | -5.44% | 53 | — |
-| SANDUSDT | -6.81% | 59 | — |
-| ARBUSDT | -7.11% | 84 | — |
-| FILUSDT | -7.29% | 70 | — |
-| COMPUSDT | -7.35% | 40 | — |
-| MANAUSDT | -7.38% | 69 | — |
-| ATOMUSDT | -7.45% | 53 | — |
+| LDOUSDT | -5.69% | 53 | — |
+| SANDUSDT | -6.60% | 60 | — |
+| MANAUSDT | -7.01% | 71 | — |
+| ATOMUSDT | -7.13% | 54 | — |
 | ZAMAUSDT | -7.54% | 37 | — |
-| GRASSUSDT | -7.55% | 49 | — |
 | 2ZUSDT | -7.59% | 34 | — |
-| QNTUSDT | -7.90% | 36 | — |
-| ASTERUSDT | -9.75% | 110 | — |
-| ENSUSDT | -9.96% | 52 | — |
-| SYRUPUSDT | -10.13% | 53 | — |
+| FILUSDT | -8.00% | 72 | — |
+| COMPUSDT | -8.01% | 42 | — |
+| QNTUSDT | -8.40% | 38 | — |
+| GRASSUSDT | -8.41% | 50 | — |
+| ARBUSDT | -8.71% | 86 | — |
+| ZENUSDT | -9.43% | 63 | — |
+| ASTERUSDT | -10.17% | 112 | — |
 | XTZUSDT | -10.28% | 57 | — |
+| SYRUPUSDT | -10.35% | 55 | — |
+| APTUSDT | -10.36% | 92 | — |
 | STXUSDT | -10.39% | 45 | — |
-| ZENUSDT | -10.44% | 61 | — |
-| SUSDT | -10.50% | 47 | — |
-| APTUSDT | -10.54% | 91 | — |
-| ALGOUSDT | -10.59% | 79 | — |
+| PEPEUSDT | -10.43% | 107 | — |
+| ENSUSDT | -10.59% | 55 | — |
 | CHZUSDT | -10.60% | 48 | — |
-| PEPEUSDT | -10.76% | 104 | — |
+| SUSDT | -10.82% | 48 | — |
 | ZKUSDT | -10.92% | 44 | — |
+| ZECUSDT | -10.96% | 107 | — |
+| ALGOUSDT | -11.01% | 80 | — |
 | APEUSDT | -11.28% | 57 | — |
-| ZECUSDT | -11.41% | 106 | — |
-| SKYUSDT | -11.56% | 54 | — |
-| MONUSDT | -12.23% | 69 | — |
+| MONUSDT | -12.36% | 70 | — |
+| SKYUSDT | -12.44% | 56 | — |
 | BONKUSDT | -12.49% | 63 | — |
 | 1INCHUSDT | -12.76% | 48 | — |
-| AIUSDT | -12.84% | 59 | — |
-| INJUSDT | -12.86% | 87 | — |
-| UNIUSDT | -13.31% | 108 | — |
-| KITEUSDT | -13.33% | 71 | — |
-| VETUSDT | -13.46% | 67 | — |
-| WLFIUSDT | -13.70% | 95 | — |
-| EDGEUSDT | -13.83% | 90 | — |
-| WIFUSDT | -14.12% | 70 | — |
-| ZROUSDT | -14.14% | 56 | — |
-| STRKUSDT | -14.24% | 67 | — |
-| RENDERUSDT | -14.72% | 68 | — |
-| TRUMPUSDT | -14.92% | 82 | — |
-| PENDLEUSDT | -14.96% | 73 | — |
-| EIGENUSDT | -15.04% | 58 | — |
-| PAXGUSDT | -15.59% | 79 | LONG @ 4348.710000 |
-| AEROUSDT | -15.74% | 66 | — |
-| JTOUSDT | -15.82% | 82 | — |
-| CAKEUSDT | -16.03% | 71 | — |
+| ZROUSDT | -12.86% | 59 | — |
+| AIUSDT | -13.20% | 61 | — |
+| INJUSDT | -13.22% | 90 | — |
+| VETUSDT | -13.43% | 68 | — |
+| KITEUSDT | -13.76% | 72 | — |
+| WLFIUSDT | -13.77% | 96 | — |
+| TRUMPUSDT | -13.89% | 85 | — |
+| RENDERUSDT | -14.30% | 71 | — |
+| WIFUSDT | -14.39% | 71 | — |
+| STRKUSDT | -14.52% | 69 | — |
+| NEARUSDT | -14.76% | 122 | — |
+| EDGEUSDT | -14.90% | 93 | — |
+| UNIUSDT | -15.00% | 109 | — |
+| JTOUSDT | -15.48% | 83 | — |
+| PENDLEUSDT | -15.49% | 75 | — |
+| AEROUSDT | -15.72% | 67 | — |
+| CAKEUSDT | -15.80% | 76 | — |
+| EIGENUSDT | -16.01% | 60 | — |
+| PAXGUSDT | -16.03% | 81 | — |
+| DOGEUSDT | -16.24% | 101 | — |
 | ENAUSDT | -16.34% | 81 | — |
 | OPUSDT | -16.35% | 61 | — |
-| CRVUSDT | -16.44% | 70 | LONG @ 0.311400 |
-| NEARUSDT | -16.53% | 119 | — |
-| DOGEUSDT | -16.54% | 99 | — |
-| POLUSDT | -17.19% | 81 | — |
-| ICPUSDT | -17.21% | 70 | — |
-| TIAUSDT | -17.65% | 76 | — |
-| METUSDT | -17.82% | 42 | — |
-| FARTCOINUSDT | -17.94% | 91 | — |
-| BNBUSDT | -18.13% | 114 | — |
-| ETCUSDT | -18.13% | 73 | — |
-| HBARUSDT | -18.33% | 87 | — |
-| WLDUSDT | -18.40% | 81 | — |
-| FETUSDT | -18.60% | 80 | — |
-| ETHUSDT | -18.68% | 102 | — |
-| MORPHOUSDT | -19.19% | 106 | — |
-| BCHUSDT | -19.23% | 94 | — |
+| ICPUSDT | -17.14% | 71 | — |
+| FARTCOINUSDT | -17.21% | 94 | — |
+| TIAUSDT | -17.35% | 77 | — |
+| POLUSDT | -17.53% | 83 | — |
+| HBARUSDT | -17.92% | 89 | — |
+| BNBUSDT | -18.00% | 118 | — |
+| CRVUSDT | -18.20% | 75 | — |
+| ETHUSDT | -18.26% | 105 | — |
+| METUSDT | -18.27% | 43 | — |
+| FETUSDT | -18.44% | 82 | — |
+| WLDUSDT | -18.46% | 84 | — |
+| MORPHOUSDT | -18.69% | 110 | — |
+| ETCUSDT | -18.79% | 76 | — |
+| BCHUSDT | -19.34% | 97 | — |
+| TAOUSDT | -19.42% | 114 | — |
 | SOLUSDT | -19.51% | 117 | — |
-| TAOUSDT | -19.54% | 111 | — |
-| LTCUSDT | -19.83% | 127 | — |
-| SHIBUSDT | -20.37% | 92 | — |
-| VIRTUALUSDT | -20.46% | 92 | — |
-| SEIUSDT | -20.71% | 83 | — |
-| PYTHUSDT | -20.74% | 68 | — |
-| XPLUSDT | -20.90% | 80 | — |
-| BTCUSDT | -21.38% | 108 | — |
-| PENGUUSDT | -21.45% | 81 | — |
-| AVAXUSDT | -21.59% | 116 | — |
+| LTCUSDT | -19.85% | 128 | — |
+| XPLUSDT | -20.17% | 82 | — |
+| VIRTUALUSDT | -20.20% | 96 | — |
+| SHIBUSDT | -20.51% | 95 | — |
+| PYTHUSDT | -20.53% | 70 | — |
+| SEIUSDT | -20.84% | 86 | — |
+| PENGUUSDT | -21.29% | 83 | — |
+| BTCUSDT | -21.33% | 110 | — |
+| AVAXUSDT | -21.55% | 118 | — |
 | MINAUSDT | -21.86% | 81 | — |
-| LINKUSDT | -21.99% | 124 | — |
-| AAVEUSDT | -22.07% | 116 | — |
-| ETHFIUSDT | -22.38% | 92 | — |
-| SKRUSDT | -22.51% | 87 | — |
-| ADAUSDT | -22.63% | 118 | — |
-| SUIUSDT | -22.97% | 117 | — |
-| XLMUSDT | -23.01% | 97 | — |
+| ETHFIUSDT | -21.94% | 94 | — |
+| LINKUSDT | -21.95% | 126 | — |
+| AAVEUSDT | -22.43% | 119 | — |
+| ADAUSDT | -22.50% | 119 | — |
+| XLMUSDT | -22.59% | 99 | — |
+| SKRUSDT | -22.75% | 89 | — |
+| SUIUSDT | -22.75% | 118 | — |
 | HYPEUSDT | -23.07% | 114 | — |
-| PUMPUSDT | -23.89% | 120 | — |
-| ONDOUSDT | -23.94% | 112 | — |
-| DOTUSDT | -25.39% | 101 | — |
-| XRPUSDT | -25.64% | 120 | — |
+| ONDOUSDT | -23.43% | 114 | — |
+| PUMPUSDT | -24.34% | 121 | — |
+| DOTUSDT | -25.24% | 102 | — |
+| XRPUSDT | -25.72% | 121 | — |
 | RAYUSDT | -26.51% | 83 | — |
 
 ## Конфигурация
