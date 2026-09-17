@@ -5,13 +5,13 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-09-16 23:36:00 UTC**
+Последняя проверка: **2026-09-17 03:21:05 UTC**
 
 ## Портфель
 
 | Стартовый капитал | Текущий | Результат |
 |---|---|---|
-| 300.00 USDT | 296.8093 USDT | -1.06% |
+| 300.00 USDT | 295.9180 USDT | -1.36% |
 
 ## По монетам
 
@@ -30,7 +30,6 @@
 | HYPEUSDT | +0.00% | 0 | — |
 | XLMUSDT | +0.00% | 0 | LONG @ 0.1805 |
 | LTCUSDT | +0.00% | 0 | — |
-| SHIBUSDT | +0.00% | 0 | SHORT @ 0.0000 |
 | TAOUSDT | +0.00% | 0 | — |
 | PAXGUSDT | +0.00% | 0 | — |
 | PUMPUSDT | +0.00% | 0 | — |
@@ -51,7 +50,6 @@
 | CRVUSDT | +0.00% | 0 | — |
 | ETHFIUSDT | +0.00% | 0 | — |
 | INJUSDT | +0.00% | 0 | — |
-| APTUSDT | +0.00% | 0 | SHORT @ 0.5580 |
 | AEROUSDT | +0.00% | 0 | — |
 | STXUSDT | +0.00% | 0 | — |
 | VIRTUALUSDT | +0.00% | 0 | SHORT @ 0.5836 |
@@ -59,12 +57,9 @@
 | ZROUSDT | +0.00% | 0 | — |
 | TIAUSDT | +0.00% | 0 | — |
 | FETUSDT | +0.00% | 0 | — |
-| LDOUSDT | +0.00% | 0 | SHORT @ 0.3338 |
 | SEIUSDT | +0.00% | 0 | — |
 | RAYUSDT | +0.00% | 0 | — |
 | MONUSDT | +0.00% | 0 | — |
-| SYRUPUSDT | +0.00% | 0 | SHORT @ 0.1952 |
-| ENSUSDT | +0.00% | 0 | SHORT @ 5.2910 |
 | OPUSDT | +0.00% | 0 | — |
 | XPLUSDT | +0.00% | 0 | — |
 | GRASSUSDT | +0.00% | 0 | — |
@@ -85,38 +80,43 @@
 | ZENUSDT | +0.00% | 0 | — |
 | SNXUSDT | +0.00% | 0 | LONG @ 0.2010 |
 | AWEUSDT | +0.00% | 0 | — |
-| SANDUSDT | +0.00% | 0 | SHORT @ 0.0335 |
 | IMXUSDT | +0.00% | 0 | — |
-| SUSDT | +0.00% | 0 | SHORT @ 0.0254 |
 | ZKUSDT | +0.00% | 0 | — |
 | MINAUSDT | +0.00% | 0 | — |
 | HBARUSDT | -0.10% | 1 | — |
+| APTUSDT | -0.27% | 1 | — |
 | PENGUUSDT | -0.60% | 1 | — |
 | TRXUSDT | -0.85% | 2 | — |
 | XRPUSDT | -1.23% | 1 | — |
+| SYRUPUSDT | -1.63% | 1 | — |
 | 1INCHUSDT | -1.72% | 1 | — |
+| SHIBUSDT | -1.91% | 1 | — |
 | JASMYUSDT | -2.17% | 2 | — |
 | UNIUSDT | -2.19% | 2 | — |
 | PENDLEUSDT | -2.98% | 1 | — |
 | FILUSDT | -3.10% | 1 | SHORT @ 0.7845 |
+| ENSUSDT | -3.11% | 1 | — |
+| SANDUSDT | -3.21% | 1 | — |
 | AAVEUSDT | -3.27% | 1 | — |
+| SUSDT | -3.51% | 1 | — |
 | DOGEUSDT | -3.94% | 1 | — |
 | JTOUSDT | -4.18% | 1 | — |
 | ASTERUSDT | -4.26% | 1 | — |
-| KMNOUSDT | -4.38% | 1 | — |
+| KMNOUSDT | -4.38% | 1 | LONG @ 0.0267 |
 | EIGENUSDT | -5.22% | 1 | SHORT @ 0.1910 |
+| LDOUSDT | -5.29% | 1 | — |
 | BCHUSDT | -5.39% | 2 | — |
 | NEARUSDT | -5.58% | 2 | — |
-| RENDERUSDT | -5.97% | 1 | SHORT @ 1.3230 |
 | ARBUSDT | -6.22% | 1 | LONG @ 0.1694 |
 | KITEUSDT | -6.23% | 2 | — |
 | ETHUSDT | -6.69% | 3 | — |
-| SUIUSDT | -7.20% | 2 | SHORT @ 0.6783 |
 | DOTUSDT | -7.56% | 1 | LONG @ 0.9836 |
 | ADAUSDT | -7.96% | 2 | SHORT @ 0.1943 |
-| TRUMPUSDT | -8.91% | 1 | SHORT @ 1.8590 |
+| RENDERUSDT | -9.21% | 2 | — |
 | AVAXUSDT | -10.71% | 4 | — |
 | METUSDT | -10.95% | 1 | — |
 | ONDOUSDT | -11.06% | 3 | — |
+| SUIUSDT | -12.20% | 3 | — |
+| TRUMPUSDT | -12.72% | 2 | — |
 
 Лог сделок — [trend_paper_trades_log.jsonl](trend_paper_trades_log.jsonl).
