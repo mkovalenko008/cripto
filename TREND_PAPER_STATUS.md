@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-09-17 23:54:01 UTC**
+Последняя проверка: **2026-09-18 03:07:15 UTC**
 
 ## Портфель
 
@@ -24,7 +24,7 @@
 | BONKUSDT | +1.85% | 1 | — |
 | XTZUSDT | +1.27% | 1 | — |
 | BTCUSDT | +0.28% | 2 | — |
-| BNBUSDT | +0.00% | 0 | — |
+| BNBUSDT | +0.00% | 0 | LONG @ 748.6000 |
 | SOLUSDT | +0.00% | 0 | — |
 | HYPEUSDT | +0.00% | 0 | — |
 | XLMUSDT | +0.00% | 0 | LONG @ 0.1805 |
@@ -54,7 +54,7 @@
 | ZROUSDT | +0.00% | 0 | — |
 | TIAUSDT | +0.00% | 0 | — |
 | FETUSDT | +0.00% | 0 | — |
-| SEIUSDT | +0.00% | 0 | — |
+| SEIUSDT | +0.00% | 0 | LONG @ 0.0451 |
 | RAYUSDT | +0.00% | 0 | — |
 | MONUSDT | +0.00% | 0 | — |
 | OPUSDT | +0.00% | 0 | — |
@@ -82,8 +82,8 @@
 | MINAUSDT | +0.00% | 0 | — |
 | HBARUSDT | -0.10% | 1 | — |
 | KMNOUSDT | -0.20% | 2 | — |
-| APTUSDT | -0.27% | 1 | — |
-| PENGUUSDT | -0.60% | 1 | — |
+| APTUSDT | -0.27% | 1 | LONG @ 0.6589 |
+| PENGUUSDT | -0.60% | 1 | LONG @ 0.0075 |
 | TRXUSDT | -0.85% | 2 | — |
 | XRPUSDT | -1.23% | 1 | — |
 | SYRUPUSDT | -1.63% | 1 | — |
@@ -96,13 +96,13 @@
 | SANDUSDT | -3.21% | 1 | — |
 | MANAUSDT | -3.23% | 2 | — |
 | AAVEUSDT | -3.27% | 1 | — |
-| SUSDT | -3.51% | 1 | — |
+| SUSDT | -3.51% | 1 | LONG @ 0.0281 |
 | DOGEUSDT | -3.94% | 1 | — |
 | JTOUSDT | -4.18% | 1 | — |
 | ASTERUSDT | -4.26% | 1 | — |
-| WLDUSDT | -4.94% | 1 | — |
+| WLDUSDT | -4.94% | 1 | LONG @ 0.4090 |
 | VIRTUALUSDT | -5.01% | 1 | — |
-| LDOUSDT | -5.29% | 1 | — |
+| LDOUSDT | -5.29% | 1 | LONG @ 0.3698 |
 | BCHUSDT | -5.39% | 2 | — |
 | NEARUSDT | -5.58% | 2 | — |
 | ARBUSDT | -6.22% | 1 | LONG @ 0.1694 |
@@ -115,8 +115,8 @@
 | AVAXUSDT | -10.71% | 4 | — |
 | METUSDT | -10.95% | 1 | — |
 | ONDOUSDT | -11.06% | 3 | LONG @ 0.3706 |
-| ADAUSDT | -11.22% | 3 | — |
-| SUIUSDT | -12.20% | 3 | — |
+| ADAUSDT | -11.22% | 3 | LONG @ 0.2140 |
+| SUIUSDT | -12.20% | 3 | LONG @ 0.7663 |
 | TRUMPUSDT | -12.72% | 2 | — |
 
 Лог сделок — [trend_paper_trades_log.jsonl](trend_paper_trades_log.jsonl).
