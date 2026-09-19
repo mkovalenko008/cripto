@@ -1,9 +1,18 @@
 {
   "BTCUSDT": {
-    "balance_usdt": 2.183558750045169,
+    "balance_usdt": 2.179601880936475,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 81252.0,
+      "entry_ts": 1789823400000,
+      "target": 81310.4745,
+      "stop": 81145.47524796554,
+      "bars_held": 3,
+      "adx_at_entry": 20.481193858184636,
+      "rsi_at_entry": 34.64925692302397
+    },
     "trades": [
       {
         "symbol": "BTCUSDT",
@@ -2416,14 +2425,41 @@
         "adx_at_entry": null,
         "rsi_at_entry": 29.18293181027623,
         "paper": true
+      },
+      {
+        "symbol": "BTCUSDT",
+        "side": "LONG",
+        "entry_price": 81275.01,
+        "exit_price": 81290.28,
+        "entry_ts": 1789820520000,
+        "exit_ts": 1789821720000,
+        "entry_time": "2026-09-19T12:22:00+00:00",
+        "exit_time": "2026-09-19T12:42:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.1812119371009563,
+        "pnl_usdt": -0.003956869108694416,
+        "balance_after": 2.179601880936475,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 17.457772227075797,
+        "rsi_at_entry": 34.30051157378546,
+        "paper": true
       }
     ]
   },
   "ETHUSDT": {
-    "balance_usdt": 2.2796973732698778,
+    "balance_usdt": 2.2734939147833,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 2634.6,
+      "entry_ts": 1789823460000,
+      "target": 2640.9985000000006,
+      "stop": 2626.0621007267596,
+      "bars_held": 2,
+      "adx_at_entry": 19.511614654248117,
+      "rsi_at_entry": 30.9500276751627
+    },
     "trades": [
       {
         "symbol": "ETHUSDT",
@@ -4764,13 +4800,49 @@
         "adx_at_entry": 14.935150775354447,
         "rsi_at_entry": 32.353599959904884,
         "paper": true
+      },
+      {
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_price": 2640.51,
+        "exit_price": 2640.07,
+        "entry_ts": 1789815060000,
+        "exit_ts": 1789816260000,
+        "entry_time": "2026-09-19T10:51:00+00:00",
+        "exit_time": "2026-09-19T11:11:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.21666344759156583,
+        "pnl_usdt": -0.004939270923581152,
+        "balance_after": 2.2747581023462966,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 19.680332866942763,
+        "rsi_at_entry": 32.98561811986012,
+        "paper": true
+      },
+      {
+        "symbol": "ETHUSDT",
+        "side": "LONG",
+        "entry_price": 2638.04,
+        "exit_price": 2641.85,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789822200000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T12:50:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": -0.05557459325863348,
+        "pnl_usdt": -0.0012641875629966215,
+        "balance_after": 2.2734939147833,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 9.33949984743165,
+        "rsi_at_entry": 34.459971654034035,
+        "paper": true
       }
     ]
   },
   "BNBUSDT": {
-    "balance_usdt": 2.2823853511129,
+    "balance_usdt": 2.2809228633460292,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -7418,13 +7490,31 @@
         "adx_at_entry": 16.905555339520234,
         "rsi_at_entry": 26.286908411071167,
         "paper": true
+      },
+      {
+        "symbol": "BNBUSDT",
+        "side": "LONG",
+        "entry_price": 765.14,
+        "exit_price": 766.18,
+        "entry_ts": 1789815540000,
+        "exit_ts": 1789815720000,
+        "entry_time": "2026-09-19T10:59:00+00:00",
+        "exit_time": "2026-09-19T11:02:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": -0.06407716234937874,
+        "pnl_usdt": -0.001462487766870968,
+        "balance_after": 2.2809228633460292,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 23.640602459554575,
+        "rsi_at_entry": 33.157677791345165,
+        "paper": true
       }
     ]
   },
   "XRPUSDT": {
-    "balance_usdt": 2.094692248718897,
+    "balance_usdt": 2.099311494367459,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -10144,14 +10234,41 @@
         "adx_at_entry": 24.7767177343893,
         "rsi_at_entry": 27.851372248245895,
         "paper": true
+      },
+      {
+        "symbol": "XRPUSDT",
+        "side": "LONG",
+        "entry_price": 1.4268,
+        "exit_price": 1.4328,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789822140000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T12:49:00+00:00",
+        "bars_held": 1,
+        "pnl_pct": 0.22052144659377665,
+        "pnl_usdt": 0.004619245648562309,
+        "balance_after": 2.099311494367459,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 13.89771873986048,
+        "rsi_at_entry": 33.43667829770186,
+        "paper": true
       }
     ]
   },
   "SOLUSDT": {
-    "balance_usdt": 2.2867274921554896,
+    "balance_usdt": 2.287270216453789,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 111.48,
+      "entry_ts": 1789823460000,
+      "target": 111.73499999999999,
+      "stop": 111.04429367688773,
+      "bars_held": 2,
+      "adx_at_entry": 19.14768438436579,
+      "rsi_at_entry": 33.99116149629141
+    },
     "trades": [
       {
         "symbol": "SOLUSDT",
@@ -12744,13 +12861,31 @@
         "adx_at_entry": 18.15344752234329,
         "rsi_at_entry": 33.82532659678742,
         "paper": true
+      },
+      {
+        "symbol": "SOLUSDT",
+        "side": "LONG",
+        "entry_price": 111.74,
+        "exit_price": 111.99,
+        "entry_ts": 1789815300000,
+        "exit_ts": 1789815780000,
+        "entry_time": "2026-09-19T10:55:00+00:00",
+        "exit_time": "2026-09-19T11:03:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": 0.0237336674422767,
+        "pnl_usdt": 0.0005427242982993796,
+        "balance_after": 2.287270216453789,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.177541996586335,
+        "rsi_at_entry": 33.60911382407592,
+        "paper": true
       }
     ]
   },
   "ZECUSDT": {
-    "balance_usdt": 2.365757181303665,
+    "balance_usdt": 2.3696876547932395,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -15182,13 +15317,31 @@
         "adx_at_entry": 11.202742903498725,
         "rsi_at_entry": 25.980038861851938,
         "paper": true
+      },
+      {
+        "symbol": "ZECUSDT",
+        "side": "LONG",
+        "entry_price": 1532.2,
+        "exit_price": 1537.81,
+        "entry_ts": 1789821120000,
+        "exit_ts": 1789822320000,
+        "entry_time": "2026-09-19T12:32:00+00:00",
+        "exit_time": "2026-09-19T12:52:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": 0.16614019057563634,
+        "pnl_usdt": 0.0039304734895746485,
+        "balance_after": 2.3696876547932395,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 21.601976309358115,
+        "rsi_at_entry": 27.027882567015908,
+        "paper": true
       }
     ]
   },
   "HYPEUSDT": {
     "balance_usdt": 2.2015743763793503,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -17660,9 +17813,9 @@
     ]
   },
   "DOGEUSDT": {
-    "balance_usdt": 2.3855768453756334,
+    "balance_usdt": 2.3870385972220447,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -19968,14 +20121,41 @@
         "adx_at_entry": 16.01474199160368,
         "rsi_at_entry": 32.18319050572265,
         "paper": true
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "side": "LONG",
+        "entry_price": 0.08803,
+        "exit_price": 0.08826,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789822140000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T12:49:00+00:00",
+        "bars_held": 1,
+        "pnl_pct": 0.06127456548904686,
+        "pnl_usdt": 0.0014617518464112855,
+        "balance_after": 2.3870385972220447,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 15.573162774722062,
+        "rsi_at_entry": 34.79110037629914,
+        "paper": true
       }
     ]
   },
   "LINKUSDT": {
-    "balance_usdt": 2.2098756776241997,
+    "balance_usdt": 2.2174862441602774,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 12.448,
+      "entry_ts": 1789823520000,
+      "target": 12.517500000000002,
+      "stop": 12.356448921360805,
+      "bars_held": 1,
+      "adx_at_entry": 21.418493550641504,
+      "rsi_at_entry": 29.590571004402733
+    },
     "trades": [
       {
         "symbol": "LINKUSDT",
@@ -22532,23 +22712,50 @@
         "adx_at_entry": 21.036819741597636,
         "rsi_at_entry": 34.96654305727884,
         "paper": true
+      },
+      {
+        "symbol": "LINKUSDT",
+        "side": "LONG",
+        "entry_price": 12.512,
+        "exit_price": 12.567,
+        "entry_ts": 1789815480000,
+        "exit_ts": 1789815780000,
+        "entry_time": "2026-09-19T10:58:00+00:00",
+        "exit_time": "2026-09-19T11:03:00+00:00",
+        "bars_held": 5,
+        "pnl_pct": 0.2395780051150872,
+        "pnl_usdt": 0.005294376063975648,
+        "balance_after": 2.2151700536881753,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.526642185338567,
+        "rsi_at_entry": 34.85390365494007,
+        "paper": true
+      },
+      {
+        "symbol": "LINKUSDT",
+        "side": "LONG",
+        "entry_price": 12.477,
+        "exit_price": 12.515,
+        "entry_ts": 1789820640000,
+        "exit_ts": 1789820760000,
+        "entry_time": "2026-09-19T12:24:00+00:00",
+        "exit_time": "2026-09-19T12:26:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": 0.1045603911196622,
+        "pnl_usdt": 0.0023161904721020754,
+        "balance_after": 2.2174862441602774,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 14.373449622769744,
+        "rsi_at_entry": 31.653726210513852,
+        "paper": true
       }
     ]
   },
   "ADAUSDT": {
-    "balance_usdt": 2.232169471963444,
+    "balance_usdt": 2.2361362133236233,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
-    "position": {
-      "side": "LONG",
-      "entry_price": 0.2232,
-      "entry_ts": 1789809300000,
-      "target": 0.223945,
-      "stop": 0.22213060764917641,
-      "bars_held": 6,
-      "adx_at_entry": 21.05738341614023,
-      "rsi_at_entry": 32.18413620125223
-    },
+    "last_processed_ts": 1789823580000,
+    "position": null,
     "trades": [
       {
         "symbol": "ADAUSDT",
@@ -25159,13 +25366,49 @@
         "adx_at_entry": 18.803167646206408,
         "rsi_at_entry": 34.62073243246104,
         "paper": true
+      },
+      {
+        "symbol": "ADAUSDT",
+        "side": "LONG",
+        "entry_price": 0.2232,
+        "exit_price": 0.2235,
+        "entry_ts": 1789809300000,
+        "exit_ts": 1789812480000,
+        "entry_time": "2026-09-19T09:15:00+00:00",
+        "exit_time": "2026-09-19T10:08:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.06559139784946474,
+        "pnl_usdt": -0.0014641111590298905,
+        "balance_after": 2.2307053608044143,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 21.05738341614023,
+        "rsi_at_entry": 32.18413620125223,
+        "paper": true
+      },
+      {
+        "symbol": "ADAUSDT",
+        "side": "LONG",
+        "entry_price": 0.2255,
+        "exit_price": 0.2265,
+        "entry_ts": 1789820580000,
+        "exit_ts": 1789821300000,
+        "entry_time": "2026-09-19T12:23:00+00:00",
+        "exit_time": "2026-09-19T12:35:00+00:00",
+        "bars_held": 12,
+        "pnl_pct": 0.24345898004434624,
+        "pnl_usdt": 0.005430852519209051,
+        "balance_after": 2.2361362133236233,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 19.71455490112427,
+        "rsi_at_entry": 28.443962368531885,
+        "paper": true
       }
     ]
   },
   "XLMUSDT": {
     "balance_usdt": 2.154242839226319,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -27331,9 +27574,9 @@
     ]
   },
   "BCHUSDT": {
-    "balance_usdt": 2.358002571772482,
+    "balance_usdt": 2.3598652904242368,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -29441,22 +29684,40 @@
         "adx_at_entry": null,
         "rsi_at_entry": 31.17195395869946,
         "paper": true
+      },
+      {
+        "symbol": "BCHUSDT",
+        "side": "LONG",
+        "entry_price": 250.9,
+        "exit_price": 251.6,
+        "entry_ts": 1789820640000,
+        "exit_ts": 1789821360000,
+        "entry_time": "2026-09-19T12:24:00+00:00",
+        "exit_time": "2026-09-19T12:36:00+00:00",
+        "bars_held": 12,
+        "pnl_pct": 0.07899561578317599,
+        "pnl_usdt": 0.0018627186517545802,
+        "balance_after": 2.3598652904242368,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 17.344049428300327,
+        "rsi_at_entry": 32.86383771488825,
+        "paper": true
       }
     ]
   },
   "UNIUSDT": {
-    "balance_usdt": 2.581511234600324,
+    "balance_usdt": 2.5807959918815757,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": {
       "side": "LONG",
-      "entry_price": 9.146,
-      "entry_ts": 1789809480000,
-      "target": 9.2334,
-      "stop": 9.00283352347704,
-      "bars_held": 3,
-      "adx_at_entry": 22.604455562663993,
-      "rsi_at_entry": 24.97411862599523
+      "entry_price": 9.051,
+      "entry_ts": 1789822560000,
+      "target": 9.121099999999997,
+      "stop": 8.923715122657876,
+      "bars_held": 17,
+      "adx_at_entry": 18.725074325205377,
+      "rsi_at_entry": 33.06150934797989
     },
     "trades": [
       {
@@ -31762,22 +32023,76 @@
         "adx_at_entry": 16.615560403913843,
         "rsi_at_entry": 30.18475607845828,
         "paper": true
+      },
+      {
+        "symbol": "UNIUSDT",
+        "side": "LONG",
+        "entry_price": 9.146,
+        "exit_price": 9.249,
+        "entry_ts": 1789809480000,
+        "exit_ts": 1789811700000,
+        "entry_time": "2026-09-19T09:18:00+00:00",
+        "exit_time": "2026-09-19T09:55:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.9261753772140799,
+        "pnl_usdt": 0.023909321414883777,
+        "balance_after": 2.6054205560152077,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.604455562663993,
+        "rsi_at_entry": 24.97411862599523,
+        "paper": true
+      },
+      {
+        "symbol": "UNIUSDT",
+        "side": "LONG",
+        "entry_price": 9.16,
+        "exit_price": 9.053,
+        "entry_ts": 1789814100000,
+        "exit_ts": 1789814940000,
+        "entry_time": "2026-09-19T10:35:00+00:00",
+        "exit_time": "2026-09-19T10:49:00+00:00",
+        "bars_held": 14,
+        "pnl_pct": -1.3681222707423506,
+        "pnl_usdt": -0.03564533887334331,
+        "balance_after": 2.5697752171418644,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 18.52990571613844,
+        "rsi_at_entry": 33.042006458095784,
+        "paper": true
+      },
+      {
+        "symbol": "UNIUSDT",
+        "side": "LONG",
+        "entry_price": 9.064,
+        "exit_price": 9.121,
+        "entry_ts": 1789820460000,
+        "exit_ts": 1789820700000,
+        "entry_time": "2026-09-19T12:21:00+00:00",
+        "exit_time": "2026-09-19T12:25:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.42886142983230785,
+        "pnl_usdt": 0.011020774739711303,
+        "balance_after": 2.5807959918815757,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 16.100034280588407,
+        "rsi_at_entry": 34.96648212153771,
+        "paper": true
       }
     ]
   },
   "LTCUSDT": {
-    "balance_usdt": 2.2953876814961496,
+    "balance_usdt": 2.294811225268338,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809660000,
+    "last_processed_ts": 1789823580000,
     "position": {
       "side": "LONG",
-      "entry_price": 57.18,
-      "entry_ts": 1789808940000,
-      "target": 57.30250000000001,
-      "stop": 56.972973431656705,
-      "bars_held": 12,
-      "adx_at_entry": 21.33904358133137,
-      "rsi_at_entry": 32.80197451060263
+      "entry_price": 57.79,
+      "entry_ts": 1789823220000,
+      "target": 57.9775,
+      "stop": 57.55543657574123,
+      "bars_held": 6,
+      "adx_at_entry": 18.05165321348507,
+      "rsi_at_entry": 29.910418292888707
     },
     "trades": [
       {
@@ -34515,13 +34830,31 @@
         "adx_at_entry": null,
         "rsi_at_entry": 21.919172045800508,
         "paper": true
+      },
+      {
+        "symbol": "LTCUSDT",
+        "side": "LONG",
+        "entry_price": 57.18,
+        "exit_price": 57.28,
+        "entry_ts": 1789808940000,
+        "exit_ts": 1789812120000,
+        "entry_time": "2026-09-19T09:09:00+00:00",
+        "exit_time": "2026-09-19T10:02:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.0251136761105257,
+        "pnl_usdt": -0.0005764562278116614,
+        "balance_after": 2.294811225268338,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 21.33904358133137,
+        "rsi_at_entry": 32.80197451060263,
+        "paper": true
       }
     ]
   },
   "HBARUSDT": {
     "balance_usdt": 2.317955908913214,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -36453,9 +36786,9 @@
     ]
   },
   "AVAXUSDT": {
-    "balance_usdt": 2.244318057608879,
+    "balance_usdt": 2.234685835418163,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -39067,14 +39400,41 @@
         "adx_at_entry": 15.381902332618399,
         "rsi_at_entry": 31.73650779892452,
         "paper": true
+      },
+      {
+        "symbol": "AVAXUSDT",
+        "side": "LONG",
+        "entry_price": 9.163,
+        "exit_price": 9.142,
+        "entry_ts": 1789820160000,
+        "exit_ts": 1789821360000,
+        "entry_time": "2026-09-19T12:16:00+00:00",
+        "exit_time": "2026-09-19T12:36:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.4291825821237673,
+        "pnl_usdt": -0.009632222190715911,
+        "balance_after": 2.234685835418163,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 21.233897714316942,
+        "rsi_at_entry": 29.761205863170346,
+        "paper": true
       }
     ]
   },
   "SUIUSDT": {
-    "balance_usdt": 2.2629476792275516,
+    "balance_usdt": 2.253110946790412,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.8462,
+      "entry_ts": 1789823520000,
+      "target": 0.8504849999999999,
+      "stop": 0.838767880517645,
+      "bars_held": 1,
+      "adx_at_entry": 22.748921755618987,
+      "rsi_at_entry": 34.21445936383792
+    },
     "trades": [
       {
         "symbol": "SUIUSDT",
@@ -41613,13 +41973,31 @@
         "adx_at_entry": 18.30277239414367,
         "rsi_at_entry": 33.19991817500966,
         "paper": true
+      },
+      {
+        "symbol": "SUIUSDT",
+        "side": "LONG",
+        "entry_price": 0.8522,
+        "exit_price": 0.8502,
+        "entry_ts": 1789820580000,
+        "exit_ts": 1789821780000,
+        "entry_time": "2026-09-19T12:23:00+00:00",
+        "exit_time": "2026-09-19T12:43:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.43468669326449216,
+        "pnl_usdt": -0.009836732437139784,
+        "balance_after": 2.253110946790412,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 24.075987770412002,
+        "rsi_at_entry": 31.71673590690635,
+        "paper": true
       }
     ]
   },
   "SHIBUSDT": {
     "balance_usdt": 2.3119460314202733,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -43713,10 +44091,19 @@
     ]
   },
   "NEARUSDT": {
-    "balance_usdt": 2.576386233017609,
+    "balance_usdt": 2.552237712793115,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 3.578,
+      "entry_ts": 1789823100000,
+      "target": 3.6274,
+      "stop": 3.523192701215988,
+      "bars_held": 8,
+      "adx_at_entry": 14.210066488852515,
+      "rsi_at_entry": 24.00809377423488
+    },
     "trades": [
       {
         "symbol": "NEARUSDT",
@@ -46363,13 +46750,31 @@
         "adx_at_entry": 19.516278091619874,
         "rsi_at_entry": 33.086059396291944,
         "paper": true
+      },
+      {
+        "symbol": "NEARUSDT",
+        "side": "LONG",
+        "entry_price": 3.662,
+        "exit_price": 3.635,
+        "entry_ts": 1789819440000,
+        "exit_ts": 1789820520000,
+        "entry_time": "2026-09-19T12:04:00+00:00",
+        "exit_time": "2026-09-19T12:22:00+00:00",
+        "bars_held": 18,
+        "pnl_pct": -0.9373020207536902,
+        "pnl_usdt": -0.024148520224493986,
+        "balance_after": 2.552237712793115,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 23.78123093761966,
+        "rsi_at_entry": 34.516839657699194,
+        "paper": true
       }
     ]
   },
   "TAOUSDT": {
-    "balance_usdt": 2.3753999373599424,
+    "balance_usdt": 2.383964159555626,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -48765,13 +49170,31 @@
         "adx_at_entry": null,
         "rsi_at_entry": 29.156913034218107,
         "paper": true
+      },
+      {
+        "symbol": "TAOUSDT",
+        "side": "LONG",
+        "entry_price": 267.6,
+        "exit_price": 269.1,
+        "entry_ts": 1789819500000,
+        "exit_ts": 1789819740000,
+        "entry_time": "2026-09-19T12:05:00+00:00",
+        "exit_time": "2026-09-19T12:09:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.3605381165919282,
+        "pnl_usdt": 0.008564222195683424,
+        "balance_after": 2.383964159555626,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 13.017245114878401,
+        "rsi_at_entry": 34.88724385943412,
+        "paper": true
       }
     ]
   },
   "ASTERUSDT": {
-    "balance_usdt": 2.4681165079793703,
+    "balance_usdt": 2.4511332649038433,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -51077,14 +51500,59 @@
         "adx_at_entry": 14.854191064031495,
         "rsi_at_entry": 32.106770136099726,
         "paper": true
+      },
+      {
+        "symbol": "ASTERUSDT",
+        "side": "LONG",
+        "entry_price": 0.7664,
+        "exit_price": 0.7686,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789822320000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T12:52:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.08705636743214767,
+        "pnl_usdt": 0.002148652575839627,
+        "balance_after": 2.47026516055521,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 21.738378807742826,
+        "rsi_at_entry": 32.28903688219086,
+        "paper": true
+      },
+      {
+        "symbol": "ASTERUSDT",
+        "side": "LONG",
+        "entry_price": 0.7659,
+        "exit_price": 0.7615,
+        "entry_ts": 1789823340000,
+        "exit_ts": 1789823520000,
+        "entry_time": "2026-09-19T13:09:00+00:00",
+        "exit_time": "2026-09-19T13:12:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": -0.7744875310092794,
+        "pnl_usdt": -0.019131895651366637,
+        "balance_after": 2.4511332649038433,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 24.36969208648381,
+        "rsi_at_entry": 32.003761456155175,
+        "paper": true
       }
     ]
   },
   "AAVEUSDT": {
-    "balance_usdt": 2.1527530682872835,
+    "balance_usdt": 2.1546374821529524,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 142.16,
+      "entry_ts": 1789823340000,
+      "target": 142.551,
+      "stop": 141.45847024296896,
+      "bars_held": 4,
+      "adx_at_entry": 23.41078374837506,
+      "rsi_at_entry": 34.38088495986149
+    },
     "trades": [
       {
         "symbol": "AAVEUSDT",
@@ -53623,13 +54091,67 @@
         "adx_at_entry": 18.256372177896417,
         "rsi_at_entry": 28.896081355878366,
         "paper": true
+      },
+      {
+        "symbol": "AAVEUSDT",
+        "side": "LONG",
+        "entry_price": 144.16,
+        "exit_price": 144.84,
+        "entry_ts": 1789813020000,
+        "exit_ts": 1789813440000,
+        "entry_time": "2026-09-19T10:17:00+00:00",
+        "exit_time": "2026-09-19T10:24:00+00:00",
+        "bars_held": 7,
+        "pnl_pct": 0.27169811320755194,
+        "pnl_usdt": 0.0058489894685540555,
+        "balance_after": 2.1586020577558376,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 15.310031393560905,
+        "paper": true
+      },
+      {
+        "symbol": "AAVEUSDT",
+        "side": "LONG",
+        "entry_price": 143.01,
+        "exit_price": 143.43,
+        "entry_ts": 1789817640000,
+        "exit_ts": 1789818120000,
+        "entry_time": "2026-09-19T11:34:00+00:00",
+        "exit_time": "2026-09-19T11:42:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": 0.09368575624083342,
+        "pnl_usdt": 0.002022302662038733,
+        "balance_after": 2.1606243604178763,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.40321692544318,
+        "rsi_at_entry": 34.62172563549366,
+        "paper": true
+      },
+      {
+        "symbol": "AAVEUSDT",
+        "side": "LONG",
+        "entry_price": 142.69,
+        "exit_price": 142.58,
+        "entry_ts": 1789821180000,
+        "exit_ts": 1789822380000,
+        "entry_time": "2026-09-19T12:33:00+00:00",
+        "exit_time": "2026-09-19T12:53:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.2770901955287583,
+        "pnl_usdt": -0.005986878264923945,
+        "balance_after": 2.1546374821529524,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 10.403076810812786,
+        "rsi_at_entry": 34.90301154234881,
+        "paper": true
       }
     ]
   },
   "PAXGUSDT": {
     "balance_usdt": 2.3455937284592547,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -55453,9 +55975,9 @@
     ]
   },
   "ONDOUSDT": {
-    "balance_usdt": 2.1216863494209273,
+    "balance_usdt": 2.1305689749243926,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -57869,23 +58391,32 @@
         "adx_at_entry": null,
         "rsi_at_entry": 29.40916604685762,
         "paper": true
+      },
+      {
+        "symbol": "ONDOUSDT",
+        "side": "LONG",
+        "entry_price": 0.4041,
+        "exit_price": 0.4066,
+        "entry_ts": 1789813020000,
+        "exit_ts": 1789813680000,
+        "entry_time": "2026-09-19T10:17:00+00:00",
+        "exit_time": "2026-09-19T10:28:00+00:00",
+        "bars_held": 11,
+        "pnl_pct": 0.41865874783469487,
+        "pnl_usdt": 0.008882625503465302,
+        "balance_after": 2.1305689749243926,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 28.884366527350082,
+        "paper": true
       }
     ]
   },
   "PUMPUSDT": {
-    "balance_usdt": 2.224415674909414,
+    "balance_usdt": 2.235554206779147,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": {
-      "side": "LONG",
-      "entry_price": 0.004102,
-      "entry_ts": 1789809480000,
-      "target": 0.0041249,
-      "stop": 0.004066382027008826,
-      "bars_held": 4,
-      "adx_at_entry": 16.90568192577444,
-      "rsi_at_entry": 32.14970103326624
-    },
+    "last_processed_ts": 1789823580000,
+    "position": null,
     "trades": [
       {
         "symbol": "PUMPUSDT",
@@ -60604,13 +61135,49 @@
         "adx_at_entry": 18.09458249744974,
         "rsi_at_entry": 32.748529799133294,
         "paper": true
+      },
+      {
+        "symbol": "PUMPUSDT",
+        "side": "LONG",
+        "entry_price": 0.004102,
+        "exit_price": 0.004152,
+        "entry_ts": 1789809480000,
+        "exit_ts": 1789811700000,
+        "entry_time": "2026-09-19T09:18:00+00:00",
+        "exit_time": "2026-09-19T09:55:00+00:00",
+        "bars_held": 5,
+        "pnl_pct": 1.0189176011701748,
+        "pnl_usdt": 0.022664962834840097,
+        "balance_after": 2.2470806377442543,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 16.90568192577444,
+        "rsi_at_entry": 32.14970103326624,
+        "paper": true
+      },
+      {
+        "symbol": "PUMPUSDT",
+        "side": "LONG",
+        "entry_price": 0.004154,
+        "exit_price": 0.004141,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789823280000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T13:08:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.5129513721714009,
+        "pnl_usdt": -0.011526430965107082,
+        "balance_after": 2.235554206779147,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 23.19498485521391,
+        "rsi_at_entry": 32.52334158223847,
+        "paper": true
       }
     ]
   },
   "WLFIUSDT": {
     "balance_usdt": 2.410189379094682,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -62596,9 +63163,9 @@
     ]
   },
   "MORPHOUSDT": {
-    "balance_usdt": 2.2286089968560097,
+    "balance_usdt": 2.2237025220837237,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -65030,13 +65597,49 @@
         "adx_at_entry": 17.728045267768685,
         "rsi_at_entry": 34.047092108795695,
         "paper": true
+      },
+      {
+        "symbol": "MORPHOUSDT",
+        "side": "LONG",
+        "entry_price": 2.7746,
+        "exit_price": 2.7997,
+        "entry_ts": 1789813260000,
+        "exit_ts": 1789813980000,
+        "entry_time": "2026-09-19T10:21:00+00:00",
+        "exit_time": "2026-09-19T10:33:00+00:00",
+        "bars_held": 12,
+        "pnl_pct": 0.7046349023282681,
+        "pnl_usdt": 0.01570355682827529,
+        "balance_after": 2.244312553684285,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 30.83176498391788,
+        "paper": true
+      },
+      {
+        "symbol": "MORPHOUSDT",
+        "side": "LONG",
+        "entry_price": 2.7425,
+        "exit_price": 2.7228,
+        "entry_ts": 1789816440000,
+        "exit_ts": 1789817640000,
+        "entry_time": "2026-09-19T11:14:00+00:00",
+        "exit_time": "2026-09-19T11:34:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.9183226982680135,
+        "pnl_usdt": -0.020610031600561296,
+        "balance_after": 2.2237025220837237,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 20.926670349451946,
+        "rsi_at_entry": 30.071579008423598,
+        "paper": true
       }
     ]
   },
   "ENAUSDT": {
-    "balance_usdt": 2.360319683415211,
+    "balance_usdt": 2.345979683825465,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -66946,22 +67549,40 @@
         "adx_at_entry": 19.140576274973576,
         "rsi_at_entry": 32.07074322281373,
         "paper": true
+      },
+      {
+        "symbol": "ENAUSDT",
+        "side": "LONG",
+        "entry_price": 0.19139,
+        "exit_price": 0.19061,
+        "entry_ts": 1789814880000,
+        "exit_ts": 1789816080000,
+        "entry_time": "2026-09-19T10:48:00+00:00",
+        "exit_time": "2026-09-19T11:08:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.607544803803753,
+        "pnl_usdt": -0.014339999589746188,
+        "balance_after": 2.345979683825465,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 23.154843916004022,
+        "rsi_at_entry": 34.193695994557785,
+        "paper": true
       }
     ]
   },
   "DOTUSDT": {
-    "balance_usdt": 2.1507134326847286,
+    "balance_usdt": 2.1694686683449422,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": {
       "side": "LONG",
-      "entry_price": 1.1116,
-      "entry_ts": 1789809480000,
-      "target": 1.1153849999999996,
-      "stop": 1.104864690059099,
-      "bars_held": 4,
-      "adx_at_entry": 23.20490948228957,
-      "rsi_at_entry": 31.522841420835903
+      "entry_price": 1.1272,
+      "entry_ts": 1789823220000,
+      "target": 1.1322349999999999,
+      "stop": 1.1199553882091584,
+      "bars_held": 6,
+      "adx_at_entry": 14.045712934848654,
+      "rsi_at_entry": 33.27498008318996
     },
     "trades": [
       {
@@ -69321,23 +69942,50 @@
         "adx_at_entry": 24.109368075110385,
         "rsi_at_entry": 33.813641786828455,
         "paper": true
+      },
+      {
+        "symbol": "DOTUSDT",
+        "side": "LONG",
+        "entry_price": 1.1116,
+        "exit_price": 1.121,
+        "entry_ts": 1789809480000,
+        "exit_ts": 1789811700000,
+        "entry_time": "2026-09-19T09:18:00+00:00",
+        "exit_time": "2026-09-19T09:55:00+00:00",
+        "bars_held": 5,
+        "pnl_pct": 0.6456279237135729,
+        "pnl_usdt": 0.013885606480471324,
+        "balance_after": 2.1645990391652,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 23.20490948228957,
+        "rsi_at_entry": 31.522841420835903,
+        "paper": true
+      },
+      {
+        "symbol": "DOTUSDT",
+        "side": "LONG",
+        "entry_price": 1.1295,
+        "exit_price": 1.1343,
+        "entry_ts": 1789821540000,
+        "exit_ts": 1789822260000,
+        "entry_time": "2026-09-19T12:39:00+00:00",
+        "exit_time": "2026-09-19T12:51:00+00:00",
+        "bars_held": 12,
+        "pnl_pct": 0.2249667994688037,
+        "pnl_usdt": 0.004869629179742319,
+        "balance_after": 2.1694686683449422,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 21.25453186966891,
+        "rsi_at_entry": 33.459108214059015,
+        "paper": true
       }
     ]
   },
   "ICPUSDT": {
-    "balance_usdt": 2.3736556831265267,
+    "balance_usdt": 2.3730566690044657,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": {
-      "side": "LONG",
-      "entry_price": 2.861,
-      "entry_ts": 1789809060000,
-      "target": 2.8672,
-      "stop": 2.8543547009096657,
-      "bars_held": 11,
-      "adx_at_entry": 14.714626264457186,
-      "rsi_at_entry": 24.300851269984378
-    },
+    "last_processed_ts": 1789823580000,
+    "position": null,
     "trades": [
       {
         "symbol": "ICPUSDT",
@@ -70922,14 +71570,41 @@
         "adx_at_entry": 19.589738542398756,
         "rsi_at_entry": 33.74392577316216,
         "paper": true
+      },
+      {
+        "symbol": "ICPUSDT",
+        "side": "LONG",
+        "entry_price": 2.861,
+        "exit_price": 2.866,
+        "entry_ts": 1789809060000,
+        "exit_ts": 1789812180000,
+        "entry_time": "2026-09-19T09:11:00+00:00",
+        "exit_time": "2026-09-19T10:03:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.0252359314924889,
+        "pnl_usdt": -0.0005990141220610923,
+        "balance_after": 2.3730566690044657,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 14.714626264457186,
+        "rsi_at_entry": 24.300851269984378,
+        "paper": true
       }
     ]
   },
   "WLDUSDT": {
-    "balance_usdt": 2.303592026909462,
+    "balance_usdt": 2.3115014071407636,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.4278,
+      "entry_ts": 1789823460000,
+      "target": 0.4316999999999999,
+      "stop": 0.42298336216848315,
+      "bars_held": 2,
+      "adx_at_entry": 20.428745401525678,
+      "rsi_at_entry": 32.026174290934776
+    },
     "trades": [
       {
         "symbol": "WLDUSDT",
@@ -72892,13 +73567,31 @@
         "adx_at_entry": 18.165968917800246,
         "rsi_at_entry": 33.37392369047386,
         "paper": true
+      },
+      {
+        "symbol": "WLDUSDT",
+        "side": "LONG",
+        "entry_price": 0.4233,
+        "exit_price": 0.4256,
+        "entry_ts": 1789815540000,
+        "exit_ts": 1789815780000,
+        "entry_time": "2026-09-19T10:59:00+00:00",
+        "exit_time": "2026-09-19T11:03:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.343349870068502,
+        "pnl_usdt": 0.007909380231301721,
+        "balance_after": 2.3115014071407636,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 18.775033107227642,
+        "rsi_at_entry": 34.865080844107425,
+        "paper": true
       }
     ]
   },
   "SKYUSDT": {
-    "balance_usdt": 2.4779701020705223,
+    "balance_usdt": 2.4320330165202955,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -74286,13 +74979,31 @@
         "adx_at_entry": 24.43536938839774,
         "rsi_at_entry": 25.13954291465636,
         "paper": true
+      },
+      {
+        "symbol": "SKYUSDT",
+        "side": "LONG",
+        "entry_price": 0.07135,
+        "exit_price": 0.07017,
+        "entry_ts": 1789814880000,
+        "exit_ts": 1789816080000,
+        "entry_time": "2026-09-19T10:48:00+00:00",
+        "exit_time": "2026-09-19T11:08:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -1.853819201121234,
+        "pnl_usdt": -0.0459370855502268,
+        "balance_after": 2.4320330165202955,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 22.07592651983396,
+        "rsi_at_entry": 29.3160764646924,
+        "paper": true
       }
     ]
   },
   "PEPEUSDT": {
-    "balance_usdt": 2.6251557464125135,
+    "balance_usdt": 2.626804661585687,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -76598,14 +77309,41 @@
         "adx_at_entry": 24.789070295707273,
         "rsi_at_entry": 32.63351924274535,
         "paper": true
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "side": "LONG",
+        "entry_price": 3.805e-06,
+        "exit_price": 3.815e-06,
+        "entry_ts": 1789820040000,
+        "exit_ts": 1789820160000,
+        "entry_time": "2026-09-19T12:14:00+00:00",
+        "exit_time": "2026-09-19T12:16:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": 0.06281208935610788,
+        "pnl_usdt": 0.0016489151731735596,
+        "balance_after": 2.626804661585687,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 17.926007433539727,
+        "rsi_at_entry": 33.70641436782337,
+        "paper": true
       }
     ]
   },
   "ETCUSDT": {
-    "balance_usdt": 2.318443146899351,
+    "balance_usdt": 2.326698691734785,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 8.457,
+      "entry_ts": 1789822800000,
+      "target": 8.49645,
+      "stop": 8.3953496958645,
+      "bars_held": 13,
+      "adx_at_entry": 17.58387717016232,
+      "rsi_at_entry": 30.259153669135245
+    },
     "trades": [
       {
         "symbol": "ETCUSDT",
@@ -78226,13 +78964,31 @@
         "adx_at_entry": 20.728668947802934,
         "rsi_at_entry": 32.214962627177215,
         "paper": true
+      },
+      {
+        "symbol": "ETCUSDT",
+        "side": "LONG",
+        "entry_price": 8.452,
+        "exit_price": 8.499,
+        "entry_ts": 1789817700000,
+        "exit_ts": 1789818360000,
+        "entry_time": "2026-09-19T11:35:00+00:00",
+        "exit_time": "2026-09-19T11:46:00+00:00",
+        "bars_held": 11,
+        "pnl_pct": 0.3560814008518764,
+        "pnl_usdt": 0.008255544835433781,
+        "balance_after": 2.326698691734785,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 21.327791726936265,
+        "rsi_at_entry": 28.97395130616198,
+        "paper": true
       }
     ]
   },
   "ARBUSDT": {
-    "balance_usdt": 2.8101052513831655,
+    "balance_usdt": 2.808565417832362,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -80178,13 +80934,67 @@
         "adx_at_entry": 23.117217789724766,
         "rsi_at_entry": 31.73508556590042,
         "paper": true
+      },
+      {
+        "symbol": "ARBUSDT",
+        "side": "LONG",
+        "entry_price": 0.21194,
+        "exit_price": 0.2132,
+        "entry_ts": 1789815060000,
+        "exit_ts": 1789815300000,
+        "entry_time": "2026-09-19T10:51:00+00:00",
+        "exit_time": "2026-09-19T10:55:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.3945078795885681,
+        "pnl_usdt": 0.01108608664143862,
+        "balance_after": 2.821191338024604,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 17.828369145648917,
+        "rsi_at_entry": 33.75132283624103,
+        "paper": true
+      },
+      {
+        "symbol": "ARBUSDT",
+        "side": "LONG",
+        "entry_price": 0.21134,
+        "exit_price": 0.21153,
+        "entry_ts": 1789817940000,
+        "exit_ts": 1789819140000,
+        "entry_time": "2026-09-19T11:39:00+00:00",
+        "exit_time": "2026-09-19T11:59:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.11009747326582961,
+        "pnl_usdt": -0.003106060379159281,
+        "balance_after": 2.818085277645445,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 11.23804302006961,
+        "rsi_at_entry": 34.72651418859117,
+        "paper": true
+      },
+      {
+        "symbol": "ARBUSDT",
+        "side": "LONG",
+        "entry_price": 0.21043,
+        "exit_price": 0.21014,
+        "entry_ts": 1789819920000,
+        "exit_ts": 1789821120000,
+        "entry_time": "2026-09-19T12:12:00+00:00",
+        "exit_time": "2026-09-19T12:32:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.3378130494701385,
+        "pnl_usdt": -0.00951985981308301,
+        "balance_after": 2.808565417832362,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 20.075755084768875,
+        "rsi_at_entry": 34.62729207908204,
+        "paper": true
       }
     ]
   },
   "POLUSDT": {
-    "balance_usdt": 2.268164023537721,
+    "balance_usdt": 2.2727752746138057,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -82058,13 +82868,31 @@
         "adx_at_entry": 17.85097080955095,
         "rsi_at_entry": 34.723499865634494,
         "paper": true
+      },
+      {
+        "symbol": "POLUSDT",
+        "side": "LONG",
+        "entry_price": 0.10414,
+        "exit_price": 0.10456,
+        "entry_ts": 1789815540000,
+        "exit_ts": 1789815720000,
+        "entry_time": "2026-09-19T10:59:00+00:00",
+        "exit_time": "2026-09-19T11:02:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": 0.20330324563088503,
+        "pnl_usdt": 0.0046112510760845105,
+        "balance_after": 2.2727752746138057,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.803369885173115,
+        "rsi_at_entry": 33.662224351619514,
+        "paper": true
       }
     ]
   },
   "QNTUSDT": {
-    "balance_usdt": 2.6109103577100465,
+    "balance_usdt": 2.610536274004146,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -82858,13 +83686,31 @@
         "adx_at_entry": 14.054571075959378,
         "rsi_at_entry": 20.958720618898866,
         "paper": true
+      },
+      {
+        "symbol": "QNTUSDT",
+        "side": "LONG",
+        "entry_price": 64.63,
+        "exit_price": 64.75,
+        "entry_ts": 1789815180000,
+        "exit_ts": 1789815660000,
+        "entry_time": "2026-09-19T10:53:00+00:00",
+        "exit_time": "2026-09-19T11:01:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": -0.014327711589038283,
+        "pnl_usdt": -0.0003740837059007518,
+        "balance_after": 2.610536274004146,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 23.77694605894661,
+        "rsi_at_entry": 30.126898561637645,
+        "paper": true
       }
     ]
   },
   "ATOMUSDT": {
     "balance_usdt": 2.616151608225524,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -84132,7 +84978,7 @@
   "ALGOUSDT": {
     "balance_usdt": 2.606230340281035,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -85994,7 +86840,7 @@
   "RENDERUSDT": {
     "balance_usdt": 2.399024747998832,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -87710,9 +88556,9 @@
     ]
   },
   "CAKEUSDT": {
-    "balance_usdt": 2.3117083763864232,
+    "balance_usdt": 2.300564058336783,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -89442,13 +90288,49 @@
         "adx_at_entry": 21.17978090501391,
         "rsi_at_entry": 27.464944333286653,
         "paper": true
+      },
+      {
+        "symbol": "CAKEUSDT",
+        "side": "LONG",
+        "entry_price": 2.427,
+        "exit_price": 2.418,
+        "entry_ts": 1789813320000,
+        "exit_ts": 1789814100000,
+        "entry_time": "2026-09-19T10:22:00+00:00",
+        "exit_time": "2026-09-19T10:35:00+00:00",
+        "bars_held": 13,
+        "pnl_pct": -0.5708281829418993,
+        "pnl_usdt": -0.013195882919842195,
+        "balance_after": 2.298512493466581,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": null,
+        "rsi_at_entry": 30.624327128527412,
+        "paper": true
+      },
+      {
+        "symbol": "CAKEUSDT",
+        "side": "LONG",
+        "entry_price": 2.42,
+        "exit_price": 2.427,
+        "entry_ts": 1789817220000,
+        "exit_ts": 1789817880000,
+        "entry_time": "2026-09-19T11:27:00+00:00",
+        "exit_time": "2026-09-19T11:38:00+00:00",
+        "bars_held": 11,
+        "pnl_pct": 0.08925619834711229,
+        "pnl_usdt": 0.0020515648702019718,
+        "balance_after": 2.300564058336783,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 16.017137890230646,
+        "rsi_at_entry": 30.393088569474102,
+        "paper": true
       }
     ]
   },
   "FILUSDT": {
-    "balance_usdt": 2.6941359389724964,
+    "balance_usdt": 2.720202046077479,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -91052,14 +91934,41 @@
         "adx_at_entry": 23.73032171347537,
         "rsi_at_entry": 29.955337382867953,
         "paper": true
+      },
+      {
+        "symbol": "FILUSDT",
+        "side": "LONG",
+        "entry_price": 0.985,
+        "exit_price": 0.9965,
+        "entry_ts": 1789822560000,
+        "exit_ts": 1789822920000,
+        "entry_time": "2026-09-19T12:56:00+00:00",
+        "exit_time": "2026-09-19T13:02:00+00:00",
+        "bars_held": 6,
+        "pnl_pct": 0.9675126903553368,
+        "pnl_usdt": 0.026066107104982805,
+        "balance_after": 2.720202046077479,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 19.40546226827616,
+        "rsi_at_entry": 31.551481010863682,
+        "paper": true
       }
     ]
   },
   "TRUMPUSDT": {
-    "balance_usdt": 2.5109941381607186,
+    "balance_usdt": 2.516990651709578,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 2.049,
+      "entry_ts": 1789823280000,
+      "target": 2.0572,
+      "stop": 2.0377857233848986,
+      "bars_held": 5,
+      "adx_at_entry": 15.791887567573761,
+      "rsi_at_entry": 33.950324791846356
+    },
     "trades": [
       {
         "symbol": "TRUMPUSDT",
@@ -93004,22 +93913,40 @@
         "adx_at_entry": 24.585820627810655,
         "rsi_at_entry": 25.13685429058451,
         "paper": true
+      },
+      {
+        "symbol": "TRUMPUSDT",
+        "side": "LONG",
+        "entry_price": 2.051,
+        "exit_price": 2.06,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789822260000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T12:51:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": 0.23881033642125288,
+        "pnl_usdt": 0.00599651354885955,
+        "balance_after": 2.516990651709578,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 17.78300674813556,
+        "rsi_at_entry": 32.08239353502927,
+        "paper": true
       }
     ]
   },
   "VETUSDT": {
-    "balance_usdt": 2.4753897420105457,
+    "balance_usdt": 2.5094344247360434,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": {
       "side": "LONG",
-      "entry_price": 0.008446,
-      "entry_ts": 1789809420000,
-      "target": 0.008487149999999999,
-      "stop": 0.008374063639235778,
-      "bars_held": 5,
-      "adx_at_entry": 22.83096387040359,
-      "rsi_at_entry": 32.10499280001605
+      "entry_price": 0.008584,
+      "entry_ts": 1789823160000,
+      "target": 0.008629399999999999,
+      "stop": 0.008495145962387747,
+      "bars_held": 7,
+      "adx_at_entry": 24.644297605956222,
+      "rsi_at_entry": 31.12537567409072
     },
     "trades": [
       {
@@ -94515,13 +95442,49 @@
         "adx_at_entry": 13.586419971445858,
         "rsi_at_entry": 33.326736686609095,
         "paper": true
+      },
+      {
+        "symbol": "VETUSDT",
+        "side": "LONG",
+        "entry_price": 0.008446,
+        "exit_price": 0.008509,
+        "entry_ts": 1789809420000,
+        "exit_ts": 1789811880000,
+        "entry_time": "2026-09-19T09:17:00+00:00",
+        "exit_time": "2026-09-19T09:58:00+00:00",
+        "bars_held": 9,
+        "pnl_pct": 0.5459152261425386,
+        "pnl_usdt": 0.013513529508005995,
+        "balance_after": 2.4889032715185517,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.83096387040359,
+        "rsi_at_entry": 32.10499280001605,
+        "paper": true
+      },
+      {
+        "symbol": "VETUSDT",
+        "side": "LONG",
+        "entry_price": 0.008391,
+        "exit_price": 0.008477,
+        "entry_ts": 1789813020000,
+        "exit_ts": 1789813620000,
+        "entry_time": "2026-09-19T10:17:00+00:00",
+        "exit_time": "2026-09-19T10:27:00+00:00",
+        "bars_held": 10,
+        "pnl_pct": 0.8249076391371828,
+        "pnl_usdt": 0.02053115321749166,
+        "balance_after": 2.5094344247360434,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 25.348767885713315,
+        "paper": true
       }
     ]
   },
   "CRVUSDT": {
-    "balance_usdt": 2.2069813392484474,
+    "balance_usdt": 2.1878548354397918,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -96161,13 +97124,49 @@
         "adx_at_entry": 22.57437561561972,
         "rsi_at_entry": 20.175043910753658,
         "paper": true
+      },
+      {
+        "symbol": "CRVUSDT",
+        "side": "LONG",
+        "entry_price": 0.342,
+        "exit_price": 0.3412,
+        "entry_ts": 1789814220000,
+        "exit_ts": 1789814520000,
+        "entry_time": "2026-09-19T10:37:00+00:00",
+        "exit_time": "2026-09-19T10:42:00+00:00",
+        "bars_held": 5,
+        "pnl_pct": -0.4339181286549775,
+        "pnl_usdt": -0.009576492127031155,
+        "balance_after": 2.1974048471214163,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 16.771568880218656,
+        "rsi_at_entry": 23.473665660704825,
+        "paper": true
+      },
+      {
+        "symbol": "CRVUSDT",
+        "side": "LONG",
+        "entry_price": 0.341,
+        "exit_price": 0.3402,
+        "entry_ts": 1789822020000,
+        "exit_ts": 1789823220000,
+        "entry_time": "2026-09-19T12:47:00+00:00",
+        "exit_time": "2026-09-19T13:07:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.43460410557185425,
+        "pnl_usdt": -0.009550011681624504,
+        "balance_after": 2.1878548354397918,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 17.852179059495125,
+        "rsi_at_entry": 32.89462824622679,
+        "paper": true
       }
     ]
   },
   "ETHFIUSDT": {
-    "balance_usdt": 2.34896027153787,
+    "balance_usdt": 2.330059043830783,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -98239,23 +99238,50 @@
         "adx_at_entry": 21.402499881616457,
         "rsi_at_entry": 31.558554466416453,
         "paper": true
+      },
+      {
+        "symbol": "ETHFIUSDT",
+        "side": "LONG",
+        "entry_price": 0.7366,
+        "exit_price": 0.7381,
+        "entry_ts": 1789813320000,
+        "exit_ts": 1789813440000,
+        "entry_time": "2026-09-19T10:22:00+00:00",
+        "exit_time": "2026-09-19T10:24:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": 0.003638338311151984,
+        "pnl_usdt": 8.546312147350577e-05,
+        "balance_after": 2.3490457346593434,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 23.66463080028774,
+        "paper": true
+      },
+      {
+        "symbol": "ETHFIUSDT",
+        "side": "LONG",
+        "entry_price": 0.7398,
+        "exit_price": 0.7353,
+        "entry_ts": 1789821060000,
+        "exit_ts": 1789822260000,
+        "entry_time": "2026-09-19T12:31:00+00:00",
+        "exit_time": "2026-09-19T12:51:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.8082725060827332,
+        "pnl_usdt": -0.018986690828560526,
+        "balance_after": 2.330059043830783,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 15.033219586691086,
+        "rsi_at_entry": 34.87725780704123,
+        "paper": true
       }
     ]
   },
   "INJUSDT": {
-    "balance_usdt": 2.5292024632521652,
+    "balance_usdt": 2.542782126422946,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": {
-      "side": "LONG",
-      "entry_price": 7.486,
-      "entry_ts": 1789809720000,
-      "target": 7.565599999999999,
-      "stop": 7.3686328836513395,
-      "bars_held": 0,
-      "adx_at_entry": 15.310290776764733,
-      "rsi_at_entry": 34.77030876388005
-    },
+    "last_processed_ts": 1789823580000,
+    "position": null,
     "trades": [
       {
         "symbol": "INJUSDT",
@@ -100326,14 +101352,113 @@
         "adx_at_entry": 15.228109390383967,
         "rsi_at_entry": 31.795813626097228,
         "paper": true
+      },
+      {
+        "symbol": "INJUSDT",
+        "side": "LONG",
+        "entry_price": 7.486,
+        "exit_price": 7.577,
+        "entry_ts": 1789809720000,
+        "exit_ts": 1789812720000,
+        "entry_time": "2026-09-19T09:22:00+00:00",
+        "exit_time": "2026-09-19T10:12:00+00:00",
+        "bars_held": 18,
+        "pnl_pct": 1.015602457921456,
+        "pnl_usdt": 0.02568664238259899,
+        "balance_after": 2.5548891056347642,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 15.310290776764733,
+        "rsi_at_entry": 34.77030876388005,
+        "paper": true
+      },
+      {
+        "symbol": "INJUSDT",
+        "side": "LONG",
+        "entry_price": 7.491,
+        "exit_price": 7.456,
+        "entry_ts": 1789813980000,
+        "exit_ts": 1789815180000,
+        "entry_time": "2026-09-19T10:33:00+00:00",
+        "exit_time": "2026-09-19T10:53:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.6672273394740256,
+        "pnl_usdt": -0.017046918606038464,
+        "balance_after": 2.5378421870287258,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 23.76871334891772,
+        "rsi_at_entry": 33.4506287046739,
+        "paper": true
+      },
+      {
+        "symbol": "INJUSDT",
+        "side": "LONG",
+        "entry_price": 7.462,
+        "exit_price": 7.467,
+        "entry_ts": 1789815240000,
+        "exit_ts": 1789816440000,
+        "entry_time": "2026-09-19T10:54:00+00:00",
+        "exit_time": "2026-09-19T11:14:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.13299383543286125,
+        "pnl_usdt": -0.003375173661762876,
+        "balance_after": 2.534467013366963,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 18.10193716808476,
+        "rsi_at_entry": 34.477709742927544,
+        "paper": true
+      },
+      {
+        "symbol": "INJUSDT",
+        "side": "LONG",
+        "entry_price": 7.596,
+        "exit_price": 7.6,
+        "entry_ts": 1789821780000,
+        "exit_ts": 1789822980000,
+        "entry_time": "2026-09-19T12:43:00+00:00",
+        "exit_time": "2026-09-19T13:03:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.14734070563455032,
+        "pnl_usdt": -0.0037343015815696212,
+        "balance_after": 2.5307327117853933,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 22.39912258590247,
+        "rsi_at_entry": 31.332781406539354,
+        "paper": true
+      },
+      {
+        "symbol": "INJUSDT",
+        "side": "LONG",
+        "entry_price": 7.543,
+        "exit_price": 7.594,
+        "entry_ts": 1789823340000,
+        "exit_ts": 1789823580000,
+        "entry_time": "2026-09-19T13:09:00+00:00",
+        "exit_time": "2026-09-19T13:13:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.47612355826594394,
+        "pnl_usdt": 0.012049414637552935,
+        "balance_after": 2.542782126422946,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 18.792663772977328,
+        "rsi_at_entry": 33.62976741187566,
+        "paper": true
       }
     ]
   },
   "PENGUUSDT": {
-    "balance_usdt": 2.211450647160876,
+    "balance_usdt": 2.2123660491564685,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.00791,
+      "entry_ts": 1789823460000,
+      "target": 0.007967700000000001,
+      "stop": 0.007822053652719402,
+      "bars_held": 2,
+      "adx_at_entry": 21.351940890323817,
+      "rsi_at_entry": 30.480948987066242
+    },
     "trades": [
       {
         "symbol": "PENGUUSDT",
@@ -102224,13 +103349,49 @@
         "adx_at_entry": 21.888288644279772,
         "rsi_at_entry": 21.859390477413328,
         "paper": true
+      },
+      {
+        "symbol": "PENGUUSDT",
+        "side": "LONG",
+        "entry_price": 0.007965,
+        "exit_price": 0.00795,
+        "entry_ts": 1789819140000,
+        "exit_ts": 1789820340000,
+        "entry_time": "2026-09-19T11:59:00+00:00",
+        "exit_time": "2026-09-19T12:19:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.38832391713746883,
+        "pnl_usdt": -0.00858759177861712,
+        "balance_after": 2.202863055382259,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 16.019527313369185,
+        "rsi_at_entry": 32.342763188561904,
+        "paper": true
+      },
+      {
+        "symbol": "PENGUUSDT",
+        "side": "LONG",
+        "entry_price": 0.007919,
+        "exit_price": 0.007969,
+        "entry_ts": 1789820640000,
+        "exit_ts": 1789821240000,
+        "entry_time": "2026-09-19T12:24:00+00:00",
+        "exit_time": "2026-09-19T12:34:00+00:00",
+        "bars_held": 10,
+        "pnl_pct": 0.43139285263290433,
+        "pnl_usdt": 0.00950299377420949,
+        "balance_after": 2.2123660491564685,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.536302192750647,
+        "rsi_at_entry": 26.303584963566337,
+        "paper": true
       }
     ]
   },
   "APTUSDT": {
-    "balance_usdt": 2.665767636083392,
+    "balance_usdt": 2.6706296109204053,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -104212,13 +105373,67 @@
         "adx_at_entry": 16.41469815591306,
         "rsi_at_entry": 32.86369472340937,
         "paper": true
+      },
+      {
+        "symbol": "APTUSDT",
+        "side": "LONG",
+        "entry_price": 0.7273,
+        "exit_price": 0.7358,
+        "entry_ts": 1789814100000,
+        "exit_ts": 1789814640000,
+        "entry_time": "2026-09-19T10:35:00+00:00",
+        "exit_time": "2026-09-19T10:44:00+00:00",
+        "bars_held": 9,
+        "pnl_pct": 0.9687061735185019,
+        "pnl_usdt": 0.025823455662397965,
+        "balance_after": 2.69159109174579,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.13751430051537,
+        "rsi_at_entry": 31.789137590839417,
+        "paper": true
+      },
+      {
+        "symbol": "APTUSDT",
+        "side": "LONG",
+        "entry_price": 0.7429,
+        "exit_price": 0.7433,
+        "entry_ts": 1789819440000,
+        "exit_ts": 1789820640000,
+        "entry_time": "2026-09-19T12:04:00+00:00",
+        "exit_time": "2026-09-19T12:24:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.1461569524835165,
+        "pnl_usdt": -0.003933947513013347,
+        "balance_after": 2.6876571442327766,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 24.205235321773745,
+        "rsi_at_entry": 34.25277382123821,
+        "paper": true
+      },
+      {
+        "symbol": "APTUSDT",
+        "side": "LONG",
+        "entry_price": 0.7381,
+        "exit_price": 0.7349,
+        "entry_ts": 1789820820000,
+        "exit_ts": 1789822020000,
+        "entry_time": "2026-09-19T12:27:00+00:00",
+        "exit_time": "2026-09-19T12:47:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.6335455900284488,
+        "pnl_usdt": -0.01702753331237128,
+        "balance_after": 2.6706296109204053,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 17.884756809459585,
+        "rsi_at_entry": 31.39365562186447,
+        "paper": true
       }
     ]
   },
   "AEROUSDT": {
-    "balance_usdt": 2.3964014543156367,
+    "balance_usdt": 2.3764549363282446,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -105732,13 +106947,31 @@
         "adx_at_entry": 24.07938413434177,
         "rsi_at_entry": 31.38493695807577,
         "paper": true
+      },
+      {
+        "symbol": "AEROUSDT",
+        "side": "LONG",
+        "entry_price": 0.68,
+        "exit_price": 0.6757,
+        "entry_ts": 1789813560000,
+        "exit_ts": 1789814760000,
+        "entry_time": "2026-09-19T10:26:00+00:00",
+        "exit_time": "2026-09-19T10:46:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.8323529411764825,
+        "pnl_usdt": -0.01994651798739211,
+        "balance_after": 2.3764549363282446,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 21.15829253229864,
+        "rsi_at_entry": 33.10116842334139,
+        "paper": true
       }
     ]
   },
   "STXUSDT": {
     "balance_usdt": 2.665005136189949,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -106752,10 +107985,19 @@
     ]
   },
   "VIRTUALUSDT": {
-    "balance_usdt": 2.2752672055859557,
+    "balance_usdt": 2.280878650654846,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.6778,
+      "entry_ts": 1789822800000,
+      "target": 0.6812,
+      "stop": 0.6735554741136376,
+      "bars_held": 13,
+      "adx_at_entry": 21.222252040026827,
+      "rsi_at_entry": 28.858226756969813
+    },
     "trades": [
       {
         "symbol": "VIRTUALUSDT",
@@ -108952,22 +110194,40 @@
         "adx_at_entry": 24.445759808736746,
         "rsi_at_entry": 24.10225132747817,
         "paper": true
+      },
+      {
+        "symbol": "VIRTUALUSDT",
+        "side": "LONG",
+        "entry_price": 0.6717,
+        "exit_price": 0.6747,
+        "entry_ts": 1789815540000,
+        "exit_ts": 1789815720000,
+        "entry_time": "2026-09-19T10:59:00+00:00",
+        "exit_time": "2026-09-19T11:02:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": 0.24662795891022815,
+        "pnl_usdt": 0.0056114450688902195,
+        "balance_after": 2.280878650654846,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.898787025521337,
+        "rsi_at_entry": 33.15935687893882,
+        "paper": true
       }
     ]
   },
   "PYTHUSDT": {
-    "balance_usdt": 2.290262941956534,
+    "balance_usdt": 2.2935649327776813,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": {
       "side": "LONG",
-      "entry_price": 0.05995,
-      "entry_ts": 1789809180000,
-      "target": 0.06009049999999999,
-      "stop": 0.05967072236036518,
-      "bars_held": 9,
-      "adx_at_entry": 21.775254698093388,
-      "rsi_at_entry": 31.1131240896608
+      "entry_price": 0.06053,
+      "entry_ts": 1789823280000,
+      "target": 0.0607645,
+      "stop": 0.06017549189007866,
+      "bars_held": 5,
+      "adx_at_entry": 19.93141911795306,
+      "rsi_at_entry": 32.927554213249465
     },
     "trades": [
       {
@@ -110553,13 +111813,67 @@
         "adx_at_entry": null,
         "rsi_at_entry": 17.887252652126435,
         "paper": true
+      },
+      {
+        "symbol": "PYTHUSDT",
+        "side": "LONG",
+        "entry_price": 0.05995,
+        "exit_price": 0.05988,
+        "entry_ts": 1789809180000,
+        "exit_ts": 1789812300000,
+        "entry_time": "2026-09-19T09:13:00+00:00",
+        "exit_time": "2026-09-19T10:05:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.3167639699749802,
+        "pnl_usdt": -0.007254727817807005,
+        "balance_after": 2.283008214138727,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 21.775254698093388,
+        "rsi_at_entry": 31.1131240896608,
+        "paper": true
+      },
+      {
+        "symbol": "PYTHUSDT",
+        "side": "LONG",
+        "entry_price": 0.06002,
+        "exit_price": 0.06031,
+        "entry_ts": 1789815360000,
+        "exit_ts": 1789815720000,
+        "entry_time": "2026-09-19T10:56:00+00:00",
+        "exit_time": "2026-09-19T11:02:00+00:00",
+        "bars_held": 6,
+        "pnl_pct": 0.2831722759080399,
+        "pnl_usdt": 0.006464846319143902,
+        "balance_after": 2.289473060457871,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 23.227545232948653,
+        "rsi_at_entry": 29.089297166614443,
+        "paper": true
+      },
+      {
+        "symbol": "PYTHUSDT",
+        "side": "LONG",
+        "entry_price": 0.06073,
+        "exit_price": 0.06096,
+        "entry_ts": 1789820700000,
+        "exit_ts": 1789821060000,
+        "entry_time": "2026-09-19T12:25:00+00:00",
+        "exit_time": "2026-09-19T12:31:00+00:00",
+        "bars_held": 6,
+        "pnl_pct": 0.17872550633953738,
+        "pnl_usdt": 0.004091872319810452,
+        "balance_after": 2.2935649327776813,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.20772356860657,
+        "rsi_at_entry": 33.98946630210247,
+        "paper": true
       }
     ]
   },
   "ZROUSDT": {
-    "balance_usdt": 2.4660264934775196,
+    "balance_usdt": 2.4793294503809435,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -111911,14 +113225,77 @@
         "adx_at_entry": 11.824695983246437,
         "rsi_at_entry": 30.985254492320863,
         "paper": true
+      },
+      {
+        "symbol": "ZROUSDT",
+        "side": "LONG",
+        "entry_price": 1.141,
+        "exit_price": 1.145,
+        "entry_ts": 1789819560000,
+        "exit_ts": 1789819680000,
+        "entry_time": "2026-09-19T12:06:00+00:00",
+        "exit_time": "2026-09-19T12:08:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": 0.15056967572305024,
+        "pnl_usdt": 0.003713088094473349,
+        "balance_after": 2.469739581571993,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.226240670844646,
+        "rsi_at_entry": 20.686334194506017,
+        "paper": true
+      },
+      {
+        "symbol": "ZROUSDT",
+        "side": "LONG",
+        "entry_price": 1.14,
+        "exit_price": 1.149,
+        "entry_ts": 1789819920000,
+        "exit_ts": 1789820100000,
+        "entry_time": "2026-09-19T12:12:00+00:00",
+        "exit_time": "2026-09-19T12:15:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": 0.5894736842105368,
+        "pnl_usdt": 0.014558464901898382,
+        "balance_after": 2.4842980464738913,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.656752353721227,
+        "rsi_at_entry": 30.721886278103923,
+        "paper": true
+      },
+      {
+        "symbol": "ZROUSDT",
+        "side": "LONG",
+        "entry_price": 1.134,
+        "exit_price": 1.134,
+        "entry_ts": 1789822020000,
+        "exit_ts": 1789823220000,
+        "entry_time": "2026-09-19T12:47:00+00:00",
+        "exit_time": "2026-09-19T13:07:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.2,
+        "pnl_usdt": -0.004968596092947752,
+        "balance_after": 2.4793294503809435,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 23.68296101745758,
+        "rsi_at_entry": 32.508129254037485,
+        "paper": true
       }
     ]
   },
   "TIAUSDT": {
     "balance_usdt": 2.418445290710077,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.4128,
+      "entry_ts": 1789823520000,
+      "target": 0.41536,
+      "stop": 0.40843944957602824,
+      "bars_held": 1,
+      "adx_at_entry": 22.717982428175993,
+      "rsi_at_entry": 31.703012319840056
+    },
     "trades": [
       {
         "symbol": "TIAUSDT",
@@ -113705,9 +115082,9 @@
     ]
   },
   "FETUSDT": {
-    "balance_usdt": 2.377179763569808,
+    "balance_usdt": 2.3781462668201114,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -115725,13 +117102,49 @@
         "adx_at_entry": null,
         "rsi_at_entry": 24.101220984312974,
         "paper": true
+      },
+      {
+        "symbol": "FETUSDT",
+        "side": "LONG",
+        "entry_price": 0.1812,
+        "exit_price": 0.1819,
+        "entry_ts": 1789814880000,
+        "exit_ts": 1789815780000,
+        "entry_time": "2026-09-19T10:48:00+00:00",
+        "exit_time": "2026-09-19T11:03:00+00:00",
+        "bars_held": 15,
+        "pnl_pct": 0.18631346578366786,
+        "pnl_usdt": 0.004429006005414848,
+        "balance_after": 2.381608769575223,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 10.916003462375949,
+        "rsi_at_entry": 32.16112160989424,
+        "paper": true
+      },
+      {
+        "symbol": "FETUSDT",
+        "side": "LONG",
+        "entry_price": 0.1831,
+        "exit_price": 0.1832,
+        "entry_ts": 1789820520000,
+        "exit_ts": 1789821720000,
+        "entry_time": "2026-09-19T12:22:00+00:00",
+        "exit_time": "2026-09-19T12:42:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.14538503549973297,
+        "pnl_usdt": -0.0034625027551116183,
+        "balance_after": 2.3781462668201114,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 23.126809711515254,
+        "rsi_at_entry": 31.04273859223524,
+        "paper": true
       }
     ]
   },
   "PENDLEUSDT": {
-    "balance_usdt": 2.3661304232311973,
+    "balance_usdt": 2.384304199810293,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -117515,13 +118928,49 @@
         "adx_at_entry": 21.54880140598087,
         "rsi_at_entry": 29.162522411946938,
         "paper": true
+      },
+      {
+        "symbol": "PENDLEUSDT",
+        "side": "LONG",
+        "entry_price": 2.756,
+        "exit_price": 2.764,
+        "entry_ts": 1789819140000,
+        "exit_ts": 1789819260000,
+        "entry_time": "2026-09-19T11:59:00+00:00",
+        "exit_time": "2026-09-19T12:01:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": 0.09027576197387543,
+        "pnl_usdt": 0.002136042268867655,
+        "balance_after": 2.368266465500065,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 11.849344473969817,
+        "rsi_at_entry": 33.97735123305716,
+        "paper": true
+      },
+      {
+        "symbol": "PENDLEUSDT",
+        "side": "LONG",
+        "entry_price": 2.736,
+        "exit_price": 2.76,
+        "entry_ts": 1789820460000,
+        "exit_ts": 1789820760000,
+        "entry_time": "2026-09-19T12:21:00+00:00",
+        "exit_time": "2026-09-19T12:26:00+00:00",
+        "bars_held": 5,
+        "pnl_pct": 0.6771929824561249,
+        "pnl_usdt": 0.016037734310228036,
+        "balance_after": 2.384304199810293,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 15.433430807176746,
+        "rsi_at_entry": 26.116244699358234,
+        "paper": true
       }
     ]
   },
   "LDOUSDT": {
     "balance_usdt": 2.699800380202126,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -118825,7 +120274,7 @@
   "SEIUSDT": {
     "balance_usdt": 2.2843035577537756,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -120775,19 +122224,10 @@
     ]
   },
   "RAYUSDT": {
-    "balance_usdt": 2.0150999380959007,
+    "balance_usdt": 2.051359516093946,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": {
-      "side": "LONG",
-      "entry_price": 1.8454,
-      "entry_ts": 1789809240000,
-      "target": 1.87864,
-      "stop": 1.7985239250789913,
-      "bars_held": 8,
-      "adx_at_entry": 19.77255274734131,
-      "rsi_at_entry": 33.974979771683664
-    },
+    "last_processed_ts": 1789823580000,
+    "position": null,
     "trades": [
       {
         "symbol": "RAYUSDT",
@@ -122624,14 +124064,77 @@
         "adx_at_entry": null,
         "rsi_at_entry": 34.97835985938613,
         "paper": true
+      },
+      {
+        "symbol": "RAYUSDT",
+        "side": "LONG",
+        "entry_price": 1.8454,
+        "exit_price": 1.8835,
+        "entry_ts": 1789809240000,
+        "exit_ts": 1789811700000,
+        "entry_time": "2026-09-19T09:14:00+00:00",
+        "exit_time": "2026-09-19T09:55:00+00:00",
+        "bars_held": 9,
+        "pnl_pct": 1.864593042158883,
+        "pnl_usdt": 0.037573413238284115,
+        "balance_after": 2.052673351334185,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 19.77255274734131,
+        "rsi_at_entry": 33.974979771683664,
+        "paper": true
+      },
+      {
+        "symbol": "RAYUSDT",
+        "side": "LONG",
+        "entry_price": 1.8148,
+        "exit_price": 1.8018,
+        "entry_ts": 1789817580000,
+        "exit_ts": 1789818780000,
+        "entry_time": "2026-09-19T11:33:00+00:00",
+        "exit_time": "2026-09-19T11:53:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.9163323782234902,
+        "pnl_usdt": -0.018809310537440282,
+        "balance_after": 2.0338640407967445,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 23.477883456502244,
+        "rsi_at_entry": 33.048108728572615,
+        "paper": true
+      },
+      {
+        "symbol": "RAYUSDT",
+        "side": "LONG",
+        "entry_price": 1.7921,
+        "exit_price": 1.8111,
+        "entry_ts": 1789820580000,
+        "exit_ts": 1789821060000,
+        "entry_time": "2026-09-19T12:23:00+00:00",
+        "exit_time": "2026-09-19T12:31:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": 0.8602086937112832,
+        "pnl_usdt": 0.017495475297201413,
+        "balance_after": 2.051359516093946,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 16.10963633579466,
+        "rsi_at_entry": 29.815224884207765,
+        "paper": true
       }
     ]
   },
   "MONUSDT": {
-    "balance_usdt": 2.54527560051452,
+    "balance_usdt": 2.5535266747352123,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.02483,
+      "entry_ts": 1789823160000,
+      "target": 0.024893000000000005,
+      "stop": 0.024707297106798577,
+      "bars_held": 7,
+      "adx_at_entry": 15.259144325404675,
+      "rsi_at_entry": 30.933931700809723
+    },
     "trades": [
       {
         "symbol": "MONUSDT",
@@ -124252,22 +125755,58 @@
         "adx_at_entry": 24.638364094581352,
         "rsi_at_entry": 30.468747283681196,
         "paper": true
+      },
+      {
+        "symbol": "MONUSDT",
+        "side": "LONG",
+        "entry_price": 0.02489,
+        "exit_price": 0.02498,
+        "entry_ts": 1789819320000,
+        "exit_ts": 1789819680000,
+        "entry_time": "2026-09-19T12:02:00+00:00",
+        "exit_time": "2026-09-19T12:08:00+00:00",
+        "bars_held": 6,
+        "pnl_pct": 0.161591000401767,
+        "pnl_usdt": 0.00411293630585341,
+        "balance_after": 2.5493885368203735,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 13.375826305896705,
+        "rsi_at_entry": 32.06521515427772,
+        "paper": true
+      },
+      {
+        "symbol": "MONUSDT",
+        "side": "LONG",
+        "entry_price": 0.02484,
+        "exit_price": 0.02493,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789822380000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T12:53:00+00:00",
+        "bars_held": 5,
+        "pnl_pct": 0.1623188405797093,
+        "pnl_usdt": 0.0041381379148388575,
+        "balance_after": 2.5535266747352123,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 16.10117835826707,
+        "rsi_at_entry": 32.59082161924911,
+        "paper": true
       }
     ]
   },
   "KITEUSDT": {
-    "balance_usdt": 2.483610231412947,
+    "balance_usdt": 2.4845134870959007,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": {
       "side": "LONG",
-      "entry_price": 0.11558,
-      "entry_ts": 1789809180000,
-      "target": 0.11624500000000001,
-      "stop": 0.11464204477718816,
-      "bars_held": 9,
-      "adx_at_entry": 20.005765560566477,
-      "rsi_at_entry": 30.96478447595652
+      "entry_price": 0.1156,
+      "entry_ts": 1789822560000,
+      "target": 0.11613050000000003,
+      "stop": 0.11463182852758406,
+      "bars_held": 17,
+      "adx_at_entry": 20.995715449975172,
+      "rsi_at_entry": 33.03511540864922
     },
     "trades": [
       {
@@ -125979,13 +127518,49 @@
         "adx_at_entry": 17.34318443727104,
         "rsi_at_entry": 32.26064708790962,
         "paper": true
+      },
+      {
+        "symbol": "KITEUSDT",
+        "side": "LONG",
+        "entry_price": 0.11558,
+        "exit_price": 0.11661,
+        "entry_ts": 1789809180000,
+        "exit_ts": 1789811760000,
+        "entry_time": "2026-09-19T09:13:00+00:00",
+        "exit_time": "2026-09-19T09:56:00+00:00",
+        "bars_held": 11,
+        "pnl_pct": 0.6911576397300598,
+        "pnl_usdt": 0.017165661855528036,
+        "balance_after": 2.500775893268475,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.005765560566477,
+        "rsi_at_entry": 30.96478447595652,
+        "paper": true
+      },
+      {
+        "symbol": "KITEUSDT",
+        "side": "LONG",
+        "entry_price": 0.11548,
+        "exit_price": 0.11496,
+        "entry_ts": 1789818120000,
+        "exit_ts": 1789819200000,
+        "entry_time": "2026-09-19T11:42:00+00:00",
+        "exit_time": "2026-09-19T12:00:00+00:00",
+        "bars_held": 18,
+        "pnl_pct": -0.6502944232767516,
+        "pnl_usdt": -0.016262406172574462,
+        "balance_after": 2.4845134870959007,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 12.053170171359357,
+        "rsi_at_entry": 32.55481429225678,
+        "paper": true
       }
     ]
   },
   "BONKUSDT": {
-    "balance_usdt": 2.545378956295084,
+    "balance_usdt": 2.5419789183800328,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -127283,13 +128858,31 @@
         "adx_at_entry": 23.168682092600708,
         "rsi_at_entry": 22.772479842690842,
         "paper": true
+      },
+      {
+        "symbol": "BONKUSDT",
+        "side": "LONG",
+        "entry_price": 3.011e-06,
+        "exit_price": 3.013e-06,
+        "entry_ts": 1789820280000,
+        "exit_ts": 1789821480000,
+        "entry_time": "2026-09-19T12:18:00+00:00",
+        "exit_time": "2026-09-19T12:38:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.13357688475589008,
+        "pnl_usdt": -0.0034000379150511684,
+        "balance_after": 2.5419789183800328,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 24.23064303512593,
+        "rsi_at_entry": 29.160372440452036,
+        "paper": true
       }
     ]
   },
   "XTZUSDT": {
     "balance_usdt": 2.570149498864822,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -128575,7 +130168,7 @@
   "SYRUPUSDT": {
     "balance_usdt": 2.6107937154491556,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -129787,9 +131380,9 @@
     ]
   },
   "ENSUSDT": {
-    "balance_usdt": 2.5685114691660393,
+    "balance_usdt": 2.5556879258443153,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -131051,23 +132644,32 @@
         "adx_at_entry": 13.017854351710158,
         "rsi_at_entry": 26.55313227477538,
         "paper": true
+      },
+      {
+        "symbol": "ENSUSDT",
+        "side": "LONG",
+        "entry_price": 6.349,
+        "exit_price": 6.33,
+        "entry_ts": 1789819200000,
+        "exit_ts": 1789820400000,
+        "entry_time": "2026-09-19T12:00:00+00:00",
+        "exit_time": "2026-09-19T12:20:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.49925972594109513,
+        "pnl_usdt": -0.012823543321724085,
+        "balance_after": 2.5556879258443153,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 21.234465636896847,
+        "rsi_at_entry": 32.13592098138554,
+        "paper": true
       }
     ]
   },
   "OPUSDT": {
-    "balance_usdt": 2.478833968979802,
+    "balance_usdt": 2.5021478830522224,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": {
-      "side": "LONG",
-      "entry_price": 0.1216,
-      "entry_ts": 1789809600000,
-      "target": 0.12206000000000003,
-      "stop": 0.12084740449111094,
-      "bars_held": 2,
-      "adx_at_entry": 18.272456591742884,
-      "rsi_at_entry": 32.69438502013681
-    },
+    "last_processed_ts": 1789823580000,
+    "position": null,
     "trades": [
       {
         "symbol": "OPUSDT",
@@ -132544,13 +134146,67 @@
         "adx_at_entry": 19.423896980284496,
         "rsi_at_entry": 29.048824081834766,
         "paper": true
+      },
+      {
+        "symbol": "OPUSDT",
+        "side": "LONG",
+        "entry_price": 0.1216,
+        "exit_price": 0.1222,
+        "entry_ts": 1789809600000,
+        "exit_ts": 1789811700000,
+        "entry_time": "2026-09-19T09:20:00+00:00",
+        "exit_time": "2026-09-19T09:55:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": 0.2934210526315817,
+        "pnl_usdt": 0.0072734207247693305,
+        "balance_after": 2.4861073897045713,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 18.272456591742884,
+        "rsi_at_entry": 32.69438502013681,
+        "paper": true
+      },
+      {
+        "symbol": "OPUSDT",
+        "side": "LONG",
+        "entry_price": 0.1245,
+        "exit_price": 0.1255,
+        "entry_ts": 1789819500000,
+        "exit_ts": 1789819620000,
+        "entry_time": "2026-09-19T12:05:00+00:00",
+        "exit_time": "2026-09-19T12:07:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": 0.6032128514056232,
+        "pnl_usdt": 0.01499651927444301,
+        "balance_after": 2.5011039089790144,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 23.510530362223594,
+        "rsi_at_entry": 34.8759525561409,
+        "paper": true
+      },
+      {
+        "symbol": "OPUSDT",
+        "side": "LONG",
+        "entry_price": 0.1241,
+        "exit_price": 0.1244,
+        "entry_ts": 1789820520000,
+        "exit_ts": 1789821720000,
+        "entry_time": "2026-09-19T12:22:00+00:00",
+        "exit_time": "2026-09-19T12:42:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": 0.04174053182916573,
+        "pnl_usdt": 0.0010439740732079983,
+        "balance_after": 2.5021478830522224,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 18.069322875518434,
+        "rsi_at_entry": 34.242663118782176,
+        "paper": true
       }
     ]
   },
   "XPLUSDT": {
-    "balance_usdt": 2.2930738349108784,
+    "balance_usdt": 2.300613669842767,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -134460,14 +136116,41 @@
         "adx_at_entry": null,
         "rsi_at_entry": 24.952541365731363,
         "paper": true
+      },
+      {
+        "symbol": "XPLUSDT",
+        "side": "LONG",
+        "entry_price": 0.09077,
+        "exit_price": 0.09125,
+        "entry_ts": 1789815060000,
+        "exit_ts": 1789815960000,
+        "entry_time": "2026-09-19T10:51:00+00:00",
+        "exit_time": "2026-09-19T11:06:00+00:00",
+        "bars_held": 15,
+        "pnl_pct": 0.3288090778891642,
+        "pnl_usdt": 0.007539834931888478,
+        "balance_after": 2.300613669842767,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 13.600824195759026,
+        "rsi_at_entry": 34.06316620723331,
+        "paper": true
       }
     ]
   },
   "JTOUSDT": {
     "balance_usdt": 2.3169435314962508,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.4566,
+      "entry_ts": 1789823400000,
+      "target": 0.4598749999999999,
+      "stop": 0.45124556258790893,
+      "bars_held": 3,
+      "adx_at_entry": 24.468383918167017,
+      "rsi_at_entry": 33.60739894564003
+    },
     "trades": [
       {
         "symbol": "JTOUSDT",
@@ -136362,9 +138045,9 @@
     ]
   },
   "GRASSUSDT": {
-    "balance_usdt": 2.761869538440906,
+    "balance_usdt": 2.7685299040950495,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -137680,13 +139363,49 @@
         "adx_at_entry": 15.995864809951176,
         "rsi_at_entry": 32.41258159111642,
         "paper": true
+      },
+      {
+        "symbol": "GRASSUSDT",
+        "side": "LONG",
+        "entry_price": 0.343,
+        "exit_price": 0.3437,
+        "entry_ts": 1789815600000,
+        "exit_ts": 1789816320000,
+        "entry_time": "2026-09-19T11:00:00+00:00",
+        "exit_time": "2026-09-19T11:12:00+00:00",
+        "bars_held": 12,
+        "pnl_pct": 0.00408163265305489,
+        "pnl_usdt": 0.00011272936891604246,
+        "balance_after": 2.761982267809822,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.530172362467688,
+        "rsi_at_entry": 21.97587620672992,
+        "paper": true
+      },
+      {
+        "symbol": "GRASSUSDT",
+        "side": "LONG",
+        "entry_price": 0.3432,
+        "exit_price": 0.3447,
+        "entry_ts": 1789820520000,
+        "exit_ts": 1789821300000,
+        "entry_time": "2026-09-19T12:22:00+00:00",
+        "exit_time": "2026-09-19T12:35:00+00:00",
+        "bars_held": 13,
+        "pnl_pct": 0.2370629370629374,
+        "pnl_usdt": 0.006547636285227476,
+        "balance_after": 2.7685299040950495,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 24.453265005692902,
+        "rsi_at_entry": 18.4178418976619,
+        "paper": true
       }
     ]
   },
   "STRKUSDT": {
     "balance_usdt": 2.546718103249669,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -139278,7 +140997,7 @@
   "WIFUSDT": {
     "balance_usdt": 2.3747277396270334,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -140796,9 +142515,9 @@
     ]
   },
   "JASMYUSDT": {
-    "balance_usdt": 2.801379048579855,
+    "balance_usdt": 2.8103030717452713,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -141880,13 +143599,49 @@
         "adx_at_entry": 22.55913574800253,
         "rsi_at_entry": 20.1652960552196,
         "paper": true
+      },
+      {
+        "symbol": "JASMYUSDT",
+        "side": "LONG",
+        "entry_price": 0.004035,
+        "exit_price": 0.004048,
+        "entry_ts": 1789812840000,
+        "exit_ts": 1789813740000,
+        "entry_time": "2026-09-19T10:14:00+00:00",
+        "exit_time": "2026-09-19T10:29:00+00:00",
+        "bars_held": 15,
+        "pnl_pct": 0.12218091697645572,
+        "pnl_usdt": 0.0034227506095416693,
+        "balance_after": 2.8048017991893968,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 0.0,
+        "paper": true
+      },
+      {
+        "symbol": "JASMYUSDT",
+        "side": "LONG",
+        "entry_price": 0.004039,
+        "exit_price": 0.004055,
+        "entry_ts": 1789815300000,
+        "exit_ts": 1789815720000,
+        "entry_time": "2026-09-19T10:55:00+00:00",
+        "exit_time": "2026-09-19T11:02:00+00:00",
+        "bars_held": 7,
+        "pnl_pct": 0.19613765783608617,
+        "pnl_usdt": 0.005501272555874515,
+        "balance_after": 2.8103030717452713,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 23.171102414628226,
+        "rsi_at_entry": 34.15349756610793,
+        "paper": true
       }
     ]
   },
   "AIUSDT": {
-    "balance_usdt": 2.448795228595419,
+    "balance_usdt": 2.4244398519879597,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -143328,14 +145083,59 @@
         "adx_at_entry": 19.673331673001666,
         "rsi_at_entry": 33.85932237599654,
         "paper": true
+      },
+      {
+        "symbol": "AIUSDT",
+        "side": "LONG",
+        "entry_price": 0.020155,
+        "exit_price": 0.020002,
+        "entry_ts": 1789813560000,
+        "exit_ts": 1789813740000,
+        "entry_time": "2026-09-19T10:26:00+00:00",
+        "exit_time": "2026-09-19T10:29:00+00:00",
+        "bars_held": 3,
+        "pnl_pct": -0.9591168444554719,
+        "pnl_usdt": -0.023486807523680486,
+        "balance_after": 2.4253084210717386,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 13.624062177824166,
+        "rsi_at_entry": 19.920043427520653,
+        "paper": true
+      },
+      {
+        "symbol": "AIUSDT",
+        "side": "LONG",
+        "entry_price": 0.020099,
+        "exit_price": 0.020132,
+        "entry_ts": 1789816260000,
+        "exit_ts": 1789816980000,
+        "entry_time": "2026-09-19T11:11:00+00:00",
+        "exit_time": "2026-09-19T11:23:00+00:00",
+        "bars_held": 12,
+        "pnl_pct": -0.035812727001334504,
+        "pnl_usdt": -0.0008685690837788584,
+        "balance_after": 2.4244398519879597,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 13.612353467972836,
+        "rsi_at_entry": 30.2427248260978,
+        "paper": true
       }
     ]
   },
   "COMPUSDT": {
     "balance_usdt": 2.6688853770814616,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 21.6,
+      "entry_ts": 1789823220000,
+      "target": 21.686000000000007,
+      "stop": 21.462945266407907,
+      "bars_held": 6,
+      "adx_at_entry": 16.910258293399757,
+      "rsi_at_entry": 27.814188079153908
+    },
     "trades": [
       {
         "symbol": "COMPUSDT",
@@ -144536,9 +146336,9 @@
     ]
   },
   "EDGEUSDT": {
-    "balance_usdt": 2.356816465620627,
+    "balance_usdt": 2.3629272856316463,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -146700,22 +148500,40 @@
         "adx_at_entry": 18.947478673242113,
         "rsi_at_entry": 33.438338266364795,
         "paper": true
+      },
+      {
+        "symbol": "EDGEUSDT",
+        "side": "LONG",
+        "entry_price": 0.5661,
+        "exit_price": 0.5687,
+        "entry_ts": 1789814100000,
+        "exit_ts": 1789814580000,
+        "entry_time": "2026-09-19T10:35:00+00:00",
+        "exit_time": "2026-09-19T10:43:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": 0.2592828122239773,
+        "pnl_usdt": 0.006110820011019147,
+        "balance_after": 2.3629272856316463,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 11.867187785353673,
+        "rsi_at_entry": 26.08713072152628,
+        "paper": true
       }
     ]
   },
   "EIGENUSDT": {
-    "balance_usdt": 2.3851234226202664,
+    "balance_usdt": 2.4021303896337325,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": {
       "side": "LONG",
-      "entry_price": 0.23,
-      "entry_ts": 1789809000000,
-      "target": 0.23098500000000005,
-      "stop": 0.2283397590536311,
-      "bars_held": 12,
-      "adx_at_entry": 22.455616071375715,
-      "rsi_at_entry": 27.995514468106933
+      "entry_price": 0.2356,
+      "entry_ts": 1789823520000,
+      "target": 0.237385,
+      "stop": 0.23264087850874623,
+      "bars_held": 1,
+      "adx_at_entry": 24.1554073958224,
+      "rsi_at_entry": 30.509445199526397
     },
     "trades": [
       {
@@ -148103,13 +149921,31 @@
         "adx_at_entry": 20.860694011235022,
         "rsi_at_entry": 25.666343791644252,
         "paper": true
+      },
+      {
+        "symbol": "EIGENUSDT",
+        "side": "LONG",
+        "entry_price": 0.23,
+        "exit_price": 0.2321,
+        "entry_ts": 1789809000000,
+        "exit_ts": 1789811700000,
+        "entry_time": "2026-09-19T09:10:00+00:00",
+        "exit_time": "2026-09-19T09:55:00+00:00",
+        "bars_held": 13,
+        "pnl_pct": 0.7130434782608654,
+        "pnl_usdt": 0.017006967013466046,
+        "balance_after": 2.4021303896337325,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.455616071375715,
+        "rsi_at_entry": 27.995514468106933,
+        "paper": true
       }
     ]
   },
   "2ZUSDT": {
-    "balance_usdt": 2.6817595201670006,
+    "balance_usdt": 2.685220217316268,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -148777,14 +150613,41 @@
         "adx_at_entry": null,
         "rsi_at_entry": 0.0,
         "paper": true
+      },
+      {
+        "symbol": "2ZUSDT",
+        "side": "LONG",
+        "entry_price": 0.050145,
+        "exit_price": 0.05031,
+        "entry_ts": 1789813260000,
+        "exit_ts": 1789813500000,
+        "entry_time": "2026-09-19T10:21:00+00:00",
+        "exit_time": "2026-09-19T10:25:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.1290457672748997,
+        "pnl_usdt": 0.0034606971492672223,
+        "balance_after": 2.685220217316268,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 0.0,
+        "paper": true
       }
     ]
   },
   "FARTCOINUSDT": {
-    "balance_usdt": 2.3718180676935816,
+    "balance_usdt": 2.3814972432277712,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.1606,
+      "entry_ts": 1789823220000,
+      "target": 0.16116,
+      "stop": 0.1597109555691643,
+      "bars_held": 6,
+      "adx_at_entry": 19.064398981119663,
+      "rsi_at_entry": 33.8023168315855
+    },
     "trades": [
       {
         "symbol": "FARTCOINUSDT",
@@ -150855,14 +152718,59 @@
         "adx_at_entry": 22.801244977360138,
         "rsi_at_entry": 23.44884894357729,
         "paper": true
+      },
+      {
+        "symbol": "FARTCOINUSDT",
+        "side": "LONG",
+        "entry_price": 0.161,
+        "exit_price": 0.1617,
+        "entry_ts": 1789815300000,
+        "exit_ts": 1789815780000,
+        "entry_time": "2026-09-19T10:55:00+00:00",
+        "exit_time": "2026-09-19T11:03:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": 0.23478260869565598,
+        "pnl_usdt": 0.005568616332845888,
+        "balance_after": 2.3773866840264275,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 24.038274741142224,
+        "rsi_at_entry": 28.41745932159553,
+        "paper": true
+      },
+      {
+        "symbol": "FARTCOINUSDT",
+        "side": "LONG",
+        "entry_price": 0.1609,
+        "exit_price": 0.1615,
+        "entry_ts": 1789822080000,
+        "exit_ts": 1789822320000,
+        "entry_time": "2026-09-19T12:48:00+00:00",
+        "exit_time": "2026-09-19T12:52:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.17290242386576582,
+        "pnl_usdt": 0.004110559201343733,
+        "balance_after": 2.3814972432277712,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 18.047256315045317,
+        "rsi_at_entry": 33.07736908763408,
+        "paper": true
       }
     ]
   },
   "AXSUSDT": {
-    "balance_usdt": 2.790822314283107,
+    "balance_usdt": 2.7963594836556687,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 1.015,
+      "entry_ts": 1789823340000,
+      "target": 1.0168499999999998,
+      "stop": 1.0113613189202681,
+      "bars_held": 4,
+      "adx_at_entry": 18.113953504074782,
+      "rsi_at_entry": 27.071220493851143
+    },
     "trades": [
       {
         "symbol": "AXSUSDT",
@@ -151709,13 +153617,31 @@
         "adx_at_entry": 22.709365193280842,
         "rsi_at_entry": 28.350437664121486,
         "paper": true
+      },
+      {
+        "symbol": "AXSUSDT",
+        "side": "LONG",
+        "entry_price": 1.004,
+        "exit_price": 1.008,
+        "entry_ts": 1789813200000,
+        "exit_ts": 1789813440000,
+        "entry_time": "2026-09-19T10:20:00+00:00",
+        "exit_time": "2026-09-19T10:24:00+00:00",
+        "bars_held": 4,
+        "pnl_pct": 0.19840637450199233,
+        "pnl_usdt": 0.005537169372561657,
+        "balance_after": 2.7963594836556687,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 0.0,
+        "paper": true
       }
     ]
   },
   "CHZUSDT": {
-    "balance_usdt": 2.5643871239219016,
+    "balance_usdt": 2.5626325432581654,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -152797,13 +154723,31 @@
         "adx_at_entry": 24.69186143710178,
         "rsi_at_entry": 29.49846231413386,
         "paper": true
+      },
+      {
+        "symbol": "CHZUSDT",
+        "side": "LONG",
+        "entry_price": 0.0152,
+        "exit_price": 0.01522,
+        "entry_ts": 1789822800000,
+        "exit_ts": 1789823400000,
+        "entry_time": "2026-09-19T13:00:00+00:00",
+        "exit_time": "2026-09-19T13:10:00+00:00",
+        "bars_held": 10,
+        "pnl_pct": -0.06842105263158432,
+        "pnl_usdt": -0.0017545806637362382,
+        "balance_after": 2.5626325432581654,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 15.09531101514152,
+        "rsi_at_entry": 24.736448992322778,
+        "paper": true
       }
     ]
   },
   "MANAUSDT": {
     "balance_usdt": 2.6392702231226384,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -154429,9 +156373,9 @@
     ]
   },
   "SKRUSDT": {
-    "balance_usdt": 2.166137471666392,
+    "balance_usdt": 2.1605962306573874,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -156503,14 +158447,41 @@
         "adx_at_entry": 20.89694306941536,
         "rsi_at_entry": 32.193870880960276,
         "paper": true
+      },
+      {
+        "symbol": "SKRUSDT",
+        "side": "LONG",
+        "entry_price": 0.019709,
+        "exit_price": 0.019698,
+        "entry_ts": 1789817340000,
+        "exit_ts": 1789818540000,
+        "entry_time": "2026-09-19T11:29:00+00:00",
+        "exit_time": "2026-09-19T11:49:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.2558120655538109,
+        "pnl_usdt": -0.0055412410090047715,
+        "balance_after": 2.1605962306573874,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 22.61439253091198,
+        "rsi_at_entry": 32.18249029646947,
+        "paper": true
       }
     ]
   },
   "APEUSDT": {
     "balance_usdt": 2.570012243712857,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.1412,
+      "entry_ts": 1789823520000,
+      "target": 0.141915,
+      "stop": 0.14043816012181037,
+      "bars_held": 1,
+      "adx_at_entry": 15.55063858040044,
+      "rsi_at_entry": 18.504375027396733
+    },
     "trades": [
       {
         "symbol": "APEUSDT",
@@ -158019,7 +159990,7 @@
   "KMNOUSDT": {
     "balance_usdt": 2.7882875594772836,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -158709,9 +160680,9 @@
     ]
   },
   "ZAMAUSDT": {
-    "balance_usdt": 2.6895225964703626,
+    "balance_usdt": 2.6856857292940934,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -159757,14 +161728,41 @@
         "adx_at_entry": 17.078091518235222,
         "rsi_at_entry": 31.3148643673495,
         "paper": true
+      },
+      {
+        "symbol": "ZAMAUSDT",
+        "side": "LONG",
+        "entry_price": 0.074991,
+        "exit_price": 0.075034,
+        "entry_ts": 1789818600000,
+        "exit_ts": 1789819800000,
+        "entry_time": "2026-09-19T11:50:00+00:00",
+        "exit_time": "2026-09-19T12:10:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.14265978584096578,
+        "pnl_usdt": -0.0038368671762691875,
+        "balance_after": 2.6856857292940934,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 15.066820911374423,
+        "rsi_at_entry": 32.534074366851996,
+        "paper": true
       }
     ]
   },
   "1INCHUSDT": {
-    "balance_usdt": 2.5369123877724804,
+    "balance_usdt": 2.5385016594961733,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.09955,
+      "entry_ts": 1789823460000,
+      "target": 0.0998435,
+      "stop": 0.09902551549117253,
+      "bars_held": 2,
+      "adx_at_entry": 21.541763450807508,
+      "rsi_at_entry": 34.65456337991597
+    },
     "trades": [
       {
         "symbol": "1INCHUSDT",
@@ -160791,14 +162789,59 @@
         "adx_at_entry": null,
         "rsi_at_entry": 28.40100343798551,
         "paper": true
+      },
+      {
+        "symbol": "1INCHUSDT",
+        "side": "LONG",
+        "entry_price": 0.09934,
+        "exit_price": 0.09942,
+        "entry_ts": 1789815540000,
+        "exit_ts": 1789816740000,
+        "entry_time": "2026-09-19T10:59:00+00:00",
+        "exit_time": "2026-09-19T11:19:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.11946849204751687,
+        "pnl_usdt": -0.003030810974238296,
+        "balance_after": 2.533881576798242,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 19.41387539674285,
+        "rsi_at_entry": 19.55106154717967,
+        "paper": true
+      },
+      {
+        "symbol": "1INCHUSDT",
+        "side": "LONG",
+        "entry_price": 0.09939,
+        "exit_price": 0.09977,
+        "entry_ts": 1789820280000,
+        "exit_ts": 1789821120000,
+        "entry_time": "2026-09-19T12:18:00+00:00",
+        "exit_time": "2026-09-19T12:32:00+00:00",
+        "bars_held": 14,
+        "pnl_pct": 0.1823322265821425,
+        "pnl_usdt": 0.004620082697931238,
+        "balance_after": 2.5385016594961733,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 22.83545588821924,
+        "rsi_at_entry": 12.52614080184621,
+        "paper": true
       }
     ]
   },
   "ZENUSDT": {
-    "balance_usdt": 2.753034440095465,
+    "balance_usdt": 2.7315828179233588,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 7.936,
+      "entry_ts": 1789823280000,
+      "target": 8.049,
+      "stop": 7.797228244948765,
+      "bars_held": 5,
+      "adx_at_entry": 20.2331189167869,
+      "rsi_at_entry": 27.606951329675198
+    },
     "trades": [
       {
         "symbol": "ZENUSDT",
@@ -162419,14 +164462,41 @@
         "adx_at_entry": 21.229788488040974,
         "rsi_at_entry": 26.279512815033357,
         "paper": true
+      },
+      {
+        "symbol": "ZENUSDT",
+        "side": "LONG",
+        "entry_price": 7.942,
+        "exit_price": 7.896,
+        "entry_ts": 1789814400000,
+        "exit_ts": 1789814880000,
+        "entry_time": "2026-09-19T10:40:00+00:00",
+        "exit_time": "2026-09-19T10:48:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": -0.7791991941576462,
+        "pnl_usdt": -0.021451622172106166,
+        "balance_after": 2.7315828179233588,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 18.25488156000903,
+        "rsi_at_entry": 33.11611900827836,
+        "paper": true
       }
     ]
   },
   "SNXUSDT": {
-    "balance_usdt": 2.6688822145678612,
+    "balance_usdt": 2.669438624640863,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.2279,
+      "entry_ts": 1789823520000,
+      "target": 0.22878000000000004,
+      "stop": 0.22638950339292002,
+      "bars_held": 1,
+      "adx_at_entry": 23.01642568419948,
+      "rsi_at_entry": 34.53652183106436
+    },
     "trades": [
       {
         "symbol": "SNXUSDT",
@@ -163129,13 +165199,31 @@
         "adx_at_entry": 11.404514801705062,
         "rsi_at_entry": 28.05371524555366,
         "paper": true
+      },
+      {
+        "symbol": "SNXUSDT",
+        "side": "LONG",
+        "entry_price": 0.2264,
+        "exit_price": 0.2269,
+        "entry_ts": 1789816500000,
+        "exit_ts": 1789816620000,
+        "entry_time": "2026-09-19T11:15:00+00:00",
+        "exit_time": "2026-09-19T11:17:00+00:00",
+        "bars_held": 2,
+        "pnl_pct": 0.0208480565371027,
+        "pnl_usdt": 0.0005564100730017785,
+        "balance_after": 2.669438624640863,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 23.448140844430807,
+        "rsi_at_entry": 29.800261707255586,
+        "paper": true
       }
     ]
   },
   "AWEUSDT": {
     "balance_usdt": 2.7440611032612567,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -163843,10 +165931,19 @@
     ]
   },
   "SANDUSDT": {
-    "balance_usdt": 2.6690435432546815,
+    "balance_usdt": 2.6684378028760705,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.03947,
+      "entry_ts": 1789823460000,
+      "target": 0.03959,
+      "stop": 0.03929795349465915,
+      "bars_held": 2,
+      "adx_at_entry": 17.060480635594978,
+      "rsi_at_entry": 30.983225504227732
+    },
     "trades": [
       {
         "symbol": "SANDUSDT",
@@ -165035,13 +167132,31 @@
         "adx_at_entry": 13.359028191367726,
         "rsi_at_entry": 31.328570712684268,
         "paper": true
+      },
+      {
+        "symbol": "SANDUSDT",
+        "side": "LONG",
+        "entry_price": 0.03948,
+        "exit_price": 0.03955,
+        "entry_ts": 1789820700000,
+        "exit_ts": 1789821900000,
+        "entry_time": "2026-09-19T12:25:00+00:00",
+        "exit_time": "2026-09-19T12:45:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.02269503546099136,
+        "pnl_usdt": -0.0006057403786110527,
+        "balance_after": 2.6684378028760705,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 19.982964463696664,
+        "rsi_at_entry": 21.416262798758396,
+        "paper": true
       }
     ]
   },
   "IMXUSDT": {
-    "balance_usdt": 2.8161216686566903,
+    "balance_usdt": 2.8245399254480983,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -165817,13 +167932,31 @@
         "adx_at_entry": null,
         "rsi_at_entry": 22.899510201042887,
         "paper": true
+      },
+      {
+        "symbol": "IMXUSDT",
+        "side": "LONG",
+        "entry_price": 0.1403,
+        "exit_price": 0.141,
+        "entry_ts": 1789821300000,
+        "exit_ts": 1789821780000,
+        "entry_time": "2026-09-19T12:35:00+00:00",
+        "exit_time": "2026-09-19T12:43:00+00:00",
+        "bars_held": 8,
+        "pnl_pct": 0.29893086243761824,
+        "pnl_usdt": 0.008418256791407952,
+        "balance_after": 2.8245399254480983,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 18.508114868888487,
+        "rsi_at_entry": 34.28300705483694,
+        "paper": true
       }
     ]
   },
   "SUSDT": {
-    "balance_usdt": 2.6371117527238503,
+    "balance_usdt": 2.6264240073390703,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -167031,13 +169164,49 @@
         "adx_at_entry": 20.74127978444338,
         "rsi_at_entry": 20.065192545840475,
         "paper": true
+      },
+      {
+        "symbol": "SUSDT",
+        "side": "LONG",
+        "entry_price": 0.03243,
+        "exit_price": 0.03269,
+        "entry_ts": 1789816860000,
+        "exit_ts": 1789817160000,
+        "entry_time": "2026-09-19T11:21:00+00:00",
+        "exit_time": "2026-09-19T11:26:00+00:00",
+        "bars_held": 5,
+        "pnl_pct": 0.6017267961763686,
+        "pnl_usdt": 0.01586820806125555,
+        "balance_after": 2.652979960785106,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.894902740203584,
+        "rsi_at_entry": 27.66558933696409,
+        "paper": true
+      },
+      {
+        "symbol": "SUSDT",
+        "side": "LONG",
+        "entry_price": 0.03246,
+        "exit_price": 0.0322,
+        "entry_ts": 1789820820000,
+        "exit_ts": 1789821420000,
+        "entry_time": "2026-09-19T12:27:00+00:00",
+        "exit_time": "2026-09-19T12:37:00+00:00",
+        "bars_held": 10,
+        "pnl_pct": -1.0009858287122713,
+        "pnl_usdt": -0.026555953446035563,
+        "balance_after": 2.6264240073390703,
+        "exit_reason": "\u0441\u0442\u043e\u043f",
+        "adx_at_entry": 22.656154838202188,
+        "rsi_at_entry": 29.73023014091129,
+        "paper": true
       }
     ]
   },
   "METUSDT": {
     "balance_usdt": 2.3818534123728328,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -167999,8 +170168,17 @@
   "ZKUSDT": {
     "balance_usdt": 2.5570960697436558,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
-    "position": null,
+    "last_processed_ts": 1789823580000,
+    "position": {
+      "side": "LONG",
+      "entry_price": 0.01118,
+      "entry_ts": 1789823580000,
+      "target": 0.011211499999999996,
+      "stop": 0.011120300753773604,
+      "bars_held": 0,
+      "adx_at_entry": 19.220376418598455,
+      "rsi_at_entry": 34.492517275875855
+    },
     "trades": [
       {
         "symbol": "ZKUSDT",
@@ -169049,9 +171227,9 @@
     ]
   },
   "GLMUSDT": {
-    "balance_usdt": 2.7494026856026514,
+    "balance_usdt": 2.7506925288378725,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -170025,13 +172203,31 @@
         "adx_at_entry": 23.986052649715656,
         "rsi_at_entry": 29.01692481140944,
         "paper": true
+      },
+      {
+        "symbol": "GLMUSDT",
+        "side": "LONG",
+        "entry_price": 0.1215,
+        "exit_price": 0.1218,
+        "entry_ts": 1789820580000,
+        "exit_ts": 1789821360000,
+        "entry_time": "2026-09-19T12:23:00+00:00",
+        "exit_time": "2026-09-19T12:36:00+00:00",
+        "bars_held": 13,
+        "pnl_pct": 0.04691358024692063,
+        "pnl_usdt": 0.0012898432352210776,
+        "balance_after": 2.7506925288378725,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": 20.634739119565886,
+        "rsi_at_entry": 29.685424068564004,
+        "paper": true
       }
     ]
   },
   "BATUSDT": {
-    "balance_usdt": 2.732079883287031,
+    "balance_usdt": 2.724630441919017,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -171203,13 +173399,49 @@
         "adx_at_entry": 23.497123877022005,
         "rsi_at_entry": 27.59503821035166,
         "paper": true
+      },
+      {
+        "symbol": "BATUSDT",
+        "side": "LONG",
+        "entry_price": 0.0796,
+        "exit_price": 0.0799,
+        "entry_ts": 1789812960000,
+        "exit_ts": 1789813920000,
+        "entry_time": "2026-09-19T10:16:00+00:00",
+        "exit_time": "2026-09-19T10:32:00+00:00",
+        "bars_held": 16,
+        "pnl_pct": 0.1768844221105461,
+        "pnl_usdt": 0.004832623713150852,
+        "balance_after": 2.736912507000182,
+        "exit_reason": "\u0446\u0435\u043b\u044c",
+        "adx_at_entry": null,
+        "rsi_at_entry": 27.174384306360224,
+        "paper": true
+      },
+      {
+        "symbol": "BATUSDT",
+        "side": "LONG",
+        "entry_price": 0.0804,
+        "exit_price": 0.0802,
+        "entry_ts": 1789820700000,
+        "exit_ts": 1789821900000,
+        "entry_time": "2026-09-19T12:25:00+00:00",
+        "exit_time": "2026-09-19T12:45:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -0.4487562189054798,
+        "pnl_usdt": -0.01228206508116525,
+        "balance_after": 2.724630441919017,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 18.28937404673611,
+        "rsi_at_entry": 29.77860117184663,
+        "paper": true
       }
     ]
   },
   "MINAUSDT": {
-    "balance_usdt": 2.2769588582067004,
+    "balance_usdt": 2.2374173792521077,
     "starting_capital": 2.903225806451613,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
@@ -173101,13 +175333,31 @@
         "adx_at_entry": 22.027808178911222,
         "rsi_at_entry": 34.401260237837846,
         "paper": true
+      },
+      {
+        "symbol": "MINAUSDT",
+        "side": "LONG",
+        "entry_price": 0.11519,
+        "exit_price": 0.11342,
+        "entry_ts": 1789818240000,
+        "exit_ts": 1789819440000,
+        "entry_time": "2026-09-19T11:44:00+00:00",
+        "exit_time": "2026-09-19T12:04:00+00:00",
+        "bars_held": 20,
+        "pnl_pct": -1.7365917180310737,
+        "pnl_usdt": -0.0395414789545927,
+        "balance_after": 2.2374173792521077,
+        "exit_reason": "\u0442\u0430\u0439\u043c\u0430\u0443\u0442",
+        "adx_at_entry": 24.218160775428487,
+        "rsi_at_entry": 29.601880583064215,
+        "paper": true
       }
     ]
   },
   "CROUSDT": {
     "balance_usdt": 9.5214191503771,
     "starting_capital": 9.67741935483871,
-    "last_processed_ts": 1789809720000,
+    "last_processed_ts": 1789823580000,
     "position": null,
     "trades": [
       {
