@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-09-21 05:53:11 UTC**
+Последняя проверка: **2026-09-21 11:57:25 UTC**
 
 ## Портфель
 
@@ -28,15 +28,15 @@
 | BATUSDT | +8.01% | 1 | — |
 | INJUSDT | +7.13% | 2 | — |
 | DOTUSDT | +5.78% | 2 | — |
-| LINKUSDT | +5.41% | 1 | — |
-| XLMUSDT | +4.97% | 1 | — |
-| POLUSDT | +4.35% | 1 | — |
+| LINKUSDT | +5.41% | 1 | LONG @ 13.0460 |
+| XLMUSDT | +4.97% | 1 | LONG @ 0.2130 |
+| POLUSDT | +4.35% | 1 | LONG @ 0.1123 |
 | GLMUSDT | +3.92% | 1 | — |
 | PENGUUSDT | +3.86% | 2 | — |
 | FILUSDT | +3.53% | 3 | — |
 | LDOUSDT | +3.53% | 2 | — |
 | AEROUSDT | +3.51% | 1 | — |
-| SEIUSDT | +1.97% | 2 | — |
+| SEIUSDT | +1.97% | 2 | LONG @ 0.0633 |
 | BONKUSDT | +1.85% | 1 | — |
 | MORPHOUSDT | +1.60% | 1 | — |
 | BNBUSDT | +1.27% | 1 | — |
@@ -47,7 +47,7 @@
 | SOLUSDT | +0.00% | 0 | — |
 | HYPEUSDT | +0.00% | 0 | — |
 | LTCUSDT | +0.00% | 0 | — |
-| TAOUSDT | +0.00% | 0 | — |
+| TAOUSDT | +0.00% | 0 | LONG @ 284.5000 |
 | PAXGUSDT | +0.00% | 0 | — |
 | PUMPUSDT | +0.00% | 0 | — |
 | WLFIUSDT | +0.00% | 0 | — |
@@ -72,7 +72,7 @@
 | GRTUSDT | +0.00% | 0 | — |
 | EDGEUSDT | +0.00% | 0 | — |
 | 2ZUSDT | +0.00% | 0 | — |
-| FARTCOINUSDT | +0.00% | 0 | — |
+| FARTCOINUSDT | +0.00% | 0 | LONG @ 0.1818 |
 | AXSUSDT | +0.00% | 0 | — |
 | SKRUSDT | +0.00% | 0 | — |
 | APEUSDT | +0.00% | 0 | — |
@@ -81,10 +81,10 @@
 | ZENUSDT | +0.00% | 0 | — |
 | AWEUSDT | +0.00% | 0 | — |
 | ZKUSDT | +0.00% | 0 | — |
-| HBARUSDT | -0.10% | 1 | — |
+| HBARUSDT | -0.10% | 1 | LONG @ 0.0896 |
 | ONDOUSDT | -0.13% | 4 | — |
 | KMNOUSDT | -0.20% | 2 | — |
-| XRPUSDT | -1.23% | 1 | — |
+| XRPUSDT | -1.23% | 1 | LONG @ 1.4903 |
 | QNTUSDT | -1.34% | 1 | — |
 | CHZUSDT | -1.52% | 1 | — |
 | SHIBUSDT | -1.91% | 1 | — |
@@ -93,11 +93,11 @@
 | UNIUSDT | -2.19% | 2 | — |
 | PENDLEUSDT | -2.98% | 1 | — |
 | ENSUSDT | -3.11% | 1 | — |
-| SANDUSDT | -3.21% | 1 | — |
+| SANDUSDT | -3.21% | 1 | LONG @ 0.0418 |
 | AAVEUSDT | -3.27% | 1 | — |
 | STXUSDT | -3.29% | 1 | LONG @ 0.3346 |
 | WLDUSDT | -3.39% | 2 | — |
-| IMXUSDT | -3.75% | 1 | — |
+| IMXUSDT | -3.75% | 1 | LONG @ 0.1561 |
 | DOGEUSDT | -3.94% | 1 | — |
 | ICPUSDT | -4.14% | 1 | LONG @ 2.9330 |
 | JTOUSDT | -4.18% | 1 | — |
