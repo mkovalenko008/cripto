@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 100 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-09-24 09:55:36 UTC**
+Последняя проверка: **2026-09-24 14:58:13 UTC**
 
 ## Портфель
 
@@ -28,7 +28,7 @@
 | LDOUSDT | +16.97% | 1 | — |
 | WIFUSDT | +16.88% | 3 | — |
 | BATUSDT | +16.86% | 3 | — |
-| ONDOUSDT | +15.88% | 2 | — |
+| ONDOUSDT | +15.88% | 2 | LONG @ 0.4853 |
 | ZKUSDT | +15.64% | 1 | — |
 | SKYUSDT | +15.60% | 1 | — |
 | TAOUSDT | +15.34% | 3 | — |
@@ -42,7 +42,7 @@
 | AVAXUSDT | +11.87% | 4 | — |
 | KITEUSDT | +11.72% | 2 | — |
 | ASTERUSDT | +9.58% | 1 | — |
-| SNXUSDT | +9.54% | 2 | — |
+| SNXUSDT | +9.54% | 2 | LONG @ 0.2417 |
 | APEUSDT | +9.48% | 2 | — |
 | CAKEUSDT | +9.31% | 1 | — |
 | BONKUSDT | +8.68% | 3 | — |
@@ -54,20 +54,20 @@
 | FARTCOINUSDT | +5.82% | 2 | — |
 | PENDLEUSDT | +4.90% | 1 | — |
 | MINAUSDT | +4.79% | 2 | — |
-| ATOMUSDT | +4.78% | 1 | — |
+| ATOMUSDT | +4.78% | 1 | LONG @ 1.7380 |
 | JASMYUSDT | +4.54% | 2 | — |
 | SOLUSDT | +4.25% | 3 | — |
 | BCHUSDT | +4.08% | 3 | — |
 | SUIUSDT | +3.56% | 2 | — |
 | ADAUSDT | +3.31% | 2 | — |
 | 2ZUSDT | +2.92% | 2 | — |
-| HBARUSDT | +2.82% | 2 | — |
+| HBARUSDT | +2.82% | 2 | LONG @ 0.0925 |
 | EIGENUSDT | +2.58% | 2 | — |
 | XPLUSDT | +2.35% | 1 | — |
 | XTZUSDT | +1.92% | 3 | — |
 | ENAUSDT | +1.65% | 3 | — |
 | AXSUSDT | +1.43% | 1 | — |
-| WLDUSDT | +1.11% | 2 | — |
+| WLDUSDT | +1.11% | 2 | LONG @ 0.4287 |
 | XLMUSDT | +0.95% | 3 | — |
 | BNBUSDT | +0.86% | 2 | — |
 | AAVEUSDT | +0.61% | 2 | — |
@@ -88,7 +88,7 @@
 | COMPUSDT | -0.05% | 2 | — |
 | QNTUSDT | -0.17% | 1 | — |
 | KMNOUSDT | -0.20% | 2 | — |
-| POLUSDT | -0.53% | 2 | — |
+| POLUSDT | -0.53% | 2 | LONG @ 0.1045 |
 | TRUMPUSDT | -0.79% | 2 | — |
 | PEPEUSDT | -2.40% | 4 | — |
 | FILUSDT | -2.43% | 4 | — |
@@ -110,7 +110,7 @@
 | MONUSDT | -7.37% | 2 | — |
 | LINKUSDT | -8.49% | 3 | — |
 | PYTHUSDT | -9.20% | 2 | — |
-| SYRUPUSDT | -9.35% | 3 | — |
+| SYRUPUSDT | -9.35% | 3 | LONG @ 0.2075 |
 | LTCUSDT | -9.80% | 3 | — |
 | ZECUSDT | -10.33% | 2 | — |
 | IMXUSDT | -10.63% | 4 | — |
