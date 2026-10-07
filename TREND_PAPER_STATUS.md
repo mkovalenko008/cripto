@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-10-06 22:18:19 UTC**
+Последняя проверка: **2026-10-07 02:04:03 UTC**
 
 ## Портфель
 
@@ -25,7 +25,7 @@
 | ZECUSDT | +11.65% | 2 | — |
 | SNXUSDT | +10.60% | 1 | — |
 | ENAUSDT | +9.08% | 2 | — |
-| FARTCOINUSDT | +8.71% | 1 | — |
+| FARTCOINUSDT | +8.71% | 1 | SHORT @ 0.1644 |
 | APTUSDT | +8.35% | 2 | — |
 | BATUSDT | +8.01% | 1 | — |
 | INJUSDT | +7.13% | 2 | — |
@@ -39,7 +39,7 @@
 | XRPUSDT | +4.08% | 2 | — |
 | GLMUSDT | +3.92% | 1 | — |
 | FILUSDT | +3.53% | 3 | — |
-| MONUSDT | +3.51% | 1 | — |
+| MONUSDT | +3.51% | 1 | SHORT @ 0.0275 |
 | AEROUSDT | +3.51% | 1 | — |
 | MORPHOUSDT | +1.60% | 1 | — |
 | BNBUSDT | +1.27% | 1 | — |
@@ -57,21 +57,21 @@
 | ALGOUSDT | +0.00% | 0 | — |
 | CAKEUSDT | +0.00% | 0 | — |
 | VETUSDT | +0.00% | 0 | — |
-| CRVUSDT | +0.00% | 0 | — |
+| CRVUSDT | +0.00% | 0 | SHORT @ 0.3558 |
 | PYTHUSDT | +0.00% | 0 | — |
 | TIAUSDT | +0.00% | 0 | — |
 | FETUSDT | +0.00% | 0 | — |
 | RAYUSDT | +0.00% | 0 | — |
 | COMPUSDT | +0.00% | 0 | — |
 | GRTUSDT | +0.00% | 0 | — |
-| EDGEUSDT | +0.00% | 0 | — |
+| EDGEUSDT | +0.00% | 0 | SHORT @ 0.4381 |
 | AXSUSDT | +0.00% | 0 | — |
-| APEUSDT | +0.00% | 0 | — |
+| APEUSDT | +0.00% | 0 | SHORT @ 0.1550 |
 | EGLDUSDT | +0.00% | 0 | — |
 | ZAMAUSDT | +0.00% | 0 | — |
 | ZENUSDT | +0.00% | 0 | — |
 | ZKUSDT | +0.00% | 0 | — |
-| BONKUSDT | -0.13% | 2 | — |
+| BONKUSDT | -0.13% | 2 | SHORT @ 0.0000 |
 | ONDOUSDT | -0.13% | 4 | — |
 | HYPEUSDT | -0.18% | 1 | — |
 | AIUSDT | -0.18% | 1 | — |
@@ -89,22 +89,22 @@
 | ENSUSDT | -3.11% | 1 | — |
 | AAVEUSDT | -3.27% | 1 | — |
 | KMNOUSDT | -3.45% | 3 | — |
-| ICPUSDT | -3.78% | 2 | — |
+| ICPUSDT | -3.78% | 2 | SHORT @ 3.2940 |
 | ETHFIUSDT | -3.89% | 2 | — |
 | NEARUSDT | -4.03% | 4 | — |
 | SYRUPUSDT | -4.68% | 2 | — |
-| XPLUSDT | -4.89% | 1 | — |
+| XPLUSDT | -4.89% | 1 | SHORT @ 0.0875 |
 | VIRTUALUSDT | -5.01% | 1 | — |
 | BCHUSDT | -5.39% | 2 | — |
 | ADAUSDT | -6.42% | 4 | — |
 | LDOUSDT | -6.43% | 3 | — |
-| OPUSDT | -6.47% | 1 | — |
-| UNIUSDT | -6.49% | 3 | — |
+| OPUSDT | -6.47% | 1 | SHORT @ 0.1256 |
+| UNIUSDT | -6.49% | 3 | SHORT @ 8.2240 |
 | MANAUSDT | -6.62% | 3 | — |
 | ETHUSDT | -6.69% | 3 | — |
 | ASTERUSDT | -7.13% | 2 | — |
 | PEPEUSDT | -7.86% | 1 | — |
-| AWEUSDT | -9.33% | 2 | — |
+| AWEUSDT | -9.33% | 2 | SHORT @ 0.0646 |
 | STXUSDT | -9.80% | 3 | — |
 | RENDERUSDT | -10.58% | 3 | — |
 | AVAXUSDT | -10.71% | 4 | — |
@@ -113,7 +113,7 @@
 | WIFUSDT | -10.96% | 1 | — |
 | WLDUSDT | -11.26% | 3 | — |
 | DOGEUSDT | -12.11% | 2 | — |
-| TRUMPUSDT | -12.72% | 2 | — |
+| TRUMPUSDT | -12.72% | 2 | SHORT @ 1.9520 |
 | EIGENUSDT | -12.96% | 3 | — |
 | 2ZUSDT | -14.73% | 2 | SHORT @ 0.0447 |
 | QNTUSDT | -16.42% | 3 | — |
