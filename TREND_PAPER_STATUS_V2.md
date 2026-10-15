@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 100 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-10-15 13:21:33 UTC**
+Последняя проверка: **2026-10-15 18:13:43 UTC**
 
 ## Портфель
 
@@ -38,7 +38,7 @@
 | 2ZUSDT | +16.08% | 4 | — |
 | MORPHOUSDT | +15.33% | 1 | — |
 | PENGUUSDT | +15.03% | 3 | — |
-| INJUSDT | +14.16% | 3 | — |
+| INJUSDT | +14.16% | 3 | LONG @ 8.1710 |
 | POLUSDT | +12.23% | 3 | — |
 | AVAXUSDT | +11.87% | 4 | — |
 | JTOUSDT | +11.40% | 3 | — |
@@ -50,7 +50,7 @@
 | STXUSDT | +8.68% | 5 | — |
 | AXSUSDT | +8.24% | 4 | — |
 | METUSDT | +7.87% | 3 | — |
-| UNIUSDT | +7.55% | 3 | — |
+| UNIUSDT | +7.55% | 3 | LONG @ 7.4260 |
 | DOTUSDT | +7.20% | 5 | — |
 | BONKUSDT | +6.95% | 4 | — |
 | AWEUSDT | +6.79% | 4 | — |
@@ -63,14 +63,14 @@
 | PENDLEUSDT | +4.90% | 1 | — |
 | MINAUSDT | +4.79% | 2 | — |
 | JASMYUSDT | +4.54% | 2 | — |
-| NEARUSDT | +4.35% | 3 | — |
+| NEARUSDT | +4.35% | 3 | LONG @ 5.1230 |
 | ADAUSDT | +4.25% | 4 | — |
 | BCHUSDT | +4.08% | 3 | — |
 | SOLUSDT | +3.38% | 4 | — |
 | 1INCHUSDT | +3.33% | 3 | — |
 | KMNOUSDT | +3.15% | 4 | — |
 | WLFIUSDT | +2.84% | 1 | LONG @ 0.0576 |
-| FETUSDT | +2.12% | 4 | — |
+| FETUSDT | +2.12% | 4 | LONG @ 0.2050 |
 | AIUSDT | +2.04% | 2 | — |
 | KITEUSDT | +1.43% | 4 | — |
 | BATUSDT | +1.03% | 6 | — |
@@ -110,12 +110,12 @@
 | MANAUSDT | -8.36% | 3 | — |
 | PUMPUSDT | -10.45% | 2 | — |
 | SYRUPUSDT | -10.52% | 5 | — |
-| XPLUSDT | -10.68% | 2 | — |
+| XPLUSDT | -10.68% | 2 | LONG @ 0.0843 |
 | XRPUSDT | -11.03% | 6 | — |
 | GLMUSDT | -11.68% | 3 | — |
 | IMXUSDT | -12.39% | 7 | — |
 | LTCUSDT | -12.72% | 4 | — |
-| ZECUSDT | -14.32% | 3 | — |
+| ZECUSDT | -14.32% | 3 | LONG @ 1230.6000 |
 | RAYUSDT | -17.32% | 5 | — |
 
 Лог сделок — [trend_paper_trades_log.jsonl](trend_paper_trades_log.jsonl).
