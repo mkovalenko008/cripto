@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-10-21 13:24:36 UTC**
+Последняя проверка: **2026-10-21 18:21:46 UTC**
 
 ## Портфель
 
@@ -21,7 +21,7 @@
 | STRKUSDT | +43.71% | 2 | — |
 | ZROUSDT | +16.60% | 3 | — |
 | XLMUSDT | +13.82% | 3 | — |
-| EDGEUSDT | +13.68% | 1 | — |
+| EDGEUSDT | +13.68% | 1 | LONG @ 0.3154 |
 | MONUSDT | +12.89% | 2 | — |
 | SKYUSDT | +11.57% | 2 | — |
 | SNXUSDT | +9.79% | 2 | — |
@@ -53,12 +53,12 @@
 | GRTUSDT | +0.00% | 0 | — |
 | AXSUSDT | +0.00% | 0 | — |
 | EGLDUSDT | +0.00% | 0 | — |
-| ZENUSDT | +0.00% | 0 | — |
+| ZENUSDT | +0.00% | 0 | LONG @ 6.5200 |
 | ZKUSDT | +0.00% | 0 | — |
 | ALGOUSDT | -0.01% | 1 | — |
 | KITEUSDT | -0.19% | 3 | — |
 | HBARUSDT | -0.27% | 3 | — |
-| PUMPUSDT | -0.27% | 1 | — |
+| PUMPUSDT | -0.27% | 1 | LONG @ 0.0050 |
 | HYPEUSDT | -0.84% | 2 | — |
 | BNBUSDT | -1.21% | 2 | — |
 | ENAUSDT | -1.40% | 5 | — |
@@ -77,7 +77,7 @@
 | LINKUSDT | -3.68% | 4 | — |
 | MORPHOUSDT | -3.75% | 2 | — |
 | ETHFIUSDT | -3.89% | 2 | — |
-| ZAMAUSDT | -3.94% | 1 | — |
+| ZAMAUSDT | -3.94% | 1 | LONG @ 0.0820 |
 | NEARUSDT | -4.03% | 4 | — |
 | ONDOUSDT | -4.34% | 5 | — |
 | FETUSDT | -4.56% | 1 | — |
@@ -116,7 +116,7 @@
 | EIGENUSDT | -17.47% | 5 | — |
 | DOGEUSDT | -18.60% | 4 | — |
 | AVAXUSDT | -18.72% | 6 | — |
-| GRASSUSDT | -20.63% | 2 | — |
+| GRASSUSDT | -20.63% | 2 | LONG @ 0.6973 |
 | QNTUSDT | -22.78% | 4 | — |
 
 Лог сделок — [trend_paper_trades_log.jsonl](trend_paper_trades_log.jsonl).
