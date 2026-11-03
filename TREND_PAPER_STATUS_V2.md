@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 100 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-11-03 06:37:18 UTC**
+Последняя проверка: **2026-11-03 15:00:49 UTC**
 
 ## Портфель
 
@@ -18,30 +18,30 @@
 | Монета | Результат | Сделок | Позиция |
 |---|---|---|---|
 | QNTUSDT | +118.39% | 5 | — |
-| STRKUSDT | +73.14% | 4 | — |
-| SUSDT | +49.15% | 6 | — |
+| STRKUSDT | +73.14% | 4 | LONG @ 0.0439 |
+| SUSDT | +49.15% | 6 | LONG @ 0.0387 |
 | HBARUSDT | +35.56% | 4 | — |
 | SEIUSDT | +35.50% | 5 | — |
 | APTUSDT | +33.03% | 2 | — |
-| ARBUSDT | +24.71% | 2 | — |
+| ARBUSDT | +24.71% | 2 | LONG @ 0.1625 |
 | SUIUSDT | +23.17% | 3 | — |
 | AEROUSDT | +19.38% | 4 | — |
 | GRASSUSDT | +17.87% | 6 | — |
 | ZAMAUSDT | +16.22% | 5 | — |
 | ZKUSDT | +16.14% | 2 | — |
-| ZROUSDT | +16.11% | 5 | — |
+| ZROUSDT | +16.11% | 5 | LONG @ 1.8650 |
 | INJUSDT | +16.09% | 5 | — |
 | 2ZUSDT | +16.08% | 4 | — |
 | PENGUUSDT | +15.03% | 3 | — |
 | WLDUSDT | +14.93% | 6 | — |
-| WIFUSDT | +14.21% | 4 | — |
+| WIFUSDT | +14.21% | 4 | LONG @ 0.1734 |
 | SNXUSDT | +12.77% | 4 | — |
 | AVAXUSDT | +11.87% | 4 | — |
 | TIAUSDT | +11.50% | 2 | — |
 | JTOUSDT | +11.40% | 3 | — |
 | ONDOUSDT | +11.31% | 4 | — |
 | MORPHOUSDT | +10.70% | 2 | — |
-| TAOUSDT | +9.93% | 4 | — |
+| TAOUSDT | +9.93% | 4 | LONG @ 227.5000 |
 | ASTERUSDT | +9.58% | 1 | — |
 | POLUSDT | +9.26% | 4 | — |
 | ENAUSDT | +8.71% | 6 | — |
@@ -49,7 +49,7 @@
 | RENDERUSDT | +7.53% | 4 | — |
 | DOTUSDT | +7.20% | 5 | — |
 | BONKUSDT | +6.83% | 5 | — |
-| EDGEUSDT | +6.82% | 2 | — |
+| EDGEUSDT | +6.82% | 2 | LONG @ 0.3287 |
 | APEUSDT | +6.40% | 5 | — |
 | CHZUSDT | +5.72% | 2 | — |
 | LDOUSDT | +5.31% | 3 | — |
@@ -86,7 +86,7 @@
 | ETHUSDT | -2.74% | 3 | — |
 | VETUSDT | -3.11% | 3 | — |
 | FETUSDT | -3.22% | 5 | — |
-| ETHFIUSDT | -3.89% | 2 | — |
+| ETHFIUSDT | -3.89% | 2 | LONG @ 0.5922 |
 | COMPUSDT | -4.04% | 5 | — |
 | NEARUSDT | -4.10% | 5 | — |
 | AWEUSDT | -4.13% | 7 | — |
@@ -116,6 +116,6 @@
 | BATUSDT | -14.78% | 8 | — |
 | RAYUSDT | -17.32% | 5 | — |
 | GLMUSDT | -17.99% | 5 | — |
-| ZECUSDT | -22.80% | 5 | — |
+| ZECUSDT | -22.80% | 5 | LONG @ 1207.5600 |
 
 Лог сделок — [trend_paper_trades_log.jsonl](trend_paper_trades_log.jsonl).
