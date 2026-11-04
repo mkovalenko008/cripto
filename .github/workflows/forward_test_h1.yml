@@ -1,0 +1,52 @@
+name: Прямая проверка H1 (только чтение публичных свечей, без ордеров)
+
+on:
+  schedule:
+    - cron: "17 3 * * 1"   # раз в неделю, понедельник 03:17 UTC (скрипт без состояния, пропуски не страшны)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: forward-test-h1
+  cancel-in-progress: false
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Установить зависимости
+        run: pip install numpy requests
+
+      - name: Пересчитать прямую проверку
+        run: python3 forward_test/forward_eval.py
+
+      - name: Закоммитить отчёт
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forward_test/FORWARD_REPORT.md forward_test/history.csv
+          if git diff --cached --quiet; then
+            echo "Изменений нет"
+            exit 0
+          fi
+          git commit -m "forward-test H1: обновление отчёта $(date -u +'%Y-%m-%d %H:%M UTC')"
+          for attempt in 1 2 3 4 5; do
+            git pull --no-rebase --quiet
+            if git push; then
+              echo "Запушено с попытки $attempt"
+              exit 0
+            fi
+            echo "Попытка $attempt: push отклонён, пробую снова"
+            sleep $((RANDOM % 8 + 3))
+          done
+          echo "Не удалось запушить" >&2
+          exit 1
