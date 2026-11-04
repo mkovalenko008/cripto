@@ -91,11 +91,15 @@ def main():
     fz_txt = time.strftime("%Y-%m-%d", time.gmtime(freeze / 1000))
 
     if days < 1.5:
+        probe_state = {"host": HOSTS[0]}
+        probe = fetch_symbol("BTCUSDT", now_ms - 6 * HOUR, now_ms, probe_state)
+        conn = (f"Связь с биржей с этого сервера: ОК (хост {probe_state['host']}, получено {len(probe)} свечей)."
+                if probe else "Связь с биржей с этого сервера: НЕТ — биржа недоступна, проверка работать не будет.")
         txt = (f"# Прямая проверка H1: отчёт от {stamp}\n\nСбор ещё не начался или данных слишком мало: правила заморожены на "
-               f"{fz_txt} 00:00 UTC, прошло {max(days, 0):.1f} суток. Первые числа появятся через пару недель.\n")
+               f"{fz_txt} 00:00 UTC, прошло {max(days, 0):.1f} суток. Первые числа появятся через пару недель.\n\n{conn}\n")
         open(os.path.join(out_dir, "FORWARD_REPORT.md"), "w").write(txt)
         print(txt)
-        return 0
+        return 0 if probe else 1
 
     uni = json.load(open(os.path.join(HERE, "universe_203.json")))
     tmp = tempfile.mkdtemp()
