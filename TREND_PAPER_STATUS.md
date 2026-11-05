@@ -5,13 +5,13 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-11-05 07:41:34 UTC**
+Последняя проверка: **2026-11-05 16:05:40 UTC**
 
 ## Портфель
 
 | Стартовый капитал | Текущий | Результат |
 |---|---|---|
-| 300.00 USDT | 293.0092 USDT | -2.33% |
+| 300.00 USDT | 292.8525 USDT | -2.38% |
 
 ## По монетам
 
@@ -33,12 +33,12 @@
 | SANDUSDT | +7.01% | 3 | — |
 | JTOUSDT | +5.02% | 2 | — |
 | GLMUSDT | +4.74% | 2 | — |
-| ICPUSDT | +4.72% | 5 | — |
-| ZECUSDT | +4.43% | 3 | — |
+| ICPUSDT | +4.72% | 5 | SHORT @ 2.4540 |
+| ZECUSDT | +4.43% | 3 | SHORT @ 1238.1800 |
 | XPLUSDT | +3.61% | 5 | — |
 | AEROUSDT | +3.51% | 1 | — |
 | UNIUSDT | +3.13% | 4 | — |
-| XRPUSDT | +1.24% | 3 | — |
+| XRPUSDT | +1.24% | 3 | SHORT @ 1.2454 |
 | AIUSDT | +1.19% | 2 | — |
 | MINAUSDT | +0.43% | 1 | — |
 | PAXGUSDT | +0.28% | 2 | — |
@@ -47,20 +47,20 @@
 | AXSUSDT | +0.00% | 0 | — |
 | EGLDUSDT | +0.00% | 0 | — |
 | ZKUSDT | +0.00% | 0 | — |
-| ALGOUSDT | -0.01% | 1 | — |
+| ALGOUSDT | -0.01% | 1 | SHORT @ 0.0934 |
 | KITEUSDT | -0.19% | 3 | — |
 | TAOUSDT | -0.40% | 3 | — |
 | HYPEUSDT | -0.84% | 2 | — |
 | HBARUSDT | -1.08% | 4 | — |
 | BNBUSDT | -1.21% | 2 | — |
-| ATOMUSDT | -1.22% | 2 | — |
+| ATOMUSDT | -1.22% | 2 | SHORT @ 1.4240 |
 | ENAUSDT | -1.40% | 5 | — |
 | LTCUSDT | -1.45% | 1 | — |
-| SKRUSDT | -1.46% | 1 | — |
+| SKRUSDT | -1.46% | 1 | SHORT @ 0.0124 |
 | FILUSDT | -1.97% | 5 | — |
-| BTCUSDT | -2.10% | 4 | — |
-| TRXUSDT | -2.39% | 4 | — |
-| RAYUSDT | -2.72% | 1 | — |
+| BTCUSDT | -2.10% | 4 | SHORT @ 76047.0100 |
+| TRXUSDT | -2.39% | 4 | SHORT @ 0.3158 |
+| RAYUSDT | -2.72% | 1 | SHORT @ 1.6454 |
 | WLFIUSDT | -2.77% | 2 | — |
 | SOLUSDT | -2.93% | 1 | — |
 | PENDLEUSDT | -2.98% | 1 | — |
@@ -81,9 +81,8 @@
 | SYRUPUSDT | -4.68% | 2 | — |
 | 1INCHUSDT | -5.11% | 4 | — |
 | ONDOUSDT | -5.98% | 6 | — |
+| AWEUSDT | -6.08% | 4 | SHORT @ 0.0615 |
 | BCHUSDT | -6.25% | 3 | — |
-| KMNOUSDT | -6.36% | 4 | LONG @ 0.0359 |
-| AWEUSDT | -6.38% | 3 | SHORT @ 0.0679 |
 | MANAUSDT | -6.41% | 4 | — |
 | LDOUSDT | -6.43% | 3 | — |
 | DOTUSDT | -6.71% | 4 | — |
@@ -99,21 +98,22 @@
 | PYTHUSDT | -8.78% | 2 | — |
 | BONKUSDT | -9.06% | 6 | — |
 | XTZUSDT | -9.13% | 4 | — |
-| CRVUSDT | -9.57% | 3 | — |
+| CRVUSDT | -9.57% | 3 | SHORT @ 0.2534 |
 | VIRTUALUSDT | -9.60% | 3 | — |
 | VETUSDT | -9.68% | 2 | — |
 | SEIUSDT | -10.81% | 4 | — |
-| POLUSDT | -11.25% | 5 | — |
+| POLUSDT | -11.25% | 5 | SHORT @ 0.0925 |
 | WLDUSDT | -11.26% | 3 | — |
 | METUSDT | -11.70% | 2 | — |
 | PEPEUSDT | -11.98% | 2 | — |
-| ETHUSDT | -12.22% | 5 | — |
+| KMNOUSDT | -12.10% | 5 | — |
+| ETHUSDT | -12.22% | 5 | SHORT @ 2252.4000 |
 | STXUSDT | -12.55% | 4 | — |
 | ADAUSDT | -12.94% | 6 | — |
 | WIFUSDT | -13.82% | 3 | — |
 | OPUSDT | -15.29% | 5 | — |
 | EIGENUSDT | -15.66% | 6 | — |
-| RENDERUSDT | -16.71% | 5 | — |
+| RENDERUSDT | -16.71% | 5 | SHORT @ 1.4910 |
 | DOGEUSDT | -18.60% | 4 | — |
 | AVAXUSDT | -19.76% | 7 | — |
 | QNTUSDT | -22.78% | 4 | — |
