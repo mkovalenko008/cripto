@@ -5,13 +5,13 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-11-13 04:59:01 UTC**
+Последняя проверка: **2026-11-13 12:57:04 UTC**
 
 ## Портфель
 
 | Стартовый капитал | Текущий | Результат |
 |---|---|---|
-| 300.00 USDT | 292.5121 USDT | -2.50% |
+| 300.00 USDT | 291.7983 USDT | -2.73% |
 
 ## По монетам
 
@@ -38,9 +38,7 @@
 | XPLUSDT | +3.61% | 5 | — |
 | AEROUSDT | +3.51% | 1 | SHORT @ 0.5017 |
 | UNIUSDT | +3.13% | 4 | SHORT @ 5.7850 |
-| BCHUSDT | +3.07% | 4 | SHORT @ 217.4000 |
 | KITEUSDT | +2.37% | 5 | — |
-| AIUSDT | +1.19% | 2 | SHORT @ 0.0131 |
 | MINAUSDT | +0.43% | 1 | — |
 | PAXGUSDT | +0.42% | 3 | — |
 | TIAUSDT | +0.00% | 0 | — |
@@ -48,7 +46,7 @@
 | AXSUSDT | +0.00% | 0 | — |
 | EGLDUSDT | +0.00% | 0 | — |
 | ZKUSDT | +0.00% | 0 | — |
-| TAOUSDT | -0.40% | 3 | SHORT @ 203.4000 |
+| BCHUSDT | -0.31% | 5 | — |
 | BTCUSDT | -0.79% | 5 | SHORT @ 68965.2900 |
 | HYPEUSDT | -0.84% | 2 | — |
 | HBARUSDT | -1.08% | 4 | — |
@@ -57,13 +55,13 @@
 | LTCUSDT | -1.45% | 1 | — |
 | ATOMUSDT | -1.76% | 3 | — |
 | FILUSDT | -1.97% | 5 | — |
+| AIUSDT | -2.44% | 3 | — |
 | WLFIUSDT | -2.77% | 2 | — |
 | PENDLEUSDT | -2.98% | 1 | SHORT @ 1.4650 |
 | IMXUSDT | -3.23% | 4 | — |
 | AAVEUSDT | -3.27% | 1 | SHORT @ 119.7900 |
 | ZECUSDT | -3.39% | 4 | SHORT @ 1011.1800 |
 | 2ZUSDT | -3.45% | 4 | — |
-| SUIUSDT | -3.45% | 7 | SHORT @ 0.7747 |
 | LINKUSDT | -3.51% | 5 | SHORT @ 9.7410 |
 | COMPUSDT | -3.64% | 1 | — |
 | ZENUSDT | -3.71% | 1 | SHORT @ 4.5460 |
@@ -75,14 +73,14 @@
 | FETUSDT | -4.56% | 1 | — |
 | PENGUUSDT | -4.58% | 4 | — |
 | CAKEUSDT | -4.59% | 2 | SHORT @ 1.7070 |
+| TAOUSDT | -4.67% | 4 | — |
 | SYRUPUSDT | -4.68% | 2 | SHORT @ 0.1172 |
-| ALGOUSDT | -5.11% | 2 | SHORT @ 0.0851 |
 | 1INCHUSDT | -5.11% | 4 | SHORT @ 0.0743 |
 | ONDOUSDT | -5.98% | 6 | SHORT @ 0.3357 |
 | MANAUSDT | -6.41% | 4 | SHORT @ 0.0668 |
-| LDOUSDT | -6.43% | 3 | SHORT @ 0.2962 |
 | SKRUSDT | -6.54% | 2 | SHORT @ 0.0104 |
 | DOTUSDT | -6.71% | 4 | SHORT @ 0.8337 |
+| SUIUSDT | -6.72% | 8 | — |
 | BATUSDT | -6.76% | 2 | — |
 | ZAMAUSDT | -6.93% | 2 | — |
 | ETCUSDT | -7.04% | 2 | — |
@@ -94,15 +92,16 @@
 | ETHUSDT | -7.58% | 6 | SHORT @ 2018.4100 |
 | CHZUSDT | -7.69% | 3 | — |
 | TRUMPUSDT | -7.76% | 4 | — |
+| ALGOUSDT | -8.36% | 3 | — |
 | SHIBUSDT | -8.74% | 3 | SHORT @ 0.0000 |
 | PYTHUSDT | -8.78% | 2 | — |
 | BONKUSDT | -9.06% | 6 | — |
 | XTZUSDT | -9.13% | 4 | — |
 | VIRTUALUSDT | -9.60% | 3 | — |
 | VETUSDT | -9.68% | 2 | — |
+| LDOUSDT | -9.84% | 4 | — |
 | RAYUSDT | -9.98% | 2 | — |
 | POLUSDT | -10.64% | 6 | — |
-| SEIUSDT | -10.81% | 4 | SHORT @ 0.0415 |
 | WLDUSDT | -11.26% | 3 | — |
 | METUSDT | -11.70% | 2 | — |
 | PEPEUSDT | -11.98% | 2 | — |
@@ -111,6 +110,7 @@
 | ADAUSDT | -12.94% | 6 | — |
 | WIFUSDT | -13.82% | 3 | SHORT @ 0.1466 |
 | CRVUSDT | -14.14% | 4 | — |
+| SEIUSDT | -14.42% | 5 | — |
 | OPUSDT | -15.29% | 5 | SHORT @ 0.0917 |
 | EIGENUSDT | -15.66% | 6 | — |
 | DOGEUSDT | -18.60% | 4 | SHORT @ 0.0637 |
