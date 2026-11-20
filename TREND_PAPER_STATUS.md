@@ -5,7 +5,7 @@
 63.6% монет в плюсе на test). Капитал поровну разбит на 101 монет,
 каждая торгуется независимо одинаковыми правилами.
 
-Последняя проверка: **2026-11-20 09:38:53 UTC**
+Последняя проверка: **2026-11-20 18:16:44 UTC**
 
 ## Портфель
 
@@ -23,7 +23,7 @@
 | ZROUSDT | +16.60% | 3 | — |
 | SNXUSDT | +15.36% | 3 | SHORT @ 0.1574 |
 | EDGEUSDT | +14.96% | 2 | — |
-| AEROUSDT | +14.91% | 2 | — |
+| AEROUSDT | +14.91% | 2 | SHORT @ 0.3891 |
 | APEUSDT | +14.31% | 2 | — |
 | ZECUSDT | +13.84% | 5 | — |
 | XRPUSDT | +13.32% | 4 | — |
@@ -34,23 +34,23 @@
 | INJUSDT | +7.13% | 2 | — |
 | SANDUSDT | +7.01% | 3 | — |
 | ICPUSDT | +6.56% | 6 | — |
-| 1INCHUSDT | +6.46% | 5 | — |
+| 1INCHUSDT | +6.46% | 5 | SHORT @ 0.0607 |
 | SYRUPUSDT | +6.20% | 3 | — |
 | ZENUSDT | +5.03% | 2 | — |
 | JTOUSDT | +5.02% | 2 | — |
-| BTCUSDT | +4.87% | 6 | — |
+| BTCUSDT | +4.87% | 6 | SHORT @ 59171.0400 |
 | GLMUSDT | +4.74% | 2 | — |
 | SKRUSDT | +4.70% | 3 | — |
 | IMXUSDT | +4.64% | 5 | — |
 | PENGUUSDT | +3.95% | 5 | — |
 | XPLUSDT | +3.61% | 5 | — |
-| APTUSDT | +3.36% | 6 | — |
-| ETHUSDT | +2.98% | 7 | — |
+| APTUSDT | +3.36% | 6 | SHORT @ 0.3692 |
+| ETHUSDT | +2.98% | 7 | SHORT @ 1630.9600 |
 | UNIUSDT | +2.56% | 6 | — |
 | KITEUSDT | +2.37% | 5 | — |
 | FARTCOINUSDT | +2.14% | 4 | — |
 | LTCUSDT | +1.68% | 2 | — |
-| MANAUSDT | +0.90% | 5 | — |
+| MANAUSDT | +0.90% | 5 | SHORT @ 0.0557 |
 | MINAUSDT | +0.43% | 1 | — |
 | PAXGUSDT | +0.42% | 3 | — |
 | TIAUSDT | +0.00% | 0 | — |
@@ -87,12 +87,12 @@
 | LINKUSDT | -7.18% | 6 | — |
 | AWEUSDT | -7.19% | 5 | — |
 | CAKEUSDT | -7.47% | 3 | — |
-| CHZUSDT | -7.69% | 3 | — |
+| CHZUSDT | -7.69% | 3 | SHORT @ 0.0090 |
 | TRUMPUSDT | -7.76% | 4 | — |
 | DOTUSDT | -7.88% | 5 | — |
 | PENDLEUSDT | -8.01% | 2 | — |
 | KMNOUSDT | -8.04% | 6 | — |
-| ALGOUSDT | -8.36% | 3 | — |
+| ALGOUSDT | -8.36% | 3 | SHORT @ 0.0723 |
 | PYTHUSDT | -8.78% | 2 | — |
 | BONKUSDT | -9.06% | 6 | — |
 | XTZUSDT | -9.13% | 4 | — |
